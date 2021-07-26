@@ -24,6 +24,8 @@ namespace MHC_Hospital_Redesign.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
+        public DbSet<Ecard> Ecards { get; set; }
+        public DbSet<Template> Templates { get; set; }
 
         public static ApplicationDbContext Create()
         {
