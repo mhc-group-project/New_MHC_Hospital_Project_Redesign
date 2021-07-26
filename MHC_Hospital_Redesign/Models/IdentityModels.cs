@@ -27,6 +27,10 @@ namespace MHC_Hospital_Redesign.Models
         public DbSet<Ecard> Ecards { get; set; }
         public DbSet<Template> Templates { get; set; }
 
+        public DbSet<Faq> Faqs { get; set; }
+
+        public DbSet<FaqCategory> FaqCategories { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
