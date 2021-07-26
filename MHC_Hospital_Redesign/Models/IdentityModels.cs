@@ -25,6 +25,10 @@ namespace MHC_Hospital_Redesign.Models
         {
         }
 
+        public DbSet<Faq> Faqs { get; set; }
+
+        public DbSet<FaqCategory> FaqCategories { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
