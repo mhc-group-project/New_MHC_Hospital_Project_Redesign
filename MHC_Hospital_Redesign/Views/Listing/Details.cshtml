@@ -1,0 +1,23 @@
+﻿@model MHC_Hospital_Redesign.Models.ListingDto
+@{
+    ViewBag.Title = "Details";
+}
+<div>
+    <ul>
+        <li><a href="/Listing/List">Back</a></li>
+        <li><a href="/Listing/Edit/@Model.ListID">Edit</a></li>
+        <li><a href="/Listing/DeleteConfirm/@Model.ListID">Delete</a></li>
+    </ul>
+</div>
+
+<h2>@Model.ListTitle</h2>
+<p>@Model.ListDate</p>
+<p>Location: @Model.ListLocation</p></ br>
+
+<h3>Description</h3>
+<p>@Model.ListDescription</p>
+
+<h3>Requirements</h3>
+<p>@Model.ListRequirements</p>
+
+
