@@ -1,4 +1,4 @@
-namespace HospitalProject.Migrations
+namespace MHC_Hospital_Redesign.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
