@@ -8,10 +8,10 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using HospitalProject.Models;
+using MHC_Hospital_Redesign.Models;
 using System.Diagnostics;
 
-namespace HospitalProject.Controllers
+namespace MHC_Hospital_Redesign.Controllers
 {
     public class FeedbackCategoryDataController : ApiController
     {
