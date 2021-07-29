@@ -33,6 +33,10 @@ namespace MHC_Hospital_Redesign.Models
 
         public DbSet<FaqCategory> FaqCategories { get; set; }
 
+        public DbSet<Invoice> Invoices { get; set; }
+
+        public DbSet<Payment> Payments { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
