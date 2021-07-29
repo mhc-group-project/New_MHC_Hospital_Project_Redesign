@@ -5,11 +5,11 @@ using System.Web;
 using System.Web.Mvc;
 using System.Net.Http;
 using System.Diagnostics;
-using HospitalProject.Models;
-using HospitalProject.Models.ViewModels;
+using MHC_Hospital_Redesign.Models;
+using MHC_Hospital_Redesign.Models.ViewModels;
 using System.Web.Script.Serialization;
 
-namespace HospitalProject.Controllers
+namespace MHC_Hospital_Redesign.Controllers
 {
     public class FeedbackController : Controller
     {
