@@ -188,6 +188,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Migrations\202107281726190_test.cs" />
     <Compile Include="Migrations\202107281726190_test.designer.cs">
       <DependentUpon>202107281726190_test.cs</DependentUpon>
@@ -203,11 +204,39 @@
     <Compile Include="Migrations\202107290546097_listingsusers.cs" />
     <Compile Include="Migrations\202107290546097_listingsusers.designer.cs">
       <DependentUpon>202107290546097_listingsusers.cs</DependentUpon>
+=======
+    <Compile Include="Migrations\202107282301012_template-ecards.cs" />
+    <Compile Include="Migrations\202107282301012_template-ecards.designer.cs">
+      <DependentUpon>202107282301012_template-ecards.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107290249141_Added Appointment model.cs" />
+    <Compile Include="Migrations\202107290249141_Added Appointment model.designer.cs">
+      <DependentUpon>202107290249141_Added Appointment model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107291508182_Added Department model.cs" />
+    <Compile Include="Migrations\202107291508182_Added Department model.designer.cs">
+      <DependentUpon>202107291508182_Added Department model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107291754163_invoice.cs" />
+    <Compile Include="Migrations\202107291754163_invoice.designer.cs">
+      <DependentUpon>202107291754163_invoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107291831407_payment.cs" />
+    <Compile Include="Migrations\202107291831407_payment.designer.cs">
+      <DependentUpon>202107291831407_payment.cs</DependentUpon>
+>>>>>>> 8f516084943f71976be64189ebf22d1047f8cd49
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Appointment.cs" />
+    <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Ecard.cs" />
+<<<<<<< HEAD
     <Compile Include="Models\Listing.cs" />
+=======
+    <Compile Include="Models\Invoice.cs" />
+    <Compile Include="Models\Payment.cs" />
+>>>>>>> 8f516084943f71976be64189ebf22d1047f8cd49
     <Compile Include="Models\Template.cs" />
     <Compile Include="Migrations\202107260028236_faq.cs" />
     <Compile Include="Migrations\202107260028236_faq.designer.cs">
@@ -311,6 +340,12 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
+=======
+    <EmbeddedResource Include="Migrations\202107260012033_test.resx">
+      <DependentUpon>202107260012033_test.cs</DependentUpon>
+    </EmbeddedResource>
+>>>>>>> 8f516084943f71976be64189ebf22d1047f8cd49
     <EmbeddedResource Include="Migrations\202107260028236_faq.resx">
       <DependentUpon>202107260028236_faq.cs</DependentUpon>
     </EmbeddedResource>
@@ -320,6 +355,7 @@
     <EmbeddedResource Include="Migrations\202107260036284_faq-category-bridging.resx">
       <DependentUpon>202107260036284_faq-category-bridging.cs</DependentUpon>
     </EmbeddedResource>
+<<<<<<< HEAD
     <EmbeddedResource Include="Migrations\202107281726190_test.resx">
       <DependentUpon>202107281726190_test.cs</DependentUpon>
     </EmbeddedResource>
@@ -331,6 +367,22 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107290546097_listingsusers.resx">
       <DependentUpon>202107290546097_listingsusers.cs</DependentUpon>
+=======
+    <EmbeddedResource Include="Migrations\202107282301012_template-ecards.resx">
+      <DependentUpon>202107282301012_template-ecards.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107290249141_Added Appointment model.resx">
+      <DependentUpon>202107290249141_Added Appointment model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107291508182_Added Department model.resx">
+      <DependentUpon>202107291508182_Added Department model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107291754163_invoice.resx">
+      <DependentUpon>202107291754163_invoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107291831407_payment.resx">
+      <DependentUpon>202107291831407_payment.cs</DependentUpon>
+>>>>>>> 8f516084943f71976be64189ebf22d1047f8cd49
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
