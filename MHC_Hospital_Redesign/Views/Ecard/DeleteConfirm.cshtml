@@ -1,0 +1,15 @@
+﻿@model MHC_Hospital_Redesign.Models.EcardDto
+
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>DeleteConfirm</h2>
+
+<h2>Are you sure you would like to delete</h2>
+
+<form action="/Ecard/Delete/@Model.EcardId" method="POST">
+    <input class="btn btn-success" type="submit" value="Confirm Delete" />
+
+
+</form>

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<MHC_Hospital_Redesign.Models.TemplateDto>
+
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>Create Ecard</h2>
+
+<form action="/Ecard/Create" method="POST">
+    <div>
+        <label>Senders Name: </label> <input type="text" name="SenderName" />
+    </div>
+    <div>
+        <label>Patients Name: <input type="text" name="PatientName" /></label>
+    </div>
+    <div>
+        <label>Message: <input type="text" name="Message" /></label>
+    </div>
+    <div>
+        <label>Template:</label>
+        <select name="TemplateId">
+            @foreach (var template in Model)
+            {
+                <option value="@template.TemplateId">@template.TemplateName</option>
+            }
+        </select>
+     
+    </div>
+    <div>
+        <input type="submit" value="Add Ecard" />
+    </div>
+
+
+</form>
+
+

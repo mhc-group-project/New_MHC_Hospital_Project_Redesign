@@ -1,0 +1,17 @@
+﻿@model IEnumerable<MHC_Hospital_Redesign.Models.TemplateDto>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+@foreach (var template in Model)
+{
+    <h2>Template Name: <a href="/Template/Details/@template.TemplateId">@template.TemplateName</a></h2>
+
+
+
+}
+
+
+

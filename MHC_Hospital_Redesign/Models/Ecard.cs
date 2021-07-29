@@ -23,4 +23,13 @@ namespace MHC_Hospital_Redesign.Models
         public int TemplateId { get; set; }
         public virtual Template Template { get; set; }
     }
+
+    public class EcardDto
+    {
+        public int EcardId { get; set; }
+        public string SenderName { get; set; }
+        public string PatientName { get; set; }
+        public string Message { get; set; }
+    }
+  
 }

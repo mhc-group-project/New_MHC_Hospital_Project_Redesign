@@ -1,0 +1,27 @@
+﻿@model MHC_Hospital_Redesign.Models.TemplateDto
+
+@{
+    ViewBag.Title = "View";
+}
+
+<a href="/Template/List">Go back</a>
+<form action="/Template/Edit/@Model.TemplateId">
+    <input style="margin-top: 15px;" type="submit" class="btn btn-info"  value="Update Template" />
+</form>
+<form action="/Template/DeleteConfirm/@Model.TemplateId">
+    <input style="margin-top: 15px;" type="submit" class="btn btn-info" name="TemplateDelete" value="Delete Template" />
+</form>
+
+<h2>@Model.TemplateName</h2>
+<div>ID: @Model.TemplateId</div>
+
+@{ 
+    string imageurl = "/Content/TemplatePics/default.jpg";
+    if(Model.TemplateHasPic)
+    {
+        imageurl = "/Content/TemplatePics/" + Model.TemplateId + "." + Model.TemplatePicExtension;
+    }
+
+}
+
+<div><img src="@imageurl" alt="@Model.TemplateName" style="max-width: 500px"</div>

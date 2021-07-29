@@ -1,0 +1,15 @@
+﻿@model MHC_Hospital_Redesign.Models.TemplateDto
+
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>DeleteConfirm</h2>
+
+<h2>Are you sure you would like to delete</h2>
+
+<form action="/Template/Delete/@Model.TemplateId" method="POST">
+    <input class="btn btn-success" type="submit" value="Confirm Delete" />
+
+
+</form>

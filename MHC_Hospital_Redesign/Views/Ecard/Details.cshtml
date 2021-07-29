@@ -1,0 +1,17 @@
+﻿@model MHC_Hospital_Redesign.Models.EcardDto
+
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<a href="/Ecard/List">Go back</a>
+<form action="/Ecard/Edit/@Model.EcardId">
+    <input style="margin-top: 15px;" type="submit" class="btn btn-info" value="Update Template" />
+</form>
+<form action="/Ecard/DeleteConfirm/@Model.EcardId">
+    <input style="margin-top: 15px;" type="submit" class="btn btn-info" name="TemplateDelete" value="Delete Template" />
+</form>
+<h2>To: @Model.PatientName</h2>
+<h2>From: @Model.SenderName</h2>
+<p>Message: @Model.Message</p>

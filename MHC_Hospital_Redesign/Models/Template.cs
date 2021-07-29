@@ -20,4 +20,15 @@ namespace MHC_Hospital_Redesign.Models
         public string TemplateStyle { get; set; }
 
     }
+
+    public class TemplateDto
+    {
+        public int TemplateId { get; set; }
+        public string TemplateName { get; set; }
+
+        public bool TemplateHasPic { get; set; }
+        public string TemplatePicExtension { get; set; }
+
+        public string TemplateStyle { get; set; }
+    }
 }

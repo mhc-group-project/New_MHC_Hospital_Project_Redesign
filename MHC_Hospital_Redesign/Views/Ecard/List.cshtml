@@ -1,0 +1,13 @@
+﻿@model IEnumerable<MHC_Hospital_Redesign.Models.EcardDto>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+@foreach (var ecard in Model)
+{
+    <h2>Ecard: <a href="/Ecard/Details/@ecard.EcardId">@ecard.PatientName</a></h2>
+    
+}
+

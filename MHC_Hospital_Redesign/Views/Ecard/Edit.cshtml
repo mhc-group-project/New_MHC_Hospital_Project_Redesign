@@ -1,0 +1,38 @@
+﻿@model MHC_Hospital_Redesign.Models.ViewModels.UpdateEcard
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Ecard</h2>
+
+<form action="/Ecard/Update/@Model.SelectedEcard.EcardId" method="POST">
+    <div style="display;none;">
+        <input type="text" name="EcardId" value="@Model.SelectedEcard.EcardId" />
+    </div>
+    <div>
+        <label>Senders Name: </label> <input type="text" name="SenderName" value="@Model.SelectedEcard.SenderName" />
+    </div>
+    <div>
+        <label>Patients Name: <input type="text" name="PatientName" value="@Model.SelectedEcard.PatientName" /></label>
+    </div>
+    <div>
+        <label>Message: <input type="text" name="Message" value="@Model.SelectedEcard.Message" /></label>
+    </div>
+    <div>
+        <label>Template</label>
+        <select name="TemplateId">
+            @foreach (var template in Model.TemplateOptions)
+            {
+                <option value="@template.TemplateId">@template.TemplateName</option>
+            }
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Update Ecard" />
+    </div>
+
+
+</form>
+
+

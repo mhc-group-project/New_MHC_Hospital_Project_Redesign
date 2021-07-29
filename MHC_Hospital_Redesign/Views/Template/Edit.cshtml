@@ -1,0 +1,28 @@
+﻿@model MHC_Hospital_Redesign.Models.TemplateDto
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h2>EditTemplate</h2>
+<form action="/Template/Update/@Model.TemplateId" method="POST" enctype="multipart/form-data">
+    <div style="display:none;">
+        <input type="text" name="TemplateId" value="@Model.TemplateId" />
+    </div>
+    <div>
+        <label>Template Name: </label> <input type="text" name="TemplateName" value="@Model.TemplateName" />
+    </div>
+    <div>
+        <label>Template CSS: </label> <input type="text" name="TemplateStyle" value="@Model.TemplateStyle" />
+    </div>
+    <div>
+        <input type="file" name="TemplatePic" />
+    </div>
+    <div>
+        <input type="submit" value="Add Template" />
+    </div>
+
+</form>
+
