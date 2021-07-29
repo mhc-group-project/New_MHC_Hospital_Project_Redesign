@@ -193,8 +193,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202107260329383_pendng-work.cs" />
-    <Compile Include="Migrations\202107260329383_pendng-work.designer.cs">
-      <DependentUpon>202107260329383_pendng-work.cs</DependentUpon>
+	  <Compile Include="Migrations\202107260329383_pendng-work.designer.cs">
+		  <DependentUpon>202107260329383_pendng-work.cs</DependentUpon>
+	  </Compile>
     <Compile Include="Migrations\202107281726190_test.cs" />
     <Compile Include="Migrations\202107281726190_test.designer.cs">
       <DependentUpon>202107281726190_test.cs</DependentUpon>
@@ -371,8 +372,9 @@
     <EmbeddedResource Include="Migrations\202107260036284_faq-category-bridging.resx">
       <DependentUpon>202107260036284_faq-category-bridging.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107260329383_pendng-work.resx">
-      <DependentUpon>202107260329383_pendng-work.cs</DependentUpon>
+	  <EmbeddedResource Include="Migrations\202107260329383_pendng-work.resx">
+		  <DependentUpon>202107260329383_pendng-work.cs</DependentUpon>
+	  </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107281726190_test.resx">
       <DependentUpon>202107281726190_test.cs</DependentUpon>
     </EmbeddedResource>
