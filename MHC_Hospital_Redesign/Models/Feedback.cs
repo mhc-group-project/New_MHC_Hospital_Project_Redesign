@@ -5,7 +5,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace HospitalProject.Models
+namespace MHC_Hospital_Redesign.Models
 {
     public class Feedback
 
