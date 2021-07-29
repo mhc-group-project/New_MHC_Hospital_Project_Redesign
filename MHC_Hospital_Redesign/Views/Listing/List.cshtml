@@ -1,0 +1,20 @@
+﻿@model IEnumerable<MHC_Hospital_Redesign.Models.ListingDto>
+@{
+    ViewBag.Title = "List";
+}
+
+<div>
+    <a href="/Listing/New">New</a>
+</div>
+
+<h2>Volunteer Listings</h2>
+
+@foreach (var listing in Model)
+{ 
+    <div>
+        <h3><a href="/Listing/Details/@listing.ListID">@listing.ListTitle</a></h3>
+        <p>@listing.ListDate</p>
+        <p>@listing.ListDescription</p>
+        <p>Location: @listing.ListLocation</p>
+    </div>
+}

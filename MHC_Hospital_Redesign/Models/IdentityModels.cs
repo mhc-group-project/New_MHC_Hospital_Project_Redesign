@@ -3,12 +3,19 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections.Generic;
 
 namespace MHC_Hospital_Redesign.Models
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+        // add ContactMethod and Address columns
+        public string ContactMethod { get; set; }
+        public string Address { get; set; }
+        // add a M-M relationship with Listings
+        public ICollection<Listing> Listings { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -28,8 +35,19 @@ namespace MHC_Hospital_Redesign.Models
         public DbSet<Template> Templates { get; set; }
 
         public DbSet<Faq> Faqs { get; set; }
+        public DbSet<Appointment> Appointments { get; set; }
+        public DbSet<Department> Departments { get; set; }
 
         public DbSet<FaqCategory> FaqCategories { get; set; }
+
+<<<<<<< HEAD
+        //add Listing entity to the system
+        public DbSet<Listing> Listings { get; set; }
+=======
+        public DbSet<Invoice> Invoices { get; set; }
+
+        public DbSet<Payment> Payments { get; set; }
+>>>>>>> 8f516084943f71976be64189ebf22d1047f8cd49
 
         public static ApplicationDbContext Create()
         {
