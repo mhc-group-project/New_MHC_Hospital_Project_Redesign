@@ -191,8 +191,13 @@
     <Compile Include="Migrations\202107282301012_template-ecards.designer.cs">
       <DependentUpon>202107282301012_template-ecards.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107290249141_Added Appointment model.cs" />
+    <Compile Include="Migrations\202107290249141_Added Appointment model.designer.cs">
+      <DependentUpon>202107290249141_Added Appointment model.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Appointment.cs" />
     <Compile Include="Models\Ecard.cs" />
     <Compile Include="Models\Template.cs" />
     <Compile Include="Migrations\202107260012033_test.cs" />
@@ -308,6 +313,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107282301012_template-ecards.resx">
       <DependentUpon>202107282301012_template-ecards.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107290249141_Added Appointment model.resx">
+      <DependentUpon>202107290249141_Added Appointment model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
