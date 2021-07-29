@@ -199,11 +199,21 @@
     <Compile Include="Migrations\202107291508182_Added Department model.designer.cs">
       <DependentUpon>202107291508182_Added Department model.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107291754163_invoice.cs" />
+    <Compile Include="Migrations\202107291754163_invoice.designer.cs">
+      <DependentUpon>202107291754163_invoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107291831407_payment.cs" />
+    <Compile Include="Migrations\202107291831407_payment.designer.cs">
+      <DependentUpon>202107291831407_payment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Appointment.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Ecard.cs" />
+    <Compile Include="Models\Invoice.cs" />
+    <Compile Include="Models\Payment.cs" />
     <Compile Include="Models\Template.cs" />
     <Compile Include="Migrations\202107260012033_test.cs" />
     <Compile Include="Migrations\202107260012033_test.designer.cs">
@@ -324,6 +334,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107291508182_Added Department model.resx">
       <DependentUpon>202107291508182_Added Department model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107291754163_invoice.resx">
+      <DependentUpon>202107291754163_invoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107291831407_payment.resx">
+      <DependentUpon>202107291831407_payment.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
