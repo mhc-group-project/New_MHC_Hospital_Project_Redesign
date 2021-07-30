@@ -10,7 +10,9 @@ namespace MHC_Hospital_Redesign.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
-        // add ContactMethod and Address columns
+        // add FirstName, LastName, ContactMethod and Address columns
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string ContactMethod { get; set; }
         public string Address { get; set; }
         // add a M-M relationship with Listings

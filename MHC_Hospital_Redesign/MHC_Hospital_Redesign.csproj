@@ -208,6 +208,10 @@
     <Compile Include="Migrations\202107301432591_listingforeignkey.Designer.cs">
       <DependentUpon>202107301432591_listingforeignkey.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107301436495_usercolumns.cs" />
+    <Compile Include="Migrations\202107301436495_usercolumns.Designer.cs">
+      <DependentUpon>202107301436495_usercolumns.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Appointment.cs" />
@@ -344,6 +348,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107301432591_listingforeignkey.resx">
       <DependentUpon>202107301432591_listingforeignkey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107301436495_usercolumns.resx">
+      <DependentUpon>202107301436495_usercolumns.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
