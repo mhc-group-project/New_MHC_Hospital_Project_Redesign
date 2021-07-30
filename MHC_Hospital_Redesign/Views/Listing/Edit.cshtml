@@ -1,0 +1,42 @@
+﻿@model MHC_Hospital_Redesign.Models.ListingDto
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div>
+    <ul>
+        <li><a href="/Listing/Details/@Model.ListID">Back</a></li>
+        <li><a href="/Listing/List">List</a></li>
+        <li><a href="/Listing/DeleteConfirm/@Model.ListID">Delete</a></li>
+    </ul>
+</div>
+
+    <h2>Update @Model.ListTitle</h2>
+
+    <form action="/Listing/Update/@Model.ListID" method="POST">
+        <input type="number" style="display:none" name="ListID" value="@Model.ListID" />
+        <div>
+            <label for="ListTitle">Title:</label>
+            <input type="text" name="ListTitle" value="@Model.ListTitle" />
+        </div>
+        <div>
+            <label for="ListDate">Date:</label>
+            <input type="text" name="ListDate" value="@Model.ListDate" />
+        </div>
+        <div>
+            <label for="ListLocation">Location:</label>
+            <input type="text" name="ListLocation" value="@Model.ListLocation" />
+        </div>
+        <div>
+            <label for="ListDescription">Description:</label>
+            <textarea name="ListDescription">@Model.ListDescription</textarea>
+        </div>
+        <div>
+            <label for="ListRequirements">Requirements:</label>
+            <textarea name="ListRequirements">@Model.ListRequirements</textarea>
+        </div>
+        <div>
+            <input type="submit" value="Update Listing" />
+        </div>
+
+    </form>

@@ -1,0 +1,26 @@
+﻿@model MHC_Hospital_Redesign.Models.ListingDto
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+<div>
+    <ul>
+        <li><a href="/Listing/Details/@Model.ListID">Back</a></li>
+        <li><a href="/Listing/List">List</a></li>
+    </ul>
+</div>
+
+<p>Are you sure you want to delete this listing?</p>
+<form action="/Listing/Delete/@Model.ListID" method="POST">
+    <input type="submit" value="Delete" />
+</form>
+
+<h2>@Model.ListTitle</h2>
+<p>@Model.ListDate</p>
+<p>Location: @Model.ListLocation</p></ br>
+
+<h3>Description</h3>
+<p>@Model.ListDescription</p>
+
+<h3>Requirements</h3>
+<p>@Model.ListRequirements</p>
+
