@@ -6,11 +6,28 @@
 
 <a href="/Ecard/List">Go back</a>
 <form action="/Ecard/Edit/@Model.EcardId">
-    <input style="margin-top: 15px;" type="submit" class="btn btn-info" value="Update Template" />
+    <input style="margin-top: 15px;" type="submit" class="btn btn-info" value="Update Ecard" />
 </form>
 <form action="/Ecard/DeleteConfirm/@Model.EcardId">
-    <input style="margin-top: 15px;" type="submit" class="btn btn-info" name="TemplateDelete" value="Delete Template" />
+    <input style="margin-top: 15px;" type="submit" class="btn btn-info" name="EcardDelete" value="Delete Ecard" />
 </form>
-<h2>To: @Model.PatientName</h2>
+<div style="hidden">
+    @Model.TemplateId
+</div><h2>To: @Model.PatientName</h2>
 <h2>From: @Model.SenderName</h2>
 <p>Message: @Model.Message</p>
+
+
+
+@{
+
+    // string imageurl = "/Content/TemplatePics/default.jpg";
+    string imageurl = "";
+    if (Model.TemplateHasPic)
+    {
+        imageurl = "/Content/TemplatePics/" + Model.TemplateId + "." + Model.TemplatePicExtension;
+    }
+
+}
+
+<div><img src="@imageurl" alt="test" style="max-width: 500px"</div>

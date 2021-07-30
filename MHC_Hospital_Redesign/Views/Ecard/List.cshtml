@@ -5,6 +5,10 @@
 }
 
 <h2>List</h2>
+<div>
+    <a href="/Ecard/New">New</a>
+</div>
+
 @foreach (var ecard in Model)
 {
     <h2>Ecard: <a href="/Ecard/Details/@ecard.EcardId">@ecard.PatientName</a></h2>

@@ -5,6 +5,11 @@
 }
 
 <h2>List</h2>
+
+<div>
+    <a href="/Template/New">New</a>
+</div>
+
 @foreach (var template in Model)
 {
     <h2>Template Name: <a href="/Template/Details/@template.TemplateId">@template.TemplateName</a></h2>

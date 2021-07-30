@@ -50,9 +50,9 @@ namespace MHC_Hospital_Redesign.Controllers
             UpdateEcard ViewModel = new UpdateEcard();
 
             */
-            /*
+           
             DetailsEcard ViewModel = new DetailsEcard();
-            */
+           
 
             string url = "ecarddata/findecard/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
@@ -62,6 +62,13 @@ namespace MHC_Hospital_Redesign.Controllers
 
             EcardDto SelectedEcard = response.Content.ReadAsAsync<EcardDto>().Result;
             Debug.WriteLine("ecard recieved ID:" + SelectedEcard.EcardId);
+            ViewModel.SelectedEcard = SelectedEcard;
+
+            url = "templatedata/listtemplates/";
+            response = client.GetAsync(url).Result;
+            IEnumerable<TemplateDto> TemplateOptions = response.Content.ReadAsAsync<IEnumerable<TemplateDto>>().Result;
+
+            ViewModel.TemplateOptions = TemplateOptions;
 
             /*
             //Test
@@ -71,7 +78,7 @@ namespace MHC_Hospital_Redesign.Controllers
 
             ViewModel.TemplateOptions = TemplateOptions;
 
-            */ 
+            */
             /*
             ViewModel.SelectedEcard = SelectedEcard;
             //Show Template associated with Ecard

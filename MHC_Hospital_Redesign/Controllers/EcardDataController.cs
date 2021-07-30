@@ -31,12 +31,62 @@ namespace MHC_Hospital_Redesign.Controllers
                 EcardId = e.EcardId,
                 Message = e.Message,
                 SenderName = e.SenderName,
-                PatientName = e.PatientName
+                PatientName = e.PatientName,
+                TemplateId = e.TemplateId,
+                TemplateName = e.Template.TemplateName,
+                TemplateHasPic = e.Template.TemplateHasPic,
+                TemplatePicExtension = e.Template.TemplatePicExtension,
+                TemplateStyle = e.Template.TemplateStyle
             }));
 
             return EcardDtos;
         }
 
+        [HttpGet]
+        [ResponseType(typeof(EcardDto))]
+        public IHttpActionResult ListTemplateForEcard(int id)
+        {
+            List<Ecard> Ecards = db.Ecards.Where(e => e.TemplateId == id).ToList();
+            List<EcardDto> EcardDtos = new List<EcardDto>();
+
+            Ecards.ForEach(e => EcardDtos.Add(new EcardDto()
+            {
+                EcardId = e.EcardId,
+                Message = e.Message,
+                SenderName = e.SenderName,
+                PatientName = e.PatientName,
+                TemplateId = e.TemplateId,
+                TemplateName = e.Template.TemplateName,
+                TemplateHasPic = e.Template.TemplateHasPic,
+                TemplatePicExtension = e.Template.TemplatePicExtension,
+                TemplateStyle = e.Template.TemplateStyle
+            }));
+
+            return Ok(EcardDtos);
+        }
+        /*
+        [ResponseType(typeof(Ecard))]
+        [HttpGet]
+        public IHttpActionResult FindEcard(int id)
+        {
+            Ecard Ecard = db.Ecards.Find(id);
+            EcardDto EcardDto = new EcardDto()
+            {
+                ReviewId = Review.ReviewId,
+                ReviewText = Review.ReviewText,
+                fname = Review.fname,
+                lname = Review.lname,
+                SongName = Review.Song.SongName
+
+            };
+            if (Review == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(ReviewDto);
+        }
+        */
 
         /*
 
@@ -71,6 +121,7 @@ namespace MHC_Hospital_Redesign.Controllers
         [HttpGet]
         public IHttpActionResult FindEcard(int id)
         {
+            /*
             Ecard Ecard = db.Ecards.Find(id);
             EcardDto EcardDto = new EcardDto()
             {
@@ -78,6 +129,27 @@ namespace MHC_Hospital_Redesign.Controllers
                 Message = Ecard.Message,
                 SenderName = Ecard.SenderName,
                 PatientName = Ecard.PatientName
+            };
+
+            if (Ecard == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(EcardDto);
+            */
+            Ecard Ecard = db.Ecards.Find(id);
+            EcardDto EcardDto = new EcardDto()
+            {
+                EcardId = Ecard.EcardId,
+                Message = Ecard.Message,
+                SenderName = Ecard.SenderName,
+                PatientName = Ecard.PatientName,
+                TemplateId = Ecard.TemplateId,
+                TemplateHasPic = Ecard.Template.TemplateHasPic,
+                TemplateName = Ecard.Template.TemplateName,
+                TemplatePicExtension = Ecard.Template.TemplatePicExtension,
+                TemplateStyle = Ecard.Template.TemplateStyle
             };
 
             if (Ecard == null)
