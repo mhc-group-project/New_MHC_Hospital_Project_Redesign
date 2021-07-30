@@ -193,6 +193,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\TemplateController.cs" />
     <Compile Include="Controllers\TemplateDataController.cs" />
+    <Compile Include="Controllers\UserDataController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -211,6 +212,10 @@
     <Compile Include="Migrations\202107301436495_usercolumns.cs" />
     <Compile Include="Migrations\202107301436495_usercolumns.Designer.cs">
       <DependentUpon>202107301436495_usercolumns.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107301607558_userdto.cs" />
+    <Compile Include="Migrations\202107301607558_userdto.Designer.cs">
+      <DependentUpon>202107301607558_userdto.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -351,6 +356,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107301436495_usercolumns.resx">
       <DependentUpon>202107301436495_usercolumns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107301607558_userdto.resx">
+      <DependentUpon>202107301607558_userdto.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

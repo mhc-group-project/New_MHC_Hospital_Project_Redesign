@@ -15,6 +15,7 @@ namespace MHC_Hospital_Redesign.Models
         public string LastName { get; set; }
         public string ContactMethod { get; set; }
         public string Address { get; set; }
+
         // add a M-M relationship with Listings
         public ICollection<Listing> Listings { get; set; }
 
@@ -25,6 +26,11 @@ namespace MHC_Hospital_Redesign.Models
             // Add custom user claims here
             return userIdentity;
         }
+    }
+    public class ApplicationUserDto
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -44,13 +50,14 @@ namespace MHC_Hospital_Redesign.Models
         //public DbSet<Feedback> Feedbacks { get; set; }
         //public DbSet<FeedbackCategory> FeedbackCategories { get; set; }
 
-
         //add Listing entity to the system
         public DbSet<Listing> Listings { get; set; }
 
         public DbSet<Invoice> Invoices { get; set; }
 
         public DbSet<Payment> Payments { get; set; }
+
+        //public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
 
         public static ApplicationDbContext Create()
