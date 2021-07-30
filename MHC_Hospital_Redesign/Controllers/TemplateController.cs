@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Net.Http;
 using System.Diagnostics;
 using MHC_Hospital_Redesign.Models;
+using MHC_Hospital_Redesign.Models.ViewModels;
 using System.Web.Script.Serialization;
 
 namespace MHC_Hospital_Redesign.Controllers
@@ -47,24 +48,32 @@ namespace MHC_Hospital_Redesign.Controllers
         // GET: Template/Details/5
         public ActionResult Details(int id)
         {
-            
+            DetailsTemplate ViewModel = new DetailsTemplate();
 
             //goal: to communicate with template data api to retrieve a one template
             //curl https://localhost:44338/api/templatedata/findtemplate/{id}
 
 
-            string url = "templatedata/findtemplate/"+id;
+            string url = "templatedata/findtemplate/"+ id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             Debug.WriteLine("The response code is ");
             Debug.WriteLine(response.StatusCode);
 
-            TemplateDto selectedtemplate =  response.Content.ReadAsAsync<TemplateDto>().Result;
-            Debug.WriteLine("template recieved " + selectedtemplate.TemplateName);
+            TemplateDto SelectedTemplate =  response.Content.ReadAsAsync<TemplateDto>().Result;
+            Debug.WriteLine("template recieved " + SelectedTemplate.TemplateName);
 
-           
+            ViewModel.SelectedTemplate = SelectedTemplate;
+            //Show Ecard associated with template
+            //Send a request to get information about an ecard associated with a particular template id
+            url = "ecarddata/listecardselectedtemplate/" + id;
+            IEnumerable<EcardDto> TemplateForEcard = response.Content.ReadAsAsync<IEnumerable<EcardDto>>().Result;
 
-            return View(selectedtemplate);
+            ViewModel.TemplateForEcard = TemplateForEcard;
+
+
+
+            return View(ViewModel);
 
 
         }

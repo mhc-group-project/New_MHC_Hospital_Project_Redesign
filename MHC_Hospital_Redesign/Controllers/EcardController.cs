@@ -45,8 +45,14 @@ namespace MHC_Hospital_Redesign.Controllers
         // GET: Ecard/Details/5
         public ActionResult Details(int id)
         {
-    
+            /*
+            //Test
+            UpdateEcard ViewModel = new UpdateEcard();
 
+            */
+            /*
+            DetailsEcard ViewModel = new DetailsEcard();
+            */
 
             string url = "ecarddata/findecard/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
@@ -54,10 +60,30 @@ namespace MHC_Hospital_Redesign.Controllers
             Debug.WriteLine("The response code is ");
             Debug.WriteLine(response.StatusCode);
 
-            EcardDto selectedecard = response.Content.ReadAsAsync<EcardDto>().Result;
-            Debug.WriteLine("ecard recieved ID:" + selectedecard.EcardId);
+            EcardDto SelectedEcard = response.Content.ReadAsAsync<EcardDto>().Result;
+            Debug.WriteLine("ecard recieved ID:" + SelectedEcard.EcardId);
 
-            return View(selectedecard);
+            /*
+            //Test
+            url = "templatedata/listtemplates/";
+            response = client.GetAsync(url).Result;
+            IEnumerable<TemplateDto> TemplateOptions = response.Content.ReadAsAsync<IEnumerable<TemplateDto>>().Result;
+
+            ViewModel.TemplateOptions = TemplateOptions;
+
+            */ 
+            /*
+            ViewModel.SelectedEcard = SelectedEcard;
+            //Show Template associated with Ecard
+            //Send a request to get information about template associated with a particular ecard ID
+            url = "templatedata/listtemplateforecard/" + id;
+            IEnumerable<TemplateDto> TemplateForEcard = ;
+
+            ViewModel.TemplateForEcard = TemplateForEcard;
+
+            */
+
+            return View(SelectedEcard);
         }
 
         public ActionResult Error()

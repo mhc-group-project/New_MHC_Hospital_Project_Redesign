@@ -9,7 +9,7 @@ namespace MHC_Hospital_Redesign.Models.ViewModels
     {
         public TemplateDto SelectedTemplate { get; set; }
 
-        public IEnumerable<EcardDto> EcardTemplate { get; set; }
+        public IEnumerable<EcardDto> TemplateForEcard { get; set; }
 
 
     }

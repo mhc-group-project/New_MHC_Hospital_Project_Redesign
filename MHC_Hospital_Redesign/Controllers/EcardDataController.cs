@@ -37,6 +37,35 @@ namespace MHC_Hospital_Redesign.Controllers
             return EcardDtos;
         }
 
+
+        /*
+
+        /// <summary>
+        /// Gathers information of sleected template for an ecard
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+
+        // GET: api/EcardData/ListEcardSelectedTemplate/id
+        [HttpGet]
+        public IEnumerable<EcardDto> ListEcardSelectedTemplate(int id)
+        {
+            List<Ecard> Ecards = db.Ecards.Where(e=>e.TemplateId==id).ToList();
+            List<EcardDto> EcardDtos = new List<EcardDto>();
+
+            Ecards.ForEach(e => EcardDtos.Add(new EcardDto()
+            {
+                EcardId = e.EcardId,
+                Message = e.Message,
+                SenderName = e.SenderName,
+                PatientName = e.PatientName
+            }));
+
+            return EcardDtos;
+        }
+
+        */
+
         // GET: api/EcardData/FindEcard/3
         [ResponseType(typeof(Ecard))]
         [HttpGet]

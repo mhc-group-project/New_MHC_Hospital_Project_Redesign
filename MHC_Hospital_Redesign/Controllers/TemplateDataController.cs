@@ -40,6 +40,35 @@ namespace MHC_Hospital_Redesign.Controllers
             return TemplateDtos;
         }
 
+        
+        /// <summary>
+        /// Gathers information about template related to particular ecard id
+        /// </summary>
+        /// <returns></returns>
+
+        /*
+        [HttpGet]
+        public IEnumerable<TemplateDto> ListTemplateForEcard()
+        {
+            List<Template> Templates = db.Templates.Where(t=>t.EcardId)ToList();
+            List<TemplateDto> TemplateDtos = new List<TemplateDto>();
+
+            Templates.ForEach(t => TemplateDtos.Add(new TemplateDto()
+            {
+                TemplateId = t.TemplateId,
+                TemplateName = t.TemplateName,
+                TemplateHasPic = t.TemplateHasPic,
+                TemplatePicExtension = t.TemplatePicExtension,
+                TemplateStyle = t.TemplateStyle
+
+
+            }));
+
+            return TemplateDtos;
+        }
+
+        */
+
         // GET: api/TemplateData/FindTemplate/3
         [ResponseType(typeof(Template))]
         [HttpGet]
