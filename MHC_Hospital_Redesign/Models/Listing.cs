@@ -18,8 +18,9 @@ namespace MHC_Hospital_Redesign.Models
         public string ListLocation { get; set; }
         // 1-M relationship with Department
         // a listing can belong to a department, a department can have many listings
-        //[ForeignKey("Department")]
+        [ForeignKey("Department")]
         public int DepartmentID { get; set; }
+        public virtual Department Department { get; set; }
 
         // M-M relationship with Volunteer Users
         public ICollection<ApplicationUser> ApplicationUsers { get; set; }
