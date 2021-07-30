@@ -39,17 +39,17 @@ namespace MHC_Hospital_Redesign.Models
         public DbSet<Department> Departments { get; set; }
 
         public DbSet<FaqCategory> FaqCategories { get; set; }
-        public DbSet<Feedback> Feedbacks { get; set; }
-        public DbSet<FeedbackCategory> FeedbackCategories { get; set; }
+        //public DbSet<Feedback> Feedbacks { get; set; }
+        //public DbSet<FeedbackCategory> FeedbackCategories { get; set; }
 
-<<<<<<< HEAD
+
         //add Listing entity to the system
         public DbSet<Listing> Listings { get; set; }
-=======
+
         public DbSet<Invoice> Invoices { get; set; }
 
         public DbSet<Payment> Payments { get; set; }
->>>>>>> 8f516084943f71976be64189ebf22d1047f8cd49
+
 
         public static ApplicationDbContext Create()
         {
