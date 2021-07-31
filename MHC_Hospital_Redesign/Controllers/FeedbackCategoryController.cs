@@ -26,7 +26,7 @@ namespace MHC_Hospital_Redesign.Controllers
 
 
             client = new HttpClient(handler);
-            client.BaseAddress = new Uri("https://localhost:44337/api/");
+            client.BaseAddress = new Uri("https://localhost:44338/api/");
         }
 
         private void GetApplicationCookie()
@@ -48,7 +48,7 @@ namespace MHC_Hospital_Redesign.Controllers
         public ActionResult List()
         {
             //objective: communicate with our feedbackCategory data api to retrive a list of feedbackCategories 
-            //curl https://localhost:44337/api/feedbackCategorydata/listfeedbackCategories
+            //curl https://localhost:44338/api/feedbackCategorydata/listfeedbackCategories
 
             string url = "feedbackCategorydata/listfeedbackCategories";
             HttpResponseMessage response = client.GetAsync(url).Result;
@@ -67,7 +67,7 @@ namespace MHC_Hospital_Redesign.Controllers
         public ActionResult Details(int id)
         {
             //objective: communicate with our feedbackCategory data api to retrive one feedbackCategory.
-            //curl https://localhost:44337/api/feedbackCategorydata/findfeedbackCategory/{id}
+            //curl https://localhost:44338/api/feedbackCategorydata/findfeedbackCategory/{id}
 
             DetailsFeedbackCategory ViewModel = new DetailsFeedbackCategory();
 
@@ -114,7 +114,7 @@ namespace MHC_Hospital_Redesign.Controllers
             GetApplicationCookie();
             Debug.WriteLine("the json payload is : ");
             //objective: add a new feedbackCategory into our system using api
-            //curl -H "Content-type:application/json -d @add.json https://localhost:44337/api/feedbackCategorydata/addfeedbackCategory
+            //curl -H "Content-type:application/json -d @add.json https://localhost:44338/api/feedbackCategorydata/addfeedbackCategory
             string url = "feedbackCategorydata/addfeedbackCategory";
 
             string jsonpayload = jss.Serialize(feedbackCategory);
