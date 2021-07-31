@@ -14,13 +14,13 @@
         <label>Senders Name: </label> <input type="text" name="SenderName" value="@Model.SelectedEcard.SenderName" />
     </div>
     <div>
-        <label>Patients Name: <input type="text" name="PatientName" value="@Model.SelectedEcard.PatientName" /></label>
+        <label>Patients Name: </label><input type="text" name="PatientName" value="@Model.SelectedEcard.PatientName" />
     </div>
     <div>
-        <label>Message: <input type="text" name="Message" value="@Model.SelectedEcard.Message" /></label>
+        <label>Message: </label><input type="text" name="Message" value="@Model.SelectedEcard.Message" />
     </div>
     <div>
-        <label>Template</label>
+        <label>Template:</label>
         <select name="TemplateId">
             @foreach (var template in Model.TemplateOptions)
             {

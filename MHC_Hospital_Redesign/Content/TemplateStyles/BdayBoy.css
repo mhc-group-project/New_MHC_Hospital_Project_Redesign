@@ -1,0 +1,12 @@
+﻿.e-card {
+    background-color: lightblue;
+    margin: 0 auto;
+    width: 85%;
+    text-align: center;
+    padding: 1em;
+    margin-top: 20px;
+}
+
+.e-card h2, h3, p{
+    color: black;
+}
