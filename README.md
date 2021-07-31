@@ -27,7 +27,7 @@ Feedback feature will allow website users and patients to leave their feedback o
 
 ### Justin's Feature Summary
 The patient e-card feature allows users to send virtual greeting cards to patients at the hospital. It consists of a 1-M relationship between the Template Entity and the Ecard Entity. The user can create a new e-card by selecting a template and filling in further details (senders name, patients name and message). 
-- [x] Template - The admin can create, update and delete a template. While a user can View a list of templates.
+- [x] Template - The admin can create, update and delete a template. While a user can view a list of templates and choose a template when creating a new e-card. 
 - [x] Ecard -  A user can create a new e-card while an admin can update, view and delete an e-card. 
 
 
