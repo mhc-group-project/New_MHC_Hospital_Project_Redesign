@@ -47,8 +47,8 @@ namespace MHC_Hospital_Redesign.Models
         public DbSet<Department> Departments { get; set; }
 
         public DbSet<FaqCategory> FaqCategories { get; set; }
-        //public DbSet<Feedback> Feedbacks { get; set; }
-        //public DbSet<FeedbackCategory> FeedbackCategories { get; set; }
+        public DbSet<Feedback> Feedbacks { get; set; }
+        public DbSet<FeedbackCategory> FeedbackCategories { get; set; }
 
         //add Listing entity to the system
         public DbSet<Listing> Listings { get; set; }

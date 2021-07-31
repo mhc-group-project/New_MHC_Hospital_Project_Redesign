@@ -187,6 +187,10 @@
     <Compile Include="Controllers\FaqCategoryDataController.cs" />
     <Compile Include="Controllers\FaqController.cs" />
     <Compile Include="Controllers\FaqDataController.cs" />
+    <Compile Include="Controllers\FeedbackCategoryController.cs" />
+    <Compile Include="Controllers\FeedbackCategoryDataController.cs" />
+    <Compile Include="Controllers\FeedbackController.cs" />
+    <Compile Include="Controllers\FeedbackDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListingController.cs" />
     <Compile Include="Controllers\ListingDataController.cs" />
@@ -217,15 +221,13 @@
     <Compile Include="Migrations\202107301607558_userdto.Designer.cs">
       <DependentUpon>202107301607558_userdto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202107302228510_ecard-patient.cs" />
-    <Compile Include="Migrations\202107302228510_ecard-patient.Designer.cs">
-      <DependentUpon>202107302228510_ecard-patient.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+	<Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Appointment.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Ecard.cs" />
+    <Compile Include="Models\Feedback.cs" />
+    <Compile Include="Models\FeedbackCategory.cs" />
     <Compile Include="Models\Listing.cs" />
     <Compile Include="Models\Invoice.cs" />
     <Compile Include="Models\Payment.cs" />
@@ -239,9 +241,12 @@
     <Compile Include="Models\ViewModels\DetailsEcard.cs" />
     <Compile Include="Models\ViewModels\DetailsFaq.cs" />
     <Compile Include="Models\ViewModels\DetailsFaqCategory.cs" />
+    <Compile Include="Models\ViewModels\DetailsFeedback.cs" />
+    <Compile Include="Models\ViewModels\DetailsFeedbackCategory.cs" />
     <Compile Include="Models\ViewModels\DetailsTemplate.cs" />
     <Compile Include="Models\ViewModels\UpdateEcard.cs" />
     <Compile Include="Models\ViewModels\UpdateFaq.cs" />
+    <Compile Include="Models\ViewModels\UpdateFeedback.cs" />
     <Compile Include="Models\ViewModels\UpdateTemplate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -337,6 +342,18 @@
     <Content Include="Views\Template\Error.cshtml" />
     <Content Include="Views\Template\List.cshtml" />
     <Content Include="Views\Template\New.cshtml" />
+    <Content Include="Views\Feedback\DeleteConfirm.cshtml" />
+    <Content Include="Views\Feedback\Details.cshtml" />
+    <Content Include="Views\Feedback\Edit.cshtml" />
+    <Content Include="Views\Feedback\Error.cshtml" />
+    <Content Include="Views\Feedback\List.cshtml" />
+    <Content Include="Views\Feedback\New.cshtml" />
+    <Content Include="Views\FeedbackCategory\DeleteConfirm.cshtml" />
+    <Content Include="Views\FeedbackCategory\Details.cshtml" />
+    <Content Include="Views\FeedbackCategory\Edit.cshtml" />
+    <Content Include="Views\FeedbackCategory\Error.cshtml" />
+    <Content Include="Views\FeedbackCategory\List.cshtml" />
+    <Content Include="Views\FeedbackCategory\New.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -367,9 +384,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107301607558_userdto.resx">
       <DependentUpon>202107301607558_userdto.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107302228510_ecard-patient.resx">
-      <DependentUpon>202107302228510_ecard-patient.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
