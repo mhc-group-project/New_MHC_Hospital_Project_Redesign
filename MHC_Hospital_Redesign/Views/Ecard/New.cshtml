@@ -4,6 +4,7 @@
     ViewBag.Title = "New";
 }
 
+
 <h2>Create Ecard</h2>
 
 <form action="/Ecard/Create" method="POST">
@@ -11,22 +12,56 @@
         <label>Senders Name: </label> <input type="text" name="SenderName" />
     </div>
     <div>
-        <label>Patients Name: <input type="text" name="PatientName" /></label>
+        <label>Patients Name:</label> <input type="text" name="PatientName" />
     </div>
     <div>
-        <label>Message: <input type="text" name="Message" /></label>
+        <label>Message:</label> <input type="text" name="Message" />
     </div>
     <div>
-        <label>Template:</label>
-        <select name="TemplateId">
+
+
+        @{
+
+            string imgurl = "/Content/TemplatePics/default.jpg";
+
+         }
+        
+
+            <label>Template:</label>
+         
+
+    
+
+            <select name="TemplateId">
             @foreach (var template in Model)
             {
                 <option value="@template.TemplateId">@template.TemplateName</option>
 
             }
         </select>
-     
+      
+
+
     </div>
+    @*
+              <div>
+            <label>Patient:</label>
+            <select name="UserId">
+                @foreach (var ApplicationUser in Model)
+                {
+                    <option value="@ApplicationUser.UserId">@ApplicationUser.FirstName @ApplicationUser.LastName</option>
+
+                }
+            </select>
+
+        </div>
+
+    *@
+
+
+
+
+
     <div>
         <input type="submit" value="Add Ecard" />
     </div>

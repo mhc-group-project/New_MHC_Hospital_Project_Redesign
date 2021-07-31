@@ -19,8 +19,35 @@ namespace MHC_Hospital_Redesign.Controllers
 
         static EcardController()
         {
+            HttpClientHandler handler = new HttpClientHandler()
+            {
+                AllowAutoRedirect = false,
+                // cookies are manually set in RequestHeader
+                UseCookies = false
+            };
+
             client = new HttpClient();
             client.BaseAddress = new Uri("https://localhost:44338/api/");
+        }
+
+        /// <summary>
+        /// Grabs the authentication cookie sent to this controller. Allows for authenticated users to make administrative changes 
+        /// </summary>
+        private void GetApplicationCookie()
+        {
+            string token = "";
+
+            client.DefaultRequestHeaders.Remove("Cookie");
+            if (!User.Identity.IsAuthenticated) return;
+
+            HttpCookie cookie = System.Web.HttpContext.Current.Request.Cookies.Get(".AspNet.ApplicationCookie");
+            if (cookie != null) token = cookie.Value;
+
+
+            Debug.WriteLine("Token Submitted is : " + token);
+            if (token != "") client.DefaultRequestHeaders.Add("Cookie", ".AspNet.ApplicationCookie=" + token);
+
+            return;
         }
 
         // GET: Ecard/List
@@ -45,11 +72,7 @@ namespace MHC_Hospital_Redesign.Controllers
         // GET: Ecard/Details/5
         public ActionResult Details(int id)
         {
-            /*
-            //Test
-            UpdateEcard ViewModel = new UpdateEcard();
-
-            */
+            // objective: communicate with ecard data api to retrieve one ecard
            
             DetailsEcard ViewModel = new DetailsEcard();
            
@@ -70,25 +93,7 @@ namespace MHC_Hospital_Redesign.Controllers
 
             ViewModel.TemplateOptions = TemplateOptions;
 
-            /*
-            //Test
-            url = "templatedata/listtemplates/";
-            response = client.GetAsync(url).Result;
-            IEnumerable<TemplateDto> TemplateOptions = response.Content.ReadAsAsync<IEnumerable<TemplateDto>>().Result;
-
-            ViewModel.TemplateOptions = TemplateOptions;
-
-            */
-            /*
-            ViewModel.SelectedEcard = SelectedEcard;
-            //Show Template associated with Ecard
-            //Send a request to get information about template associated with a particular ecard ID
-            url = "templatedata/listtemplateforecard/" + id;
-            IEnumerable<TemplateDto> TemplateForEcard = ;
-
-            ViewModel.TemplateForEcard = TemplateForEcard;
-
-            */
+   
 
             return View(SelectedEcard);
         }
@@ -102,6 +107,9 @@ namespace MHC_Hospital_Redesign.Controllers
         // GET: Ecard/New
         public ActionResult New()
         {
+            //information about all templates in the system
+            //GET: api/templatedata/listtemplates
+
             string url = "templatedata/listtemplates";
             HttpResponseMessage response = client.GetAsync(url).Result;
             IEnumerable<TemplateDto> TemplateOptions = response.Content.ReadAsAsync<IEnumerable<TemplateDto>>().Result;
@@ -142,11 +150,13 @@ namespace MHC_Hospital_Redesign.Controllers
         {
             UpdateEcard ViewModel = new UpdateEcard();
 
+            //existing ecard info
             string url = "ecarddata/findecard/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             EcardDto SelectedEcard = response.Content.ReadAsAsync<EcardDto>().Result;
             ViewModel.SelectedEcard = SelectedEcard;
-
+            //all templates to choose from when updating this ecard
+            //existing ecard info
              url = "templatedata/listtemplates/";
             response = client.GetAsync(url).Result;
             IEnumerable<TemplateDto> TemplateOptions = response.Content.ReadAsAsync<IEnumerable<TemplateDto>>().Result;
@@ -156,10 +166,14 @@ namespace MHC_Hospital_Redesign.Controllers
             return View(ViewModel);
         }
 
-        // POST: Ecard/Edit/5
+        // POST: Ecard/Update/5
         [HttpPost]
         public ActionResult Update(int id, Ecard ecard)
         {
+
+            //objective: edit an existing ecard in our system using the api
+   
+
             string url = "ecarddata/updateecard/" + id;
 
             string jsonpayload = jss.Serialize(ecard);
@@ -194,6 +208,8 @@ namespace MHC_Hospital_Redesign.Controllers
         [HttpPost]
         public ActionResult Delete(int id)
         {
+            //objective: delete a ecard from the system
+
             string url = "ecarddata/deleteecard/" + id;
             HttpContent content = new StringContent("");
             content.Headers.ContentType.MediaType = "application/json";

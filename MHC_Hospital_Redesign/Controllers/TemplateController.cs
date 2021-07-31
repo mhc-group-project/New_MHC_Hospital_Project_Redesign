@@ -16,6 +16,13 @@ namespace MHC_Hospital_Redesign.Controllers
     public class TemplateController : Controller
 
     {
+        HttpClientHandler handler = new HttpClientHandler()
+        {
+            AllowAutoRedirect = false,
+            // cookies are manually set in RequestHeader
+            UseCookies = false
+        };
+
         private static readonly HttpClient client;
         private JavaScriptSerializer jss = new JavaScriptSerializer();
 
@@ -24,6 +31,27 @@ namespace MHC_Hospital_Redesign.Controllers
             client = new HttpClient();
             client.BaseAddress = new Uri("https://localhost:44338/api/");
         }
+
+        /// <summary>
+        /// Grabs the authentication cookie sent to this controller. Allows for authenticated users to make administrative changes 
+        /// </summary>
+        private void GetApplicationCookie()
+        {
+            string token = "";
+
+            client.DefaultRequestHeaders.Remove("Cookie");
+            if (!User.Identity.IsAuthenticated) return;
+
+            HttpCookie cookie = System.Web.HttpContext.Current.Request.Cookies.Get(".AspNet.ApplicationCookie");
+            if (cookie != null) token = cookie.Value;
+
+
+            Debug.WriteLine("Token Submitted is : " + token);
+            if (token != "") client.DefaultRequestHeaders.Add("Cookie", ".AspNet.ApplicationCookie=" + token);
+
+            return;
+        }
+
 
 
         // GET: Template/List
@@ -100,6 +128,7 @@ namespace MHC_Hospital_Redesign.Controllers
             Debug.WriteLine(template.TemplateName);
             //objective: add new template into our sstem using the API
             //curl -H "Content-type:application/json" -d@template.json https://localhost:44338/api/templatedata/addtemplate
+       
             string url = "templatedata/addtemplate";
 
             string jsonpayload = jss.Serialize(template);
@@ -126,8 +155,13 @@ namespace MHC_Hospital_Redesign.Controllers
         public ActionResult Edit(int id)
         {
 
+            //objective: users are able to find the template to edit
+            
+            //url connection
             string url = "templatedata/findtemplate/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
+
+            //parse content response
             TemplateDto selectedtemplate = response.Content.ReadAsAsync<TemplateDto>().Result;
             return View(selectedtemplate);
         } 
@@ -136,6 +170,9 @@ namespace MHC_Hospital_Redesign.Controllers
         [HttpPost]
         public ActionResult Update(int id, Template template, HttpPostedFileBase TemplatePic)
         {
+            //objective: edit a existing template in our system using the api
+         
+
             string url = "templatedata/updatetemplate/" + id;
 
             string jsonpayload = jss.Serialize(template);
@@ -186,6 +223,8 @@ namespace MHC_Hospital_Redesign.Controllers
         [HttpPost]
         public ActionResult Delete(int id)
         {
+            //objective: delete a template from the system
+
             string url = "templatedata/deletetemplate/" + id;
             HttpContent content = new StringContent("");
             content.Headers.ContentType.MediaType = "application/json";
