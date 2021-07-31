@@ -15,7 +15,9 @@ FAQ feature consists of 2 entities with full CRUD functionality with many to man
 Since the hospital has a lot of information and links displayed on their webpage which the user has to navigate, there will be a lot of common frequently asked questions which the user would like to get access of at one place rather than reading through and navigating the entire website. In order for the user to access the right information, the Faqs are are nested inside their respective categories inorderfor the user to find the information they need based on the category.  
 
 ### Yifat's Feature Summary
-
+Feedback feature will allow website users and patients to leave their feedback on any issue possible. users will be able to categorize their feedbacks from a provided drop down list such as: Compliment, Concern, Suggestion, Question and Other.
+- [x] Feedback -the admin can create, read, update and delete feedbacks and public user can create new feedback through a form.
+- [x] Feedback Categories - the admin can create, read, update and delete feedback Categories and public user can read (choose a category) on the feedback form.
 
 ### Vedanshi's Feature Summary
 
