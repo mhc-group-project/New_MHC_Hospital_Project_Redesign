@@ -235,6 +235,7 @@
     <Compile Include="Models\ViewModels\DetailsEcard.cs" />
     <Compile Include="Models\ViewModels\DetailsFaq.cs" />
     <Compile Include="Models\ViewModels\DetailsFaqCategory.cs" />
+    <Compile Include="Models\ViewModels\DetailsListing.cs" />
     <Compile Include="Models\ViewModels\DetailsTemplate.cs" />
     <Compile Include="Models\ViewModels\UpdateEcard.cs" />
     <Compile Include="Models\ViewModels\UpdateFaq.cs" />

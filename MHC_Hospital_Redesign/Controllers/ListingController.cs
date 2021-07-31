@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Diagnostics;
 using MHC_Hospital_Redesign.Models;
 using System.Web.Script.Serialization;
+using MHC_Hospital_Redesign.Models.ViewModels;
 
 namespace MHC_Hospital_Redesign.Controllers
 {
@@ -79,6 +80,8 @@ namespace MHC_Hospital_Redesign.Controllers
         // GET: Listing/Details/5
         public ActionResult Details(int id)
         {
+            DetailsListing ViewModel = new DetailsListing();
+
             // objective: communicate with listing data api to retrieve one listing
             // curl "https://localhost:44338/api/listingdata/findlisting/{id}"
 
@@ -94,12 +97,60 @@ namespace MHC_Hospital_Redesign.Controllers
             //Debug.WriteLine("Listing: ");
             //Debug.WriteLine(SelectedListing.ListTitle);
 
-            return View(SelectedListing);
+            ViewModel.SelectedListing = SelectedListing;
+            
+            // show associated volunteers with this listing
+            url = "userdata/listusersforlisting/"+id;
+            response = client.GetAsync(url).Result;
+            IEnumerable<ApplicationUserDto> AssignedUsers = response.Content.ReadAsAsync<IEnumerable<ApplicationUserDto>>().Result;
+
+            ViewModel.AssignedUsers = AssignedUsers;
+
+            //show volunteers that are not associated with this listing
+            url = "userdata/listusersnotforlisting/" + id;
+            response = client.GetAsync(url).Result;
+            IEnumerable<ApplicationUserDto> AvailableUsers = response.Content.ReadAsAsync<IEnumerable<ApplicationUserDto>>().Result;
+            
+            ViewModel.AvailableUsers = AvailableUsers;
+
+            return View(ViewModel);
         }
+
+        //POST: Listing/Associate/{id}?UserID={UserID}
+        [HttpPost]
+        public ActionResult Associate(int id, string UserID)
+        {
+            Debug.WriteLine("Attempting to associate ListID : " + id + " with user " + UserID);
+
+            //call api to associate with user
+            string url = "listingdata/associatelistingwithuser/" + id + "/" + UserID;
+            HttpContent content = new StringContent("");
+            content.Headers.ContentType.MediaType = "application/json";
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+
+            return RedirectToAction("Details/" + id);
+        }
+
+        //GET: Listing/UnAssociate/{id}?UserID={UserID}
+        [HttpGet]
+        public ActionResult UnAssociate(int id, string UserID)
+        {
+            Debug.WriteLine("Attempting to unassociate ListID : " + id + " with user " + UserID);
+
+            //call api to unassociate listing with user
+            string url = "listingdata/unassociatelistingwithuser/" + id + "/" + UserID;
+            HttpContent content = new StringContent("");
+            content.Headers.ContentType.MediaType = "application/json";
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+
+            return RedirectToAction("Details/" + id);
+        }
+
 
         // GET: Listing/New
         public ActionResult New()
-        {
+        { 
+
             return View();
         }
 

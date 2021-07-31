@@ -17,10 +17,15 @@ namespace MHC_Hospital_Redesign.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         /// <summary>
-        /// Returns all the users
+        /// Returns all the users in the system
         /// </summary>
-        /// <returns></returns>
-        // GET: api/UserData/ListApplicationUsersapi/UserData/ListApplicationUsers
+        /// <returns>
+        ///  HEADER: 200 OK
+        /// CONTENT: all listings in the database
+        /// </returns>
+        /// <example>
+        /// GET: api/UserData/ListApplicationUsers
+        /// </example>
         [HttpGet]
         public IEnumerable<ApplicationUserDto> ListApplicationUsers()
         {
@@ -30,6 +35,7 @@ namespace MHC_Hospital_Redesign.Controllers
             ApplicationUsers.ForEach(
                 a => ApplicationUserDtos.Add(new ApplicationUserDto()
                 {
+                    UserID = a.Id,
                     FirstName = a.FirstName,
                     LastName = a.LastName
                 }));
@@ -37,6 +43,71 @@ namespace MHC_Hospital_Redesign.Controllers
 
             return ApplicationUserDtos;
         }
+
+        /// <summary>
+        /// Gathers information about users related to a particular listing
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 OK
+        /// CONTENT: all users in the database that match to a particular listing
+        /// </returns>
+        /// <param name="id">Listing ID</param>
+        /// <example>
+        /// GET: api/UserData/ListUsersForListing/5
+        /// </example>
+        [HttpGet]
+        public IEnumerable<ApplicationUserDto> ListUsersForListing(int id)
+        {
+            // all users that match with listing id
+            List<ApplicationUser> Users = db.Users.Where(
+                u => u.Listings.Any(
+                l => l.ListID == id
+                )).ToList();
+            List<ApplicationUserDto> ApplicationUserDtos = new List<ApplicationUserDto>();
+
+            Users.ForEach(a => ApplicationUserDtos.Add(new ApplicationUserDto()
+            {
+                UserID = a.Id,
+                FirstName = a.FirstName,
+                LastName = a.LastName
+
+            }));
+
+            return ApplicationUserDtos;
+        }
+
+        /// <summary>
+        /// Returns all users in the system that are not assigned to a listing
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 OK
+        /// CONTENT: all users in the database not associated with a particular listing
+        /// </returns>
+        /// <param name="id">Listing ID primary key</param>
+        /// <example>
+        /// GET: api/UserData/ListUsersNotForListing/5
+        /// </example>
+        [HttpGet]
+        public IEnumerable<ApplicationUserDto> ListUsersNotForListing(int id)
+        {
+            // all users that match with listing id
+            List<ApplicationUser> Users = db.Users.Where(
+                u => !u.Listings.Any(
+                l => l.ListID == id
+                )).ToList();
+            List<ApplicationUserDto> ApplicationUserDtos = new List<ApplicationUserDto>();
+
+            Users.ForEach(a => ApplicationUserDtos.Add(new ApplicationUserDto()
+            {
+                UserID = a.Id,
+                FirstName = a.FirstName,
+                LastName = a.LastName
+
+            }));
+
+            return ApplicationUserDtos;
+        }
+
         /*
         // GET: api/UserData/5
         [ResponseType(typeof(ApplicationUser))]
@@ -146,5 +217,6 @@ namespace MHC_Hospital_Redesign.Controllers
             return db.Users.Count(e => e.Id == id) > 0;
         }
         */
+
     }
 }
