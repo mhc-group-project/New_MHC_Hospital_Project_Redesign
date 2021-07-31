@@ -16,40 +16,103 @@ namespace MHC_Hospital_Redesign.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: api/PaymentData
-        public IQueryable<Payment> GetPayments()
+        // GET: api/PaymentData/ListPayments
+        /// <summary>
+        ///     Returns a list of data in the payments table within the database
+        /// </summary>
+        /// <returns> List of Payments </returns>
+        /// <example>
+        ///     GET: api/PaymentData/ListPayments -> Payment Object, Payment Object...
+        /// </example>
+        [HttpGet]
+        public IEnumerable<PaymentDto> ListPayments()
         {
-            return db.Payments;
+            List<Payment> Payments = db.Payments.ToList();
+            List<PaymentDto> PaymentDtos = new List<PaymentDto>();
+
+            Payments.ForEach(Payment => PaymentDtos.Add(new PaymentDto()
+            {
+                PaymentID = Payment.PaymentID,
+                NameOnCard = Payment.NameOnCard,
+                Address = Payment.Address,
+                City = Payment.City,
+                PostalCode = Payment.PostalCode,
+                Province = Payment.Province,
+                Country = Payment.Country
+            }));
+
+            return PaymentDtos;
         }
 
-        // GET: api/PaymentData/5
+        // GET: api/PaymentData/FindPayment/5
+        /// <summary>
+        ///     Returns the data of a specific Payment based on the Payment ID
+        /// </summary>
+        /// <param name="id"> Payment ID </param>
+        /// <returns>
+        ///     HEADER: 200 (OK)
+        ///     CONTENT: A Payment related to Payment ID
+        ///     or
+        ///     HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <example>
+        ///     GET: api/PaymentData/FindPayment/5
+        /// </example>
+        [HttpGet]
         [ResponseType(typeof(Payment))]
-        public IHttpActionResult GetPayment(int id)
+        public IHttpActionResult FindPayment(int id)
         {
-            Payment payment = db.Payments.Find(id);
-            if (payment == null)
+            Payment Payment = db.Payments.Find(id);
+            PaymentDto PaymentDto = new PaymentDto()
+            {
+                PaymentID = Payment.PaymentID,
+                NameOnCard = Payment.NameOnCard,
+                Address = Payment.Address,
+                City = Payment.City,
+                PostalCode = Payment.PostalCode,
+                Province = Payment.Province,
+                Country = Payment.Country
+            };
+
+            if (Payment == null)
             {
                 return NotFound();
             }
 
-            return Ok(payment);
+            return Ok(Payment);
         }
 
-        // PUT: api/PaymentData/5
+        // POST: api/PaymentData/UpdatePayment/5
+        /// <summary>
+        ///     Updates a Payment's information in the payments table within the database
+        /// </summary>
+        /// <param name="id"> Payment ID </param>
+        /// <param name="Payment"> json Form data of a Payment </param>
+        /// <returns>
+        ///     HEADER: 200 (Success, No content)
+        ///     or
+        ///     HEADER: 400 (BAD REQUEST)
+        ///     or
+        ///     HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <example>
+        ///     POST: api/PaymentData/UpdatePayment/5
+        /// </example>
+        [HttpPost]
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutPayment(int id, Payment payment)
+        public IHttpActionResult UpdatePayment(int id, Payment Payment)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != payment.PaymentID)
+            if (id != Payment.PaymentID)
             {
                 return BadRequest();
             }
 
-            db.Entry(payment).State = EntityState.Modified;
+            db.Entry(Payment).State = EntityState.Modified;
 
             try
             {
@@ -70,35 +133,62 @@ namespace MHC_Hospital_Redesign.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/PaymentData
+        // POST: api/PaymentData/AddPayment
+        /// <summary>
+        ///     Adds a new Payment to the payments table within the database
+        /// </summary>
+        /// <param name="Payment"> json Form data of a Payment </param>
+        /// <returns>
+        ///     HEADER: 201 (Created)
+        ///     CONTENT: Category data
+        ///     or
+        ///     HEADER: 400 (BAD REQUEST)
+        /// </returns>
+        /// <example>
+        ///     POST: api/PaymentData/AddPayment
+        /// </example>
+        [HttpPost]
         [ResponseType(typeof(Payment))]
-        public IHttpActionResult PostPayment(Payment payment)
+        public IHttpActionResult AddPayment(Payment Payment)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Payments.Add(payment);
+            db.Payments.Add(Payment);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = payment.PaymentID }, payment);
+            return CreatedAtRoute("DefaultApi", new { id = Payment.PaymentID }, Payment);
         }
 
-        // DELETE: api/PaymentData/5
+        // POST: api/PaymentData/DeletePayment/5
+        /// <summary>
+        ///     Deletes a Payment from the payments table within the database
+        /// </summary>
+        /// <param name="id"> Payment ID </param>
+        /// <returns>
+        ///     HEADER: 200 (OK)
+        ///     or
+        ///     HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <example>
+        ///     POST: api/PaymentData/DeletePayment/5
+        /// </example>
+        [HttpPost]
         [ResponseType(typeof(Payment))]
         public IHttpActionResult DeletePayment(int id)
         {
-            Payment payment = db.Payments.Find(id);
-            if (payment == null)
+            Payment Payment = db.Payments.Find(id);
+            if (Payment == null)
             {
                 return NotFound();
             }
 
-            db.Payments.Remove(payment);
+            db.Payments.Remove(Payment);
             db.SaveChanges();
 
-            return Ok(payment);
+            return Ok(Payment);
         }
 
         protected override void Dispose(bool disposing)

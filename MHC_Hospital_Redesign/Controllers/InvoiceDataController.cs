@@ -42,34 +42,73 @@ namespace MHC_Hospital_Redesign.Controllers
             return InvoiceDtos;
         }
 
-        // GET: api/Invoices/5
+        // GET: api/Invoices/FindInvoice/5
+        /// <summary>
+        ///     Returns the data of a specific Invoice based on the Invoice ID
+        /// </summary>
+        /// <param name="id"> Invoice ID </param>
+        /// <returns>
+        ///     HEADER: 200 (OK)
+        ///     CONTENT: A Invoice related to Invoice ID
+        ///     or
+        ///     HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <example>
+        ///     GET: api/Invoices/FindInvoice/5 -> 
+        /// </example>
+        [HttpGet]
         [ResponseType(typeof(Invoice))]
-        public IHttpActionResult GetInvoice(int id)
+        public IHttpActionResult FindInvoice(int id)
         {
-            Invoice invoice = db.Invoices.Find(id);
-            if (invoice == null)
+            Invoice Invoice = db.Invoices.Find(id);
+            InvoiceDto InvoiceDto = new InvoiceDto()
+            {
+                InvoiceID = Invoice.InvoiceID,
+                InvoiceNumber = Invoice.InvoiceNumber,
+                InvoiceDate = Invoice.InvoiceDate,
+                Amount = Invoice.Amount,
+                Currency = Invoice.Currency
+            };
+
+            if (Invoice == null)
             {
                 return NotFound();
             }
 
-            return Ok(invoice);
+            return Ok(Invoice);
         }
 
-        // PUT: api/Invoices/5
+        // POST: api/Invoices/UpdateInvoice/5
+        /// <summary>
+        ///     Updates an Invoice's information in the invoices table within the database
+        /// </summary>
+        /// <param name="id"> Invoice ID </param>
+        /// <param name="Invoice"> json Form data of an Invoice </param>
+        /// <returns>
+        ///     HEADER: 200 (Success, No content)
+        ///     or
+        ///     HEADER: 400 (BAD REQUEST)
+        ///     or
+        ///     HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <example>
+        ///     POST: api/Invoices/UpdateInvoice/5
+        /// </example>
+        [HttpPost]
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutInvoice(int id, Invoice invoice)
+        public IHttpActionResult UpdateInvoice(int id, Invoice Invoice)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != invoice.InvoiceID)
+            if (id != Invoice.InvoiceID)
             {
                 return BadRequest();
             }
 
-            db.Entry(invoice).State = EntityState.Modified;
+            db.Entry(Invoice).State = EntityState.Modified;
 
             try
             {
@@ -90,22 +129,49 @@ namespace MHC_Hospital_Redesign.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Invoices
+        // POST: api/Invoices/AddInvoice
+        /// <summary>
+        ///     Adds a new Invoice to the Invoices table within the database
+        /// </summary>
+        /// <param name="Invoice"> json Form Data of a Invoice </param>
+        /// <returns>
+        ///     HEADER: 201 (Created)
+        ///     CONTENT: Invoice data
+        ///     or
+        ///     HEADER: 400 (BAD REQUEST)
+        /// </returns>
+        /// <example>
+        ///     POST: api/Invoices/AddInvoice
+        /// </example>
+        [HttpPost]
         [ResponseType(typeof(Invoice))]
-        public IHttpActionResult PostInvoice(Invoice invoice)
+        public IHttpActionResult AddInvoice(Invoice Invoice)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Invoices.Add(invoice);
+            db.Invoices.Add(Invoice);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = invoice.InvoiceID }, invoice);
+            return CreatedAtRoute("DefaultApi", new { id = Invoice.InvoiceID }, Invoice);
         }
 
-        // DELETE: api/Invoices/5
+        // POST: api/Invoices/DeleteInvoice/5
+        /// <summary>
+        ///     Deletes an Invoice from the Invoices table within the database
+        /// </summary>
+        /// <param name="id"> Invoice ID </param>
+        /// <returns>
+        ///     HEADER: 200 (OK)
+        ///     or
+        ///     HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <example>
+        ///     POST: api/Invoices/DeleteInvoice/5
+        /// </example>
+        [HttpPost]
         [ResponseType(typeof(Invoice))]
         public IHttpActionResult DeleteInvoice(int id)
         {

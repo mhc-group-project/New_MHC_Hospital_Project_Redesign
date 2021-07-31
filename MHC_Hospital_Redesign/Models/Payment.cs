@@ -12,7 +12,10 @@ namespace MHC_Hospital_Redesign.Models
         [Key]
         public int PaymentID { get; set; }
         public string NameOnCard { get; set; }
-        public string CardHash { get; set; }
+
+        // Need to use Stripe in order to secure the information
+        // public string CardHash { get; set; }
+
         public string Address { get; set; }
         public string City { get; set; }
         public string PostalCode { get; set; }
@@ -28,7 +31,9 @@ namespace MHC_Hospital_Redesign.Models
     {
         public int PaymentID { get; set; }
         public string NameOnCard { get; set; }
-        public string CardHash { get; set; }
+
+        // public string CardHash { get; set; }
+
         public string Address { get; set; }
         public string City { get; set; }
         public string PostalCode { get; set; }
