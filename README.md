@@ -23,7 +23,11 @@ Feedback feature will allow website users and patients to leave their feedback o
 
 
 ### Ruth's Feature Summary
-
+The Volunter Listings feature displays all available volunteer listings in the hospital and allows users to perform full CRUD operations. In the future, authentication will be implemented and only admin will be able to perform full CRUD operations. For users, the listings will be read-only.
+- Listing entity has a M-M relationship with Application Users (Entity Framework)
+- Listings table is utilizing a foreign key from Departments table
+- Listing: users can list, create, update and delete Volunteer Listings
+- Users: information about the users are displayed in associated listings and can be unassociated with a particular listing
 
 ### Justin's Feature Summary
 The patient e-card feature allows users to send virtual greeting cards to patients at the hospital. It consists of a 1-M relationship between the Template Entity and the Ecard Entity. The user can create a new e-card by selecting a template and filling in further details (senders name, patients name and message). 
