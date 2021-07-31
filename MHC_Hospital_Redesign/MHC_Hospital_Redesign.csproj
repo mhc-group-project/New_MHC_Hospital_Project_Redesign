@@ -192,9 +192,13 @@
     <Compile Include="Controllers\FeedbackController.cs" />
     <Compile Include="Controllers\FeedbackDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InvoiceController.cs" />
+    <Compile Include="Controllers\InvoiceDataController.cs" />
     <Compile Include="Controllers\ListingController.cs" />
     <Compile Include="Controllers\ListingDataController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
+    <Compile Include="Controllers\PaymentDataController.cs" />
     <Compile Include="Controllers\TemplateController.cs" />
     <Compile Include="Controllers\TemplateDataController.cs" />
     <Compile Include="Controllers\UserDataController.cs" />
@@ -354,8 +358,22 @@
     <Content Include="Views\FeedbackCategory\Error.cshtml" />
     <Content Include="Views\FeedbackCategory\List.cshtml" />
     <Content Include="Views\FeedbackCategory\New.cshtml" />
+    <Content Include="Views\Invoice\List.cshtml" />
+    <Content Include="Views\Invoice\DeleteConfirmation.cshtml" />
+    <Content Include="Views\Invoice\Details.cshtml" />
+    <Content Include="Views\Invoice\Edit.cshtml" />
+    <Content Include="Views\Invoice\Error.cshtml" />
+    <Content Include="Views\Invoice\New.cshtml" />
+    <Content Include="Views\Payment\DeleteConfirmation.cshtml" />
+    <Content Include="Views\Payment\Details.cshtml" />
+    <Content Include="Views\Payment\Edit.cshtml" />
+    <Content Include="Views\Payment\Error.cshtml" />
+    <Content Include="Views\Payment\List.cshtml" />
+    <Content Include="Views\Payment\New.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
