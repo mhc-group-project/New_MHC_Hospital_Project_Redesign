@@ -19,7 +19,17 @@ namespace MHC_Hospital_Redesign.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: api/TemplateData/ListTemplates
+        /// <summary>
+        /// Retruns all templates in the system
+        /// </summary>
+        /// <returns>
+        /// Header: 200 (OK)
+        /// Content: all templates in the db
+        /// </returns>
+        /// <example>
+        /// GET: api/TemplateData/ListTemplates 
+        /// </example>
+    
         [HttpGet]
         public IEnumerable<TemplateDto> ListTemplates()
         {
@@ -40,36 +50,20 @@ namespace MHC_Hospital_Redesign.Controllers
             return TemplateDtos;
         }
 
-        
         /// <summary>
-        /// Gathers information about template related to particular ecard id
+        /// Returns all templates in the system
         /// </summary>
-        /// <returns></returns>
+        /// <param name="id">Primary key of a template</param>
+        /// <returns><
+        /// HEADER: 200 (OK)
+        /// CONTENT: A template in the system matching up to the template id primary key
+        /// or
+        /// HEADER: 404 (NOT FOUND)
+        /// /returns>
+        /// <example>
+        /// GET: api/TemplateData/FindTemplate/3
+        /// </example>
 
-        /*
-        [HttpGet]
-        public IEnumerable<TemplateDto> ListTemplateForEcard()
-        {
-            List<Template> Templates = db.Templates.Where(t=>t.EcardId)ToList();
-            List<TemplateDto> TemplateDtos = new List<TemplateDto>();
-
-            Templates.ForEach(t => TemplateDtos.Add(new TemplateDto()
-            {
-                TemplateId = t.TemplateId,
-                TemplateName = t.TemplateName,
-                TemplateHasPic = t.TemplateHasPic,
-                TemplatePicExtension = t.TemplatePicExtension,
-                TemplateStyle = t.TemplateStyle
-
-
-            }));
-
-            return TemplateDtos;
-        }
-
-        */
-
-        // GET: api/TemplateData/FindTemplate/3
         [ResponseType(typeof(Template))]
         [HttpGet]
         public IHttpActionResult FindTemplate(int id)
@@ -91,8 +85,22 @@ namespace MHC_Hospital_Redesign.Controllers
 
             return Ok(TemplateDto);
         }
-
-        // POST: api/TemplateData/UpdateTemplate/5
+        /// <summary>
+        /// Updates a particular template in the system with POST data input
+        /// </summary>
+        /// <param name="id">Represents the template id primary key</param>
+        /// <param name="template">JSON form data of a template</param>
+        /// <returns>
+        /// Header: 204 (Success, No content response)
+        /// or
+        /// Header: 400 (Bad Request)
+        /// or
+        /// Header: 404 (Not found)
+        /// </returns>
+        /// <example>
+        /// POST: api/TemplateData/UpdateTemplate/5
+        /// </example>
+        /// 
         [ResponseType(typeof(void))]
         [HttpPost]
         public IHttpActionResult UpdateTemplate(int id, Template template)
@@ -138,6 +146,15 @@ namespace MHC_Hospital_Redesign.Controllers
             Debug.WriteLine("No conditions triggered");
             return StatusCode(HttpStatusCode.NoContent);
         }
+
+        /// <summary>
+        /// Recieves template picture data, uploads it to the web server and updates the template's HasPic option
+        /// </summary>
+        /// <param name="id">Template id</param>
+        /// <returns>status code 200 if successful</returns>
+        /// <example>
+        /// POST: api/TemplateData/UpdateTemplatePic/5
+        /// </example>
 
         [HttpPost]
         public IHttpActionResult UploadTemplatePic(int id)
@@ -209,9 +226,20 @@ namespace MHC_Hospital_Redesign.Controllers
             }
         }
        
+        /// <summary>
+        /// Add a template to the system
+        /// </summary>
+        /// <param name="template">JSON form data of a template</param>
+        /// <returns>
+        /// Header: 201 (Created)
+        /// Content: Template ID, Template Data
+        /// </returns>
+        /// <example>
+        /// POST: api/TemplateData/AddTemplate
+        /// FORM DATA: Template JSON Object
+        /// </example>
 
-
-        // POST: api/TemplateData/AddTemplate
+        
         [ResponseType(typeof(Template))]
         [HttpPost]
         public IHttpActionResult AddTemplate(Template template)
@@ -227,7 +255,20 @@ namespace MHC_Hospital_Redesign.Controllers
             return CreatedAtRoute("DefaultApi", new { id = template.TemplateId }, template);
         }
 
-        // DELETE: api/TemplateData/DeleteTemplate/3
+        /// <summary>
+        /// Delete a template from the system by it's ID
+        /// </summary>
+        /// <param name="id">Primary key of a template</param>
+        /// <returns>
+        /// Header: 200 (OK)
+        /// or 
+        /// Header: 404 (Not found)
+        /// </returns>
+        /// <example>
+        /// POST: api/TemplateData/DeleteTemplate/3
+        /// Form data: (empty)
+        /// </example>
+
         [ResponseType(typeof(Template))]
         [HttpPost]
         public IHttpActionResult DeleteTemplate(int id)

@@ -27,7 +27,7 @@ namespace MHC_Hospital_Redesign.Controllers
 
 
             client = new HttpClient(handler);
-            client.BaseAddress = new Uri("https://localhost:44337/api/");
+            client.BaseAddress = new Uri("https://localhost:44338/api/");
         }
 
         private void GetApplicationCookie()
@@ -52,7 +52,7 @@ namespace MHC_Hospital_Redesign.Controllers
         public ActionResult List(string SearchKey = null)
         {
             //objective: communicate with our feedback data api to retrive a list of feedbacks 
-            //curl https://localhost:44337/api/feedbackdata/listfeedbacks
+            //curl https://localhost:44338/api/feedbackdata/listfeedbacks
 
             string url = "feedbackdata/listfeedbacks";
 
@@ -79,7 +79,7 @@ namespace MHC_Hospital_Redesign.Controllers
 
 
             //objective: communicate with our feedback data api to retrive one feedback.
-            //curl https://localhost:44337/api/feedbackdata/findfeedback/{id}
+            //curl https://localhost:44338/api/feedbackdata/findfeedback/{id}
 
             string url = "feedbackdata/findfeedback/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
@@ -127,7 +127,7 @@ namespace MHC_Hospital_Redesign.Controllers
             GetApplicationCookie();
             Debug.WriteLine("the json payload is : ");
             //objective: add a new feedback into our system using api
-            //curl -H "Content-type:application/json -d @feedback.json https://localhost:44337/api/feedbackdata/addfeedback
+            //curl -H "Content-type:application/json -d @feedback.json https://localhost:44338/api/feedbackdata/addfeedback
             string url = "feedbackdata/addfeedback";
 
 

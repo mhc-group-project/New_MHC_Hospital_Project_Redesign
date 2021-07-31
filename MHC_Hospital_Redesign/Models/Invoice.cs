@@ -15,4 +15,13 @@ namespace MHC_Hospital_Redesign.Models
         public int Amount { get; set; }
         public string Currency { get; set; }
     }
+
+    public class InvoiceDto
+    {
+        public int InvoiceID { get; set; }
+        public int InvoiceNumber { get; set; }
+        public DateTime InvoiceDate { get; set; }
+        public int Amount { get; set; }
+        public string Currency { get; set; }
+    }
 }

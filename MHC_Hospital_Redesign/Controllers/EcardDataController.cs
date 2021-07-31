@@ -19,7 +19,18 @@ namespace MHC_Hospital_Redesign.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: api/EcardData/ListEcards
+        /// <summary>
+        /// Shows all Ecards in system
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 Ok
+        /// CONTENT: All ecards in database
+        /// </returns>
+        /// <example>
+        /// GET: api/EcardData/ListEcards
+        /// </example>
+
+
         [HttpGet]
         public IEnumerable<EcardDto> ListEcards()
         {
@@ -37,11 +48,26 @@ namespace MHC_Hospital_Redesign.Controllers
                 TemplateHasPic = e.Template.TemplateHasPic,
                 TemplatePicExtension = e.Template.TemplatePicExtension,
                 TemplateStyle = e.Template.TemplateStyle
+                /*,
+                UserId = e.UserId,
+                FirstName = e.ApplicationUser.FirstName,
+                LastName = e.ApplicationUser.LastName
+                */
             }));
 
             return EcardDtos;
         }
 
+        /// <summary>
+        /// Gathers information about a template for a particular ecard id
+        /// </summary>
+        /// <param name="id">Template ID</param>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: All templates in the database, including their associated ecard matched with a particular ecard ID
+        /// </returns>
+
+        /*
         [HttpGet]
         [ResponseType(typeof(EcardDto))]
         public IHttpActionResult ListTemplateForEcard(int id)
@@ -64,80 +90,27 @@ namespace MHC_Hospital_Redesign.Controllers
 
             return Ok(EcardDtos);
         }
-        /*
+
+        */ 
+      
+       ///<summary>
+       /// Returns all ecards in the system
+       /// </summary>
+       /// <<returns>
+       /// HEADER: 200 (OK)
+       /// CONTENT: A ecard in the system matching up to the ecard id primrary key
+       /// or 
+       /// HEADER: 404 (NOT FOUND)
+       /// </returns>
+       /// <example>
+       /// GET: api/EcardData/FindEcard/3
+       /// </example>
+
         [ResponseType(typeof(Ecard))]
         [HttpGet]
         public IHttpActionResult FindEcard(int id)
         {
-            Ecard Ecard = db.Ecards.Find(id);
-            EcardDto EcardDto = new EcardDto()
-            {
-                ReviewId = Review.ReviewId,
-                ReviewText = Review.ReviewText,
-                fname = Review.fname,
-                lname = Review.lname,
-                SongName = Review.Song.SongName
-
-            };
-            if (Review == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(ReviewDto);
-        }
-        */
-
-        /*
-
-        /// <summary>
-        /// Gathers information of sleected template for an ecard
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-
-        // GET: api/EcardData/ListEcardSelectedTemplate/id
-        [HttpGet]
-        public IEnumerable<EcardDto> ListEcardSelectedTemplate(int id)
-        {
-            List<Ecard> Ecards = db.Ecards.Where(e=>e.TemplateId==id).ToList();
-            List<EcardDto> EcardDtos = new List<EcardDto>();
-
-            Ecards.ForEach(e => EcardDtos.Add(new EcardDto()
-            {
-                EcardId = e.EcardId,
-                Message = e.Message,
-                SenderName = e.SenderName,
-                PatientName = e.PatientName
-            }));
-
-            return EcardDtos;
-        }
-
-        */
-
-        // GET: api/EcardData/FindEcard/3
-        [ResponseType(typeof(Ecard))]
-        [HttpGet]
-        public IHttpActionResult FindEcard(int id)
-        {
-            /*
-            Ecard Ecard = db.Ecards.Find(id);
-            EcardDto EcardDto = new EcardDto()
-            {
-                EcardId = Ecard.EcardId,
-                Message = Ecard.Message,
-                SenderName = Ecard.SenderName,
-                PatientName = Ecard.PatientName
-            };
-
-            if (Ecard == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(EcardDto);
-            */
+           
             Ecard Ecard = db.Ecards.Find(id);
             EcardDto EcardDto = new EcardDto()
             {
@@ -150,6 +123,11 @@ namespace MHC_Hospital_Redesign.Controllers
                 TemplateName = Ecard.Template.TemplateName,
                 TemplatePicExtension = Ecard.Template.TemplatePicExtension,
                 TemplateStyle = Ecard.Template.TemplateStyle
+                /*,
+                UserId = Ecard.UserId,
+                FirstName = Ecard.ApplicationUser.FirstName,
+                LastName = Ecard.ApplicationUser.LastName
+                */
             };
 
             if (Ecard == null)
@@ -160,7 +138,23 @@ namespace MHC_Hospital_Redesign.Controllers
             return Ok(EcardDto);
         }
 
-        // POST: api/EcardData/UpdateEcard/3
+        /// <summary>
+        /// Updates a particular ecard in the system with POST data input
+        /// </summary>
+        /// <param name="id">Represents the ecard id primary key</param>
+        /// <param name="ecard">JSON FORM data of a ecard</param>
+        /// <returns>
+        /// HEADER: 204 (Success, No Content Response)
+        /// or
+        /// HEADER: 400 (Bad Request)
+        /// or
+        /// HEADER: 404 (Not Found)
+        /// </returns>
+        /// <example>
+        /// POST: api/EcardData/UpdateEcard/3
+        /// FORM DATA: Ecard JSON object
+        /// </example>
+       
         [ResponseType(typeof(void))]
         [HttpPost]
         public IHttpActionResult UpdateEcard(int id, Ecard ecard)
@@ -201,7 +195,21 @@ namespace MHC_Hospital_Redesign.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/EcardData/AddEcard
+        /// <summary>
+        /// Adds a ecard to the system
+        /// </summary>
+        /// <param name="ecard">JSON FORM DATA of a ecard</param>
+        /// <returns>
+        /// HEADER: 201 (Created)
+        /// CONTENT: Ecard ID, Ecard Data
+        /// Or 
+        /// HEADER: 400 (Bad Request)
+        /// </returns>
+        /// <example>
+        /// POST: api/EcardData/AddEcard
+        /// FORM DATA: Ecard JSON Object
+        /// </example>
+
         [ResponseType(typeof(Ecard))]
         [HttpPost]
         public IHttpActionResult AddEcard(Ecard ecard)
@@ -216,6 +224,20 @@ namespace MHC_Hospital_Redesign.Controllers
 
             return CreatedAtRoute("DefaultApi", new { id = ecard.EcardId }, ecard);
         }
+
+        /// <summary>
+        /// Deletes a ecard from the system by it's ID
+        /// </summary>
+        /// <param name="id">The primary key of the ecard</param>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// or 
+        /// HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <example>
+        /// POST: api/EcardData/DeleteEcard/3
+        /// FORM DATA: (empty)
+        /// </example>
 
         // DELETE: api/EcardData/DeleteEcard/3
         [ResponseType(typeof(Ecard))]
