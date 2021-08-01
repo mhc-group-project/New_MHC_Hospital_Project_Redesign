@@ -1,0 +1,29 @@
+﻿@model MHC_Hospital_Redesign.Models.Appointment
+@Styles.Render("~/Content/Appointment/Delete.css")
+
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+<div id="delete-wrapper">
+    <div class="form-actions no-color">
+
+        @Html.ActionLink("Back to List", "List")
+    </div>
+    <h2>Confirm Delete</h2>
+    <hr />
+    <h3>
+        Are you sure you want to delete an appointment on <strong> @Model.DateTime</strong> with
+        <strong>@ViewData["recipientUsername"]</strong>?
+    </h3>
+    <p>You can't get it back.</p>
+    @using (Html.BeginForm("Delete", "Appointment", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.AId, new { Name = "id" })
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" />
+
+        </div>
+    }
+</div>

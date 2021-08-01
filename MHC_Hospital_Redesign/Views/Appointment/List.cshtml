@@ -1,0 +1,151 @@
+﻿@model IEnumerable<MHC_Hospital_Redesign.Models.Appointment>
+@Styles.Render("~/Content/Appointment/List.css")
+
+
+@{
+    ViewBag.Title = "List";
+    string searchStatus = (string)ViewData["searchStatus"];
+    string[] statuses = { "Accepted", "Rejected", "Pending" };
+}
+
+
+<h2>List Of Appointment Requests </h2>
+<hr />
+<div class="row" id="filter-row">
+    <div class="col-md-9">
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+    </div>
+    <div class="col-md-3">
+        @using (Html.BeginForm("List", "Appointment", FormMethod.Get))
+        {
+            <div class="form-group">
+                @Html.Label("Sort by:", new { @class = "control-label" })
+                <select name="searchStatus" id="searchStatus">
+                    @for (int i = 0; i < statuses.Length; i++)
+                    {
+                        if (string.Equals(searchStatus, i.ToString()))
+                        {
+                            <option value="@i" selected>@statuses[i] </option>
+                        }
+                        else
+                        {
+                            <option value="@i">@statuses[i] </option>
+                        }
+                    }
+                    @if (string.Equals(searchStatus, "all"))
+                    {
+                        <option value="all" selected>All </option>
+                    }
+                    else
+                    {
+                        <option value="all">All</option>
+                    }
+                </select>
+                <input type="submit" value="Refine" class="" id="btn-refine" />
+            </div>
+        }
+    </div>
+</div>
+
+<div class="container">
+    @if (Model.Count() > 0)
+    {
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">
+                        @Html.DisplayName("Patient")
+                    </th>
+                    <th scope="col">
+                        @Html.DisplayName("Doctor")
+                    </th>
+
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.Subject)
+                    </th>
+
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.Status)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DateTime)
+                    </th>
+                   
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PatientUser.FirstName)
+                            @Html.DisplayFor(modelItem => item.PatientUser.LastName)
+                        </td>
+                        <td>
+                            Dr
+                            @Html.DisplayFor(modelItem => item.DoctorUser.FirstName)
+                            @Html.DisplayFor(modelItem => item.DoctorUser.LastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Subject)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateTime)
+                        </td>
+                        
+                        <td>
+                            
+                                @Html.ActionLink("Edit", "Edit", new { id = item.AId })|
+                              
+                            @Html.ActionLink("Details", "Details", new { id = item.AId }) |
+                            @Html.ActionLink("Delete", "DeleteConfirm", new { id = item.AId })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="page-paginate">
+            @{
+                int PageNum = Convert.ToInt32(ViewData["PageNum"]);
+                int MaxPageNum = Convert.ToInt32(ViewData["MaxPageNum"]);
+            }
+            <ul>
+
+                @if (PageNum > 1)
+                {
+                    int PrevPage = PageNum - 1;
+                    <li>
+
+                        @Html.ActionLink("Prev", "List", new { pageNum = PrevPage, searchStatus = searchStatus }, null)
+                    </li>
+                    <li>|</li>
+
+                }
+                <li>@ViewData["PageNum"] of @ViewData["MaxPageNum"]</li>
+
+                @if (PageNum < MaxPageNum)
+                {
+                    <li>|</li>
+                    int NextPage = PageNum + 1;
+                    <li>
+                        @Html.ActionLink("Next", "List", new { pageNum = NextPage, searchStatus = searchStatus }, null)
+                    </li>
+                }
+
+            </ul>
+        </div>
+    }
+    else
+    {
+        <p>
+            Not Found
+        </p>
+    }
+</div>

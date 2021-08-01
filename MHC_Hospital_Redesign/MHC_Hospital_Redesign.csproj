@@ -181,6 +181,10 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AppointmentController.cs" />
+    <Compile Include="Controllers\AppointmentDataController.cs" />
+    <Compile Include="Controllers\DepartmentController.cs" />
+    <Compile Include="Controllers\DepartmentDataController.cs" />
     <Compile Include="Controllers\EcardController.cs" />
     <Compile Include="Controllers\EcardDataController.cs" />
     <Compile Include="Controllers\FaqCategoryController.cs" />
@@ -229,6 +233,10 @@
     <Compile Include="Migrations\202107310333317_test.Designer.cs">
       <DependentUpon>202107310333317_test.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202108010607108_Updated appointments and deparments.cs" />
+    <Compile Include="Migrations\202108010607108_Updated appointments and deparments.Designer.cs">
+      <DependentUpon>202108010607108_Updated appointments and deparments.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Appointment.cs" />
@@ -246,6 +254,8 @@
     <Compile Include="Models\FaqCategory.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ViewModels\DetailsAppointment.cs" />
+    <Compile Include="Models\ViewModels\DetailsDepartment.cs" />
     <Compile Include="Models\ViewModels\DetailsEcard.cs" />
     <Compile Include="Models\ViewModels\DetailsFaq.cs" />
     <Compile Include="Models\ViewModels\DetailsFaqCategory.cs" />
@@ -372,6 +382,18 @@
     <Content Include="Views\Payment\Error.cshtml" />
     <Content Include="Views\Payment\List.cshtml" />
     <Content Include="Views\Payment\New.cshtml" />
+    <Content Include="Views\Appointment\Create.cshtml" />
+    <Content Include="Views\Appointment\DeleteConfirm.cshtml" />
+    <Content Include="Views\Appointment\Details.cshtml" />
+    <Content Include="Views\Appointment\Edit.cshtml" />
+    <Content Include="Views\Appointment\Error.cshtml" />
+    <Content Include="Views\Appointment\List.cshtml" />
+    <Content Include="Views\Department\Create.cshtml" />
+    <Content Include="Views\Department\DeleteConfirm.cshtml" />
+    <Content Include="Views\Department\Details.cshtml" />
+    <Content Include="Views\Department\Edit.cshtml" />
+    <Content Include="Views\Department\Error.cshtml" />
+    <Content Include="Views\Department\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -407,6 +429,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107310333317_test.resx">
       <DependentUpon>202107310333317_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108010607108_Updated appointments and deparments.resx">
+      <DependentUpon>202108010607108_Updated appointments and deparments.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

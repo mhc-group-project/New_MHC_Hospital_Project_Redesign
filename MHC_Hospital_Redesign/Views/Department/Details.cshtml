@@ -1,0 +1,90 @@
+﻿@model MHC_Hospital_Redesign.Models.ViewModels.DetailsDepartment
+
+@{
+    ViewBag.Title = "Details";
+}
+<h2>Department Details</h2>
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Department.DepartmentName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Department.DepartmentName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Department.PhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Department.PhoneNumber)
+        </dd>
+
+    </dl>
+</div>
+<table class="table">
+    <tr>
+
+
+        <th>
+            Job Title
+        </th>
+        <th>
+            Department Name
+        </th>
+        <th>
+            Job Description
+        </th>
+        <th>
+            Requirements
+        </th>
+        <th>
+            Job Location
+        </th>
+        <th>
+            Date Posted
+        </th>
+        <th></th>
+    </tr>
+
+            @foreach (var item in Model.Jobs)
+            {
+                <tr>
+
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ListTitle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Department.DepartmentName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ListDescription)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ListRequirements)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ListLocation)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ListDate)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ListID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ListID }) |
+                        @Html.ActionLink("Delete", "DeleteConfirm", new { id = item.ListID })
+                    </td>
+                </tr>
+                    }
+
+                </table>
+
+                <p>
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.Department.DId }) |
+                    @Html.ActionLink("Back to List", "List")
+                </p>

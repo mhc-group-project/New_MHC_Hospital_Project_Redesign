@@ -21,7 +21,7 @@ namespace MHC_Hospital_Redesign.Controllers
             HttpClientHandler handler = new HttpClientHandler()
             {
                 AllowAutoRedirect = false,
-                
+
                 UseCookies = false
             };
 
@@ -73,32 +73,32 @@ namespace MHC_Hospital_Redesign.Controllers
         }
 
         // GET: Feedback/Details/5
-        public ActionResult Details(int id)
-        {
-            DetailsFeedback ViewModel = new DetailsFeedback();
+        //public ActionResult Details(int id)
+        //{
+            //DetailsFeedback ViewModel = new DetailsFeedback();
 
 
             //objective: communicate with our feedback data api to retrive one feedback.
             //curl https://localhost:44338/api/feedbackdata/findfeedback/{id}
 
-            string url = "feedbackdata/findfeedback/" + id;
-            HttpResponseMessage response = client.GetAsync(url).Result;
+            //string url = "feedbackdata/findfeedback/" + id;
+            //HttpResponseMessage response = client.GetAsync(url).Result;
 
             //Debug.WriteLine("The response code is");
             //Debug.WriteLine(response.StatusCode);
 
-            FeedbackDto SelectedFeedback = response.Content.ReadAsAsync<FeedbackDto>().Result;
+            //FeedbackDto SelectedFeedback = response.Content.ReadAsAsync<FeedbackDto>().Result;
             //Debug.WriteLine("feedback received: ");
             //Debug.WriteLine(SelectedFeedback.FeedbackName);
 
-            ViewModel.SelectedFeedback = SelectedFeedback;
+            //ViewModel.SelectedFeedback = SelectedFeedback;
 
-            return View(ViewModel);
-        }
+            //return View(ViewModel);
+       // }
 
-        
 
-        
+
+
 
         public ActionResult Error()
         {

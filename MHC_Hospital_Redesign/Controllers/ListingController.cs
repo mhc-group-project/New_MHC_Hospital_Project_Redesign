@@ -78,43 +78,43 @@ namespace MHC_Hospital_Redesign.Controllers
         }
 
         // GET: Listing/Details/5
-        public ActionResult Details(int id)
-        {
-            DetailsListing ViewModel = new DetailsListing();
+        //public ActionResult Details(int id)
+        //{
+           // DetailsListing ViewModel = new DetailsListing();
 
             // objective: communicate with listing data api to retrieve one listing
             // curl "https://localhost:44338/api/listingdata/findlisting/{id}"
 
             // establish URL communication
-            string url = "listingdata/findlisting/"+id;
-            HttpResponseMessage response = client.GetAsync(url).Result;
+            //string url = "listingdata/findlisting/"+id;
+            //HttpResponseMessage response = client.GetAsync(url).Result;
 
             //Debug.WriteLine("The response code is ");
             //Debug.WriteLine(response.StatusCode);
 
             // parse content response
-            ListingDto SelectedListing = response.Content.ReadAsAsync<ListingDto>().Result;
+            //ListingDto SelectedListing = response.Content.ReadAsAsync<ListingDto>().Result;
             //Debug.WriteLine("Listing: ");
             //Debug.WriteLine(SelectedListing.ListTitle);
 
-            ViewModel.SelectedListing = SelectedListing;
+           //ViewModel.SelectedListing = SelectedListing;
             
             // show associated volunteers with this listing
-            url = "userdata/listusersforlisting/"+id;
-            response = client.GetAsync(url).Result;
-            IEnumerable<ApplicationUserDto> AssignedUsers = response.Content.ReadAsAsync<IEnumerable<ApplicationUserDto>>().Result;
+            //url = "userdata/listusersforlisting/"+id;
+            //response = client.GetAsync(url).Result;
+            //IEnumerable<ApplicationUserDto> AssignedUsers = response.Content.ReadAsAsync<IEnumerable<ApplicationUserDto>>().Result;
 
-            ViewModel.AssignedUsers = AssignedUsers;
+            //ViewModel.AssignedUsers = AssignedUsers;
 
             //show volunteers that are not associated with this listing
-            url = "userdata/listusersnotforlisting/" + id;
-            response = client.GetAsync(url).Result;
-            IEnumerable<ApplicationUserDto> AvailableUsers = response.Content.ReadAsAsync<IEnumerable<ApplicationUserDto>>().Result;
+           // url = "userdata/listusersnotforlisting/" + id;
+            //response = client.GetAsync(url).Result;
+            //IEnumerable<ApplicationUserDto> AvailableUsers = response.Content.ReadAsAsync<IEnumerable<ApplicationUserDto>>().Result;
             
-            ViewModel.AvailableUsers = AvailableUsers;
+            //ViewModel.AvailableUsers = AvailableUsers;
 
-            return View(ViewModel);
-        }
+            //return View(ViewModel);
+        //}
 
         //POST: Listing/Associate/{id}?UserID={UserID}
         [HttpPost]

@@ -1,0 +1,56 @@
+﻿@model MHC_Hospital_Redesign.Models.Appointment
+@Styles.Render("~/Content/Appointment/Details.css")
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+
+<div class="container" id="details-wrapper">
+    <h2> Appointment Details</h2>
+
+    <table class="table">
+
+        <tbody>
+            <tr>
+                <th scope="row">@Html.DisplayName("Patient"):</th>
+                <td>
+                    @Html.DisplayFor(modelItem => modelItem.PatientUser.FirstName)
+                    @Html.DisplayFor(modelItem => modelItem.PatientUser.LastName)
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">@Html.DisplayName("Doctor"):</th>
+                <td>
+                    Dr
+                    @Html.DisplayFor(modelItem => modelItem.DoctorUser.FirstName)
+                    @Html.DisplayFor(modelItem => modelItem.DoctorUser.LastName)
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">@Html.DisplayName("Appointment DateTime"):</th>
+                <td> @Html.DisplayFor(modelItem => Model.DateTime) </td>
+            </tr>
+           
+            <tr>
+                <th scope="row">@Html.DisplayNameFor(model => model.Status):</th>
+                <td> @Html.DisplayFor(modelItem => Model.Status) </td>
+            </tr>
+            <tr>
+                <th scope="row">@Html.DisplayNameFor(model => model.Subject):</th>
+                <td> @Html.DisplayFor(modelItem => Model.Subject) </td>
+            </tr>
+            <tr>
+                <th scope="row">@Html.DisplayNameFor(model => model.Message):</th>
+                <td> @Html.DisplayFor(modelItem => Model.Message) </td>
+            </tr>
+
+        </tbody>
+    </table>
+   
+
+</div>
+<div class="link-wrapper">
+    @Html.ActionLink("Back to List", "List")
+</div>

@@ -17,15 +17,17 @@ namespace MHC_Hospital_Redesign.Models
         public string DateTime { get; set; }
         public string Status { get; set; }
 
-        [DisplayName("Patient")]
+
         [ForeignKey("PatientUser")]
         public string PatientId { get; set; }
         public virtual ApplicationUser PatientUser { get; set; }
 
-        [DisplayName("Doctor")]
+
         [ForeignKey("DoctorUser")]
         public string DoctorId { get; set; }
         public virtual ApplicationUser DoctorUser { get; set; }
 
     }
+
+
 }
