@@ -64,34 +64,34 @@ namespace MHC_Hospital_Redesign.Controllers
         }
 
         // GET: FeedbackCategory/Details/5
-        //public ActionResult Details(int id)
-       //{
+        public ActionResult Details(int id)
+       {
             //objective: communicate with our feedbackCategory data api to retrive one feedbackCategory.
             //curl https://localhost:44338/api/feedbackCategorydata/findfeedbackCategory/{id}
 
-            //DetailsFeedbackCategory ViewModel = new DetailsFeedbackCategory();
+            DetailsFeedbackCategory ViewModel = new DetailsFeedbackCategory();
 
-            //string url = "feedbackCategorydata/findfeedbackCategory/" + id;
-            //HttpResponseMessage response = client.GetAsync(url).Result;
+            string url = "feedbackCategorydata/findfeedbackCategory/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
 
             //Debug.WriteLine("The response code is");
             //Debug.WriteLine(response.StatusCode);
 
-            //FeedbackCategoryDto SelectedFeedbackCategory = response.Content.ReadAsAsync<FeedbackCategoryDto>().Result;
+            FeedbackCategoryDto SelectedFeedbackCategory = response.Content.ReadAsAsync<FeedbackCategoryDto>().Result;
             //Debug.WriteLine("feedbackCategory received: ");
             //Debug.WriteLine(selectedfeedbackCategory.FeedbackCategoryName);
 
-            //ViewModel.SelectedFeedbackCategory = SelectedFeedbackCategory;
+            ViewModel.SelectedFeedbackCategory = SelectedFeedbackCategory;
 
-           // url = "feedbackdata/listfeedbacksforfeedbackcategory/" + id;
-            //response = client.GetAsync(url).Result;
-            //IEnumerable<FeedbackDto> RelatedFeedbacks = response.Content.ReadAsAsync<IEnumerable<FeedbackDto>>().Result;
+            url = "feedbackdata/listfeedbacksforfeedbackcategory/" + id;
+            response = client.GetAsync(url).Result;
+            IEnumerable<FeedbackDto> RelatedFeedbacks = response.Content.ReadAsAsync<IEnumerable<FeedbackDto>>().Result;
 
-            //ViewModel.RelatedFeedbacks = RelatedFeedbacks;
+            ViewModel.RelatedFeedbacks = RelatedFeedbacks;
 
 
-            //return View(ViewModel);
-        //}
+            return View(ViewModel);
+        }
         public ActionResult Error()
         {
             return View();
