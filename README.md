@@ -20,6 +20,16 @@ Feedback feature will allow website users and patients to leave their feedback o
 - [x] Feedback Categories - the admin can create, read, update and delete feedback Categories and public user can read (choose a category) on the feedback form.
 
 ### Vedanshi's Feature Summary
+#### Included
+* CRUD
+* Authentication
+* Responsive Design
+
+#### Appointment Feature
+Patients can book an appointment with available doctors and Doctors can handle booked appointments whereas Admin can perform full CRUD operation 
+#### Department Feature
+Patients and Doctors can see list of departments as well available jobs with that particular department of the hospital and Admin has full CRUD operation permission. 
+
 
 
 ### Ruth's Feature Summary
