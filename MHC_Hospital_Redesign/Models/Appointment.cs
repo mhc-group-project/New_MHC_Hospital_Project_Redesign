@@ -12,9 +12,13 @@ namespace MHC_Hospital_Redesign.Models
     {
         [Key]
         public int AId { get; set; }
+        [Required]
         public string Subject { get; set; }
+        [Required]
         public string Message { get; set; }
+        [Required]
         public string DateTime { get; set; }
+        [Required]
         public string Status { get; set; }
 
 
