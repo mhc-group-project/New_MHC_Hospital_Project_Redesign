@@ -4,6 +4,17 @@
     ViewBag.Title = "Details";
 }
 
+<html>
+<head>
+
+
+ <link rel="stylesheet" href="~/Content/TemplateStyles/@Model.TemplateStyle" />   
+
+
+        
+</head>
+
+
 <a href="/Ecard/List">Go back</a>
 <form action="/Ecard/Edit/@Model.EcardId">
     <input style="margin-top: 15px;" type="submit" class="btn btn-info" value="Update Ecard" />
@@ -11,23 +22,35 @@
 <form action="/Ecard/DeleteConfirm/@Model.EcardId">
     <input style="margin-top: 15px;" type="submit" class="btn btn-info" name="EcardDelete" value="Delete Ecard" />
 </form>
-<div style="hidden">
-    @Model.TemplateId
-</div><h2>To: @Model.PatientName</h2>
-<h2>From: @Model.SenderName</h2>
-<p>Message: @Model.Message</p>
+
+<div class="e-card">
+
+    <h2>To: @Model.PatientName</h2>
 
 
 
-@{
 
-    // string imageurl = "/Content/TemplatePics/default.jpg";
-    string imageurl = "";
-    if (Model.TemplateHasPic)
-    {
-        imageurl = "/Content/TemplatePics/" + Model.TemplateId + "." + Model.TemplatePicExtension;
+
+    @{
+
+        string imageurl = "/Content/TemplatePics/default.jpg";
+        //string imageurl = "";
+        if (Model.TemplateHasPic)
+        {
+            imageurl = "/Content/TemplatePics/" + Model.TemplateId + "." + Model.TemplatePicExtension;
+        }
+
     }
 
-}
+    <div><img src="@imageurl" alt="test" style="max-width: 500px"</div>
 
-<div><img src="@imageurl" alt="test" style="max-width: 500px"</div>
+    <h3>@Model.Message</h3>
+
+    <h2>From: @Model.SenderName</h2>
+
+</div>
+
+
+
+
+</html>

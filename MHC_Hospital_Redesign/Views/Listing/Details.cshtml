@@ -1,23 +1,39 @@
-﻿@model MHC_Hospital_Redesign.Models.ListingDto
+﻿@model MHC_Hospital_Redesign.Models.ViewModels.DetailsListing
 @{
     ViewBag.Title = "Details";
 }
 <div>
     <ul>
         <li><a href="/Listing/List">Back</a></li>
-        <li><a href="/Listing/Edit/@Model.ListID">Edit</a></li>
-        <li><a href="/Listing/DeleteConfirm/@Model.ListID">Delete</a></li>
+        <li><a href="/Listing/Edit/@Model.SelectedListing.ListID">Edit</a></li>
+        <li><a href="/Listing/DeleteConfirm/@Model.SelectedListing.ListID">Delete</a></li>
     </ul>
 </div>
 
-<h2>@Model.ListTitle</h2>
-<p>@Model.ListDate</p>
-<p>Location: @Model.ListLocation</p></ br>
+<h2>@Model.SelectedListing.ListTitle</h2>
+<p>@Model.SelectedListing.ListDate</p>
+<p>Location: @Model.SelectedListing.ListLocation</p></ br>
 
 <h3>Description</h3>
-<p>@Model.ListDescription</p>
+<p>@Model.SelectedListing.ListDescription</p>
 
 <h3>Requirements</h3>
-<p>@Model.ListRequirements</p>
+<p>@Model.SelectedListing.ListRequirements</p>
 
+<h3>Assigned Volunteer Users:</h3>
 
+@foreach (var user in Model.AssignedUsers)
+  {
+  <p> @user.FirstName @user.LastName <a href="/Listing/UnAssociate/@Model.SelectedListing.ListID?UserID=@user.UserID" style="color:red">[x]</a></p>
+ }
+
+<h3>Add a New Volunteer:</h3>
+<form method="POST" action="/Listing/Associate/@Model.SelectedListing.ListID">
+    <select name="UserID">
+        @foreach (var newuser in @Model.AvailableUsers)
+            {
+                <option value="@newuser.UserID">@newuser.FirstName @newuser.LastName</option>
+            }
+    </select>
+    <input type="submit" value="Add Volunteer" />
+</form>

@@ -21,7 +21,7 @@ namespace MHC_Hospital_Redesign.Controllers
             HttpClientHandler handler = new HttpClientHandler()
             {
                 AllowAutoRedirect = false,
-                
+
                 UseCookies = false
             };
 
@@ -74,7 +74,7 @@ namespace MHC_Hospital_Redesign.Controllers
 
         // GET: Feedback/Details/5
         public ActionResult Details(int id)
-        {
+       {
             DetailsFeedback ViewModel = new DetailsFeedback();
 
 
@@ -96,9 +96,6 @@ namespace MHC_Hospital_Redesign.Controllers
             return View(ViewModel);
         }
 
-        
-
-        
 
         public ActionResult Error()
         {

@@ -15,6 +15,7 @@
 
     <form action="/Listing/Update/@Model.ListID" method="POST">
         <input type="number" style="display:none" name="ListID" value="@Model.ListID" />
+        <input type="number" style="display:none" name="DepartmentID" value="@Model.DepartmentID" />
         <div>
             <label for="ListTitle">Title:</label>
             <input type="text" name="ListTitle" value="@Model.ListTitle" />

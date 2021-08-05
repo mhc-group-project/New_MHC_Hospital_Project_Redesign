@@ -11,9 +11,20 @@ namespace MHC_Hospital_Redesign.Models
     {
         [Key]
         public int DId { get; set; }
+        [Required]
         public string DepartmentName { get; set; }
+        [Required]
         public string PhoneNumber { get; set; }
         //A department can have many job list
-        //public ICollection<Listing> ListID { get; set; }
+        public ICollection<Listing> ListID { get; set; }
+    }
+    public class DepartmentDto
+    {
+
+        public int DId { get; set; }
+        [Required]
+        public string DepartmentName { get; set; }
+        [Required]
+        public string PhoneNumber { get; set; }
     }
 }

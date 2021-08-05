@@ -49,6 +49,70 @@ namespace MHC_Hospital_Redesign.Controllers
 
             return ListingDtos;
         }
+        /// <summary>
+        /// Associates a particular user with a particular recipe
+        /// </summary>
+        /// <param name="listid">List ID primary key</param>
+        /// <param name="userid">User Id primary key</param>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// or
+        /// HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <example>
+        /// POST api/listingdata/associatelistingwithuser/5/8
+        /// </example>
+        [HttpPost]
+        [Route("api/listingdata/AssociateListingWithUser/{listid}/{userid}")]
+        public IHttpActionResult AssociateListingWithUser(int listid, string userid)
+        {
+            //take in listid and associate with userid
+            Listing SelectedListing = db.Listings.Include(a => a.ApplicationUsers).Where(a => a.ListID == listid).FirstOrDefault();
+            ApplicationUser SelectedUser = db.Users.Find(userid);
+
+            if (SelectedListing == null || SelectedUser == null)
+            {
+                return NotFound();
+            }
+
+            //tie listid and userid together
+            SelectedListing.ApplicationUsers.Add(SelectedUser);
+            db.SaveChanges();
+
+            return Ok();
+        }
+        /// <summary>
+        /// Removes an association between a particular user and a particular recipe
+        /// </summary>
+        /// <param name="listid">List ID primary key</param>
+        /// <param name="userid">User Id primary key</param>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// or
+        /// HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <example>
+        /// POST api/listingdata/unassociatelistingwithuser/5/8
+        /// </example>
+        [HttpPost]
+        [Route("api/listingdata/UnAssociateListingWithUser/{listid}/{userid}")]
+        public IHttpActionResult UnAssociateListingWithUser(int listid, string userid)
+        {
+            //take in listid and associate with userid
+            Listing SelectedListing = db.Listings.Include(a => a.ApplicationUsers).Where(a => a.ListID == listid).FirstOrDefault();
+            ApplicationUser SelectedUser = db.Users.Find(userid);
+
+            if (SelectedListing == null || SelectedUser == null)
+            {
+                return NotFound();
+            }
+
+            //remove userid from listid
+            SelectedListing.ApplicationUsers.Remove(SelectedUser);
+            db.SaveChanges();
+
+            return Ok();
+        }
 
         /// <summary>
         /// Returns a listing in the system

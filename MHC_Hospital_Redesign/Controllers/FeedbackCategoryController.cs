@@ -65,7 +65,7 @@ namespace MHC_Hospital_Redesign.Controllers
 
         // GET: FeedbackCategory/Details/5
         public ActionResult Details(int id)
-        {
+       {
             //objective: communicate with our feedbackCategory data api to retrive one feedbackCategory.
             //curl https://localhost:44338/api/feedbackCategorydata/findfeedbackCategory/{id}
 

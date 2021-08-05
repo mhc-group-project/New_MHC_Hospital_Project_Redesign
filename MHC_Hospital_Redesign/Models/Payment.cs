@@ -12,7 +12,10 @@ namespace MHC_Hospital_Redesign.Models
         [Key]
         public int PaymentID { get; set; }
         public string NameOnCard { get; set; }
-        public string CardHash { get; set; }
+
+        // Need to use Stripe in order to secure the information
+        // public string CardHash { get; set; }
+
         public string Address { get; set; }
         public string City { get; set; }
         public string PostalCode { get; set; }
@@ -22,5 +25,23 @@ namespace MHC_Hospital_Redesign.Models
         [ForeignKey("Invoice")]
         public int InvoiceID { get; set; }
         public virtual Invoice Invoice { get; set; }
+    }
+
+    public class PaymentDto
+    {
+        public int PaymentID { get; set; }
+        public string NameOnCard { get; set; }
+
+        // public string CardHash { get; set; }
+
+        public string Address { get; set; }
+        public string City { get; set; }
+        public string PostalCode { get; set; }
+        public string Province { get; set; }
+        public string Country { get; set; }
+
+        
+        public int InvoiceID { get; set; }
+        public int InvoiceNumber { get; set; }
     }
 }

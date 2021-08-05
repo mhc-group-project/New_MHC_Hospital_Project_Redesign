@@ -7,7 +7,8 @@ namespace MHC_Hospital_Redesign.Models.ViewModels
 {
     public class DetailsDepartment
     {
-        public DepartmentDto SelectedDepartment { get; set; }
-        public IEnumerable<FeedbackDto> RelatedFeedbacks { get; set; }
+        public bool isadmin { get; set; }
+        public DepartmentDto Department { get; set; }
+        public IEnumerable<ListingDto> Jobs { get; set; }
     }
 }
