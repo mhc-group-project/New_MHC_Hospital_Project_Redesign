@@ -3,5 +3,29 @@
     ViewBag.Title = "New";
 }
 
-<h2>New</h2>
+<nav>
+    <a href="/Invoice/List">Cancel</a>
+</nav>
+
+<h2>New Invoice</h2>
+
+<form action="/Invoice/Create" method="POST">
+    <div>
+        <label for="InvoiceNumber">Invoice Number</label>
+        <input id="InvoiceNumber" type="text" name="InvoiceNumber" />
+    </div>
+    <div>
+        <label for="InvoiceDate">Invoice Date</label>
+        <input id="InvoiceDate" type="date" name="InvoiceDate" />
+    </div>
+    <div>
+        <label for="Amount">Amount</label>
+        <input id="Amount" type="text" name="Amount" />
+    </div>
+    <div>
+        <label for="Currency">Currency</label>
+        <input id="Currency" type="text" name="Currency" />
+    </div>
+    <button class="btn formBtn" type="submit">Add Invoice</button>
+</form>
 
