@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Edit";
 }
-<div class="back-link"><a href="/FaqCategory/Details">Go back to list</a></div>
+<div class="back-link"><a href="/FaqCategory/Details/@Model.FaqCategoryID">Go back to list</a></div>
 <h2>Update Faq Category</h2>
 <form action="/FaqCategory/Update/@Model.FaqCategoryID" method="POST">
     <div style="display:none;">

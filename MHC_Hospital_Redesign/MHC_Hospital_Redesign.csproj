@@ -229,10 +229,6 @@
     <Compile Include="Migrations\202107301607558_userdto.Designer.cs">
       <DependentUpon>202107301607558_userdto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202107310333317_test.cs" />
-    <Compile Include="Migrations\202107310333317_test.Designer.cs">
-      <DependentUpon>202107310333317_test.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\202108010607108_Updated appointments and deparments.cs" />
     <Compile Include="Migrations\202108010607108_Updated appointments and deparments.Designer.cs">
       <DependentUpon>202108010607108_Updated appointments and deparments.cs</DependentUpon>
@@ -429,9 +425,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107301607558_userdto.resx">
       <DependentUpon>202107301607558_userdto.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107310333317_test.resx">
-      <DependentUpon>202107310333317_test.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202108010607108_Updated appointments and deparments.resx">
       <DependentUpon>202108010607108_Updated appointments and deparments.cs</DependentUpon>
