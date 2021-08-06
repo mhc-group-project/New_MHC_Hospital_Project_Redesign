@@ -1,7 +1,33 @@
-﻿
+﻿@model MHC_Hospital_Redesign.Models.InvoiceDto
 @{
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<nav>
+    <a href="/Invoice/List">Back to List</a>
+</nav>
 
+<h2>Edit Invoice</h2>
+
+<form action="/Invoice/Update/@Model.InvoiceID" method="POST">
+    <div style="display: none;">
+        <input type="number" name="InvoiceID" value="@Model.InvoiceID" />
+    </div>
+    <div>
+        <label for="InvoiceNumber">Invoice Number</label>
+        <input id="InvoiceNumber" type="text" name="InvoiceNumber" value="@Model.InvoiceNumber" />
+    </div>
+    <div>
+        <label for="InvoiceDate">Invoice Date</label>
+        <input id="InvoiceDate" type="date" name="InvoiceDate" value="@Model.InvoiceDate.ToString("yyyy-MM-dd")" />
+    </div>
+    <div>
+        <label for="Amount">Amount</label>
+        <input id="Amount" type="text" name="Amount" value="@Model.Amount" />
+    </div>
+    <div>
+        <label for="Currency">Currency</label>
+        <input id="Currency" type="text" name="Currency" value="@Model.Currency" />
+    </div>
+    <button type="submit">Edit Invoice</button>
+</form>

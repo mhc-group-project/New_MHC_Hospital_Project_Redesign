@@ -1,7 +1,16 @@
-﻿
+﻿@model IEnumerable<MHC_Hospital_Redesign.Models.InvoiceDto>
 @{
     ViewBag.Title = "List";
 }
 
-<h2>List</h2>
+<h2>Invoices</h2>
+<nav>
+    <a href="/Invoice/New">Add Invoice</a>
+</nav>
 
+<div>
+    @foreach( var invoice in Model ) 
+    { 
+        <h3><a href="/Invoice/Details/@invoice.InvoiceID">Invoice Number: @invoice.InvoiceNumber</a></h3>
+    }
+</div>

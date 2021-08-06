@@ -1,7 +1,16 @@
-﻿
+﻿@model MHC_Hospital_Redesign.Models.InvoiceDto
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="subNav">
+    <a href="/Invoice/List">Back to List</a>
+    <a href="/Invoice/Edit/@Model.InvoiceID">Update</a>
+    <a href="/Invoice/DeleteConfirmation/@Model.InvoiceID">Delete</a>
+</div>
 
+<div>
+    <h2>Invoice Number: @Model.InvoiceNumber</h2>
+    <p>Date: @Model.InvoiceDate</p>
+    <p>Amount: $@Model.Amount @Model.Currency</p>
+</div>

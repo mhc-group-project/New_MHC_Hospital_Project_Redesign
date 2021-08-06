@@ -233,6 +233,10 @@
     <Compile Include="Migrations\202108010607108_Updated appointments and deparments.Designer.cs">
       <DependentUpon>202108010607108_Updated appointments and deparments.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202108052106260_invoice1.cs" />
+    <Compile Include="Migrations\202108052106260_invoice1.Designer.cs">
+      <DependentUpon>202108052106260_invoice1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\202108052358263_AddedValidation-Faq.cs" />
     <Compile Include="Migrations\202108052358263_AddedValidation-Faq.Designer.cs">
       <DependentUpon>202108052358263_AddedValidation-Faq.cs</DependentUpon>
@@ -432,6 +436,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202108010607108_Updated appointments and deparments.resx">
       <DependentUpon>202108010607108_Updated appointments and deparments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108052106260_invoice1.resx">
+      <DependentUpon>202108052106260_invoice1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202108052358263_AddedValidation-Faq.resx">
       <DependentUpon>202108052358263_AddedValidation-Faq.cs</DependentUpon>
