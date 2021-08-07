@@ -5,28 +5,24 @@
 <nav class="back-up-del-nav">
     <ul>
         <li><a href="/FaqCategory/List">Go back to list</a></li>
-        <li> <a href="/FaqCategory/Edit/@Model.SelectedFaqCategory.FaqCategoryID">Update</a></li>
-        <li> <a style="color:#ab2020;" href="/FaqCategory/DeleteConfirm/@Model.SelectedFaqCategory.FaqCategoryID">Delete</a></li>
+        <li> <a class="btn btn-info" href="/FaqCategory/Edit/@Model.SelectedFaqCategory.FaqCategoryID">Update</a></li>
+        <li> <a class="btn btn-danger"  href="/FaqCategory/DeleteConfirm/@Model.SelectedFaqCategory.FaqCategoryID">Delete</a></li>
     </ul>
 
 </nav>
-<h2>@Model.SelectedFaqCategory.CategoryName</h2>
-<table>
-    <tr>
-        <th>Category Description:</th>
-        <td>@Html.Raw(@Model.SelectedFaqCategory.CategoryDescription)</td>
-    </tr>
-
-
-</table>
-
+<div class="faq-category-detail-heading-div">
+    <h2>@Model.SelectedFaqCategory.CategoryName</h2>
+</div>
+<div>
+            <p>@Html.Raw(@Model.SelectedFaqCategory.CategoryDescription)</p>  
+</div>
 
 <div class="relation-div aircraft-relationship">
     <h3>Faqs Under @Model.SelectedFaqCategory.CategoryName:</h3>
     @foreach (var faq in Model.LinkedFaqs)
     {
-        <div class="relation-list"><a class="relation-list" href="/Faq/Details/@faq.FaqID">@faq.FaqQuestions</a></div>
-        <div> @faq.FaqAnswers</div>
+        <div class="faq-category-relation-list-questions"><a class="relation-list" href="/Faq/Details/@faq.FaqID">@faq.FaqQuestions</a></div>
+        <div> @Html.Raw(@faq.FaqAnswers)</div>
     }
 </div>
 

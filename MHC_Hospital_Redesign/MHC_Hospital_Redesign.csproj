@@ -341,7 +341,6 @@
     <Content Include="Views\Faq\Error.cshtml" />
     <Content Include="Views\Faq\Edit.cshtml" />
     <Content Include="Views\Faq\DeleteConfirm.cshtml" />
-    <Content Include="Views\Faq\Delete.cshtml" />
     <Content Include="Views\FaqCategory\List.cshtml" />
     <Content Include="Views\FaqCategory\Details.cshtml" />
     <Content Include="Views\FaqCategory\New.cshtml" />

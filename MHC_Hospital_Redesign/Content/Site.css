@@ -24,8 +24,58 @@ textarea {
 }
 
 
-/* testing--please delete it later */
-
-h1{
-    background:blue;
+/* FAQ Section START- Neil */
+.faq-category-list-div{
+    padding:1em;
+    margin:0.5em;
+    color:#fff;
+    border-radius:5px;
 }
+.faq-category-list-div a{
+    color:#fff;
+    text-decoration:none;
+}
+
+.faq-category-list-div:hover{
+    transform:scale(1.05);
+}
+
+.faq-category-heading {
+    text-align:center;
+    
+}
+    .faq-category-heading h2 {
+        font-weight: bolder;
+    }
+.faq-category-add-btn-div a{
+    float:right;
+    
+}
+
+.back-up-del-nav ul,.back-up-del-nav li {
+    display:flex;
+    justify-content: space-around;
+    margin-top:1em;
+
+}
+
+.faq-category-relation-list-questions a{
+    text-decoration:none;
+    font-size:1.5em;
+    color:#000;
+    font-weight:bold;
+}
+
+.faq-category-detail-heading-div{
+    text-align:center;
+    
+}
+.faq-category-detail-heading-div h2 {
+    font-weight: bold;
+}
+
+
+
+/* FAQ Section END- Neil */
+
+

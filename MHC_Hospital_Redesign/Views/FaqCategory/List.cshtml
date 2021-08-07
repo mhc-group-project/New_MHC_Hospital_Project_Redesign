@@ -5,13 +5,13 @@
 }
 
 
-<div class="list-heading">
+<div class="list-heading faq-category-heading">
     <h2>Faq Categories</h2>
 </div>
-<div class="new-anchor-div">
-    <a class="new-anchor" href="/FaqCategory/New">New Faq Category</a>
+<div class="new-anchor-div faq-category-add-btn-div">
+    <a class="new-anchor btn btn-primary" href="/FaqCategory/New">New Faq Category</a>
 </div>
-<div>
+<div faq-category-search-form-div>
     <form method="get" action="/FaqCategory/List">
         <input id="search" name="search" type="text" value="" />
         <input class="btn btn-primary" type="submit" value="search" />
@@ -20,7 +20,7 @@
 
 @foreach (var faqcategory in Model)
 {
-    <div class="list-head" style="background:@faqcategory.CategoryColor">
+    <div class="faq-category-list-div" style="background:@faqcategory.CategoryColor">
         <h3><a href="/FaqCategory/Details/@faqcategory.FaqCategoryID\">@faqcategory.CategoryName</a></h3>
     </div>
 }
