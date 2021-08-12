@@ -48,11 +48,7 @@ namespace MHC_Hospital_Redesign.Controllers
                 TemplateHasPic = e.Template.TemplateHasPic,
                 TemplatePicExtension = e.Template.TemplatePicExtension,
                 TemplateStyle = e.Template.TemplateStyle
-                /*,
-                UserId = e.UserId,
-                FirstName = e.ApplicationUser.FirstName,
-                LastName = e.ApplicationUser.LastName
-                */
+      
             }));
 
             return EcardDtos;
@@ -123,11 +119,7 @@ namespace MHC_Hospital_Redesign.Controllers
                 TemplateName = Ecard.Template.TemplateName,
                 TemplatePicExtension = Ecard.Template.TemplatePicExtension,
                 TemplateStyle = Ecard.Template.TemplateStyle
-                /*,
-                UserId = Ecard.UserId,
-                FirstName = Ecard.ApplicationUser.FirstName,
-                LastName = Ecard.ApplicationUser.LastName
-                */
+
             };
 
             if (Ecard == null)

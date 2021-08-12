@@ -225,6 +225,9 @@ namespace MHC_Hospital_Redesign.Controllers
                 return BadRequest();
             }
         }
+
+    
+    
        
         /// <summary>
         /// Add a template to the system
