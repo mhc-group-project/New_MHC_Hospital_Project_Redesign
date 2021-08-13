@@ -54,40 +54,7 @@ namespace MHC_Hospital_Redesign.Controllers
             return EcardDtos;
         }
 
-        /// <summary>
-        /// Gathers information about a template for a particular ecard id
-        /// </summary>
-        /// <param name="id">Template ID</param>
-        /// <returns>
-        /// HEADER: 200 (OK)
-        /// CONTENT: All templates in the database, including their associated ecard matched with a particular ecard ID
-        /// </returns>
-
-        /*
-        [HttpGet]
-        [ResponseType(typeof(EcardDto))]
-        public IHttpActionResult ListTemplateForEcard(int id)
-        {
-            List<Ecard> Ecards = db.Ecards.Where(e => e.TemplateId == id).ToList();
-            List<EcardDto> EcardDtos = new List<EcardDto>();
-
-            Ecards.ForEach(e => EcardDtos.Add(new EcardDto()
-            {
-                EcardId = e.EcardId,
-                Message = e.Message,
-                SenderName = e.SenderName,
-                PatientName = e.PatientName,
-                TemplateId = e.TemplateId,
-                TemplateName = e.Template.TemplateName,
-                TemplateHasPic = e.Template.TemplateHasPic,
-                TemplatePicExtension = e.Template.TemplatePicExtension,
-                TemplateStyle = e.Template.TemplateStyle
-            }));
-
-            return Ok(EcardDtos);
-        }
-
-        */ 
+        
       
        ///<summary>
        /// Returns all ecards in the system
@@ -149,6 +116,7 @@ namespace MHC_Hospital_Redesign.Controllers
        
         [ResponseType(typeof(void))]
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult UpdateEcard(int id, Ecard ecard)
         {
             Debug.WriteLine("I have reached the update ecard method!");
@@ -204,6 +172,7 @@ namespace MHC_Hospital_Redesign.Controllers
 
         [ResponseType(typeof(Ecard))]
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult AddEcard(Ecard ecard)
         {
             if (!ModelState.IsValid)
@@ -234,6 +203,7 @@ namespace MHC_Hospital_Redesign.Controllers
         // DELETE: api/EcardData/DeleteEcard/3
         [ResponseType(typeof(Ecard))]
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult DeleteEcard(int id)
         {
             Ecard ecard = db.Ecards.Find(id);

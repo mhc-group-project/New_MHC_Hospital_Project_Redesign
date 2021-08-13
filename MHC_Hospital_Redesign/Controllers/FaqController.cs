@@ -69,8 +69,11 @@ namespace MHC_Hospital_Redesign.Controllers
 
 
                 IEnumerable<FaqDto> SelectedFaq = response.Content.ReadAsAsync<IEnumerable<FaqDto>>().Result;
-                return View(search == null ? SelectedFaq :
-                    SelectedFaq.Where(x => x.FaqQuestions.IndexOf(search, StringComparison.OrdinalIgnoreCase) >= 0).ToList());
+              //Return the list fo faq sorted in order by the faq sort column in asscending order
+              //Search function to search through the list of Faqs
+                return View(search == null ? SelectedFaq.OrderBy(x => x.FaqSort).ToList() :
+                SelectedFaq.Where(x => x.FaqQuestions.IndexOf(search, StringComparison.OrdinalIgnoreCase) >= 0).ToList());
+               // return View(SelectedFaq.OrderBy(x => x.FaqSort).ToList());
             }
 
             else

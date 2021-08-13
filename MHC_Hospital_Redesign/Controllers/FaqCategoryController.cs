@@ -69,7 +69,7 @@ namespace MHC_Hospital_Redesign.Controllers
 
 
                 IEnumerable<FaqCategoryDto> SelectedFaqCategory = response.Content.ReadAsAsync<IEnumerable<FaqCategoryDto>>().Result;
-                return View(search == null ? SelectedFaqCategory :
+                return View(search == null ? SelectedFaqCategory.OrderBy(x => x.CategoryName).ToList() :
                     SelectedFaqCategory.Where(x => x.CategoryName.IndexOf(search, StringComparison.OrdinalIgnoreCase) >= 0).ToList());
                 Debug.WriteLine("The response code is ");
                 Debug.WriteLine(response.StatusCode);
