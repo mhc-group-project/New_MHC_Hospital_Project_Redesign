@@ -7,6 +7,8 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel;
 
+using static MHC_Hospital_Redesign.Models.Appointment;
+
 namespace MHC_Hospital_Redesign.Models.ViewModels
 {
     public class CreateAppointment
@@ -49,7 +51,7 @@ namespace MHC_Hospital_Redesign.Models.ViewModels
         [Required]
         public string Message { get; set; }
         [Required]
-        public string Status { get; set; }
+        public AppointmentStatus Status { get; set; }
         [Required]
         public IEnumerable<ApplicationUser> UsersInRole { get; set; }
     }

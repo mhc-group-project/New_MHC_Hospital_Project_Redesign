@@ -28,6 +28,19 @@ namespace MHC_Hospital_Redesign.Controllers
             new MediaTypeWithQualityHeaderValue("application/json"));
 
         }
+        private void GetApplicationCookie()
+        {
+            string token = "";
+            client.DefaultRequestHeaders.Remove("Cookie");
+            if (!User.Identity.IsAuthenticated) return;
+
+            HttpCookie cookie = System.Web.HttpContext.Current.Request.Cookies.Get(".AspNet.ApplicationCookie");
+            if (cookie != null) token = cookie.Value;
+
+            if (token != "") client.DefaultRequestHeaders.Add("Cookie", ".AspNet.ApplicationCookie=" + token);
+
+            return;
+        }
         // GET: Department
         public ActionResult Index()
         {
@@ -37,6 +50,7 @@ namespace MHC_Hospital_Redesign.Controllers
         [Authorize(Roles = "Patient,Doctor,Admin")]
         public ActionResult Details(int id)
         {
+            GetApplicationCookie();
             DetailsDepartment DetailsDepartment = new DetailsDepartment();
 
             string url = "departmentdata/finddepartment/" + id;
@@ -60,6 +74,8 @@ namespace MHC_Hospital_Redesign.Controllers
             }
         }
         // GET: Department/New
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -71,6 +87,7 @@ namespace MHC_Hospital_Redesign.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Create(Department Dept)
         {
+            GetApplicationCookie();
             Debug.WriteLine(Dept.DepartmentName);
             string url = "DepartmentData/AddDepartment";
             Debug.WriteLine(jss.Serialize(Dept));
@@ -153,6 +170,7 @@ namespace MHC_Hospital_Redesign.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirm(int id)
         {
+            GetApplicationCookie();
             string url = "departmentdata/finddepartment/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             Debug.WriteLine(response);
@@ -172,6 +190,7 @@ namespace MHC_Hospital_Redesign.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
+            GetApplicationCookie();
             string url = "departmentdata/deletedepartment/" + id;           
             HttpContent content = new StringContent("");
             HttpResponseMessage response = client.PostAsync(url, content).Result;

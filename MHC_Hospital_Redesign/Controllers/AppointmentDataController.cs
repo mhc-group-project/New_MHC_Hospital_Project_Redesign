@@ -10,6 +10,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using MHC_Hospital_Redesign.Models;
 using System.Diagnostics;
+using static MHC_Hospital_Redesign.Models.Appointment;
 
 namespace MHC_Hospital_Redesign.Controllers
 {
@@ -29,7 +30,7 @@ namespace MHC_Hospital_Redesign.Controllers
                 return Ok(db.Appointments.ToList());
 
             int status = Int32.Parse(searchStatus);
-            return Ok(db.Appointments.OrderByDescending(a => a.DateTime).ToList());
+            return Ok(db.Appointments.Where(a => a.Status == (AppointmentStatus)status).OrderByDescending(a => a.DateTime).ToList());
 
         }
         /// <summary>
@@ -48,7 +49,7 @@ namespace MHC_Hospital_Redesign.Controllers
             if (string.Equals(searchStatus, "all"))
                 return Ok(db.Appointments.OrderByDescending(a => a.DateTime).Skip(startIndex).Take(nberPerPage).ToList());
             int status = Int32.Parse(searchStatus);
-            return Ok(db.Appointments.OrderByDescending(a => a.DateTime).Skip(startIndex).Take(nberPerPage).ToList());
+            return Ok(db.Appointments.Where(a => a.Status == (AppointmentStatus)status).OrderByDescending(a => a.DateTime).Skip(startIndex).Take(nberPerPage).ToList());
         }
 
 
@@ -67,7 +68,7 @@ namespace MHC_Hospital_Redesign.Controllers
             if (string.Equals(searchStatus, "all"))
                 return Ok(db.Appointments.Where(a => a.PatientId == userId || a.DoctorId == userId).OrderByDescending(a => a.DateTime).ToList());
             int status = Int32.Parse(searchStatus);
-            return Ok(db.Appointments.Where(a => (a.PatientId == userId || a.DoctorId == userId)).OrderByDescending(a => a.DateTime).ToList());
+            return Ok(db.Appointments.Where(a => (a.PatientId == userId || a.DoctorId == userId) && a.Status == (AppointmentStatus)status).OrderByDescending(a => a.DateTime).ToList());
         }
         /// <summary>
         /// Gets a list of appointments associated with a user in the database alongside a status code (200 OK). Skips the first {startindex} records and takes {nberPerPage} records.
@@ -87,7 +88,7 @@ namespace MHC_Hospital_Redesign.Controllers
                 .Skip(startIndex).Take(nberPerPage).ToList());
 
             int status = Int32.Parse(searchStatus);
-            return Ok(db.Appointments.Where(a => (a.PatientId == userId || a.DoctorId == userId)).OrderByDescending(a => a.DateTime)
+            return Ok(db.Appointments.Where(a => (a.PatientId == userId || a.DoctorId == userId) && a.Status == (AppointmentStatus)status).OrderByDescending(a => a.DateTime)
                 .Skip(startIndex).Take(nberPerPage).ToList());
         }
 

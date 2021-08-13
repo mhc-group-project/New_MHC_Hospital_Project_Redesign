@@ -39,6 +39,7 @@ namespace MHC_Hospital_Redesign.Controllers
                     DId = Departments.DId,
                     DepartmentName = Departments.DepartmentName,
                     PhoneNumber = Departments.PhoneNumber,
+                    UserId = Departments.UserId,
                 };
                 departmentDtos.Add(Dept);
             }
@@ -120,6 +121,7 @@ namespace MHC_Hospital_Redesign.Controllers
        
         [ResponseType(typeof(void))]
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult UpdateDepartment(int id, [FromBody] Department Department)
         {
             if (!ModelState.IsValid)
@@ -168,6 +170,7 @@ namespace MHC_Hospital_Redesign.Controllers
         /// </example>
         [ResponseType(typeof(Department))]
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult AddDepartment(Department department)
         {
             if (!ModelState.IsValid)
@@ -183,6 +186,8 @@ namespace MHC_Hospital_Redesign.Controllers
 
         // DELETE: api/DepartmentData/2
         [ResponseType(typeof(Department))]
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult DeleteDepartment(int id)
         {
             Department department = db.Departments.Find(id);
