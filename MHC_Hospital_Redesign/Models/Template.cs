@@ -16,8 +16,9 @@ namespace MHC_Hospital_Redesign.Models
 
         public bool TemplateHasPic { get; set; }
         public string TemplatePicExtension { get; set; }
-
-        public string TemplateStyle { get; set; }
+        public string TemplateStyle {get; set; }
+        public bool TemplateHasStyle { get; set; }
+        public string TemplateStyleExtension { get; set; }
 
     }
 
@@ -25,10 +26,10 @@ namespace MHC_Hospital_Redesign.Models
     {
         public int TemplateId { get; set; }
         public string TemplateName { get; set; }
-
         public bool TemplateHasPic { get; set; }
         public string TemplatePicExtension { get; set; }
-
         public string TemplateStyle { get; set; }
+        public bool TemplateHasStyle { get; set; }
+        public string TemplateStyleExtension { get; set; }
     }
 }

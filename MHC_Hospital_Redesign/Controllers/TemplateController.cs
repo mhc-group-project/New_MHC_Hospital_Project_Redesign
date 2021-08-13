@@ -16,26 +16,24 @@ namespace MHC_Hospital_Redesign.Controllers
     public class TemplateController : Controller
 
     {
-        HttpClientHandler handler = new HttpClientHandler()
-        {
-            AllowAutoRedirect = false,
-            // cookies are manually set in RequestHeader
-            UseCookies = false
-        };
-
         private static readonly HttpClient client;
         private JavaScriptSerializer jss = new JavaScriptSerializer();
-
         static TemplateController()
         {
-            client = new HttpClient();
+            HttpClientHandler handler = new HttpClientHandler()
+            {
+                AllowAutoRedirect = false,
+                // cookies are manually set in RequestHeader
+                UseCookies = false
+            };
+            client = new HttpClient(handler);
             client.BaseAddress = new Uri("https://localhost:44338/api/");
         }
 
-        /// <summary>
-        /// Grabs the authentication cookie sent to this controller. Allows for authenticated users to make administrative changes 
-        /// </summary>
-        private void GetApplicationCookie()
+    /// <summary>
+    /// Grabs the authentication cookie sent to this controller. Allows for authenticated users to make administrative changes 
+    /// </summary>
+    private void GetApplicationCookie()
         {
             string token = "";
 
@@ -112,8 +110,11 @@ namespace MHC_Hospital_Redesign.Controllers
         }
 
         // GET: Template/New
+        [Authorize(Roles = "Admin")]
         public ActionResult New()
         {
+            GetApplicationCookie();
+
             string url = "ecarddata/listecards";
             HttpResponseMessage response = client.GetAsync(url).Result;
             IEnumerable<EcardDto> EcardOptions = response.Content.ReadAsAsync<IEnumerable<EcardDto>>().Result;
@@ -123,6 +124,8 @@ namespace MHC_Hospital_Redesign.Controllers
 
         // POST: Template/Create
         [HttpPost]
+        [Authorize(Roles = "Admin")]
+
         public ActionResult Create(Template template)
         {
             Debug.WriteLine(template.TemplateName);
@@ -152,6 +155,7 @@ namespace MHC_Hospital_Redesign.Controllers
         }
 
         // GET: Template/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
 
@@ -168,8 +172,10 @@ namespace MHC_Hospital_Redesign.Controllers
 
         // POST: Template/Update/5
         [HttpPost]
-        public ActionResult Update(int id, Template template, HttpPostedFileBase TemplatePic)
+        [Authorize(Roles = "Admin")]
+        public ActionResult Update(int id, Template template, HttpPostedFileBase TemplatePic, HttpPostedFileBase TemplateCss)
         {
+            GetApplicationCookie(); //get token credentials
             //objective: edit a existing template in our system using the api
          
 
@@ -195,15 +201,28 @@ namespace MHC_Hospital_Redesign.Controllers
                 HttpContent imagecontent = new StreamContent(TemplatePic.InputStream);
                 requestcontent.Add(imagecontent, "TemplatePic", TemplatePic.FileName);
                 response = client.PostAsync(url, requestcontent).Result;
+            }
+            //update request is sucessful, and file data is recieved
+            if (response.IsSuccessStatusCode && TemplateCss != null)
+            {
+                //Updating the template css as a seperate request
+                Debug.WriteLine("Calling Update css file method");
+                //Send over file data
+                url = "TemplateData/UploadTemplateCss/" + id;
+                Debug.WriteLine("Recieved template picture " + TemplateCss.FileName);
+
+                MultipartFormDataContent requestcontent = new MultipartFormDataContent();
+                HttpContent filecontent = new StreamContent(TemplateCss.InputStream);
+                requestcontent.Add(filecontent, "TemplateCss", TemplateCss.FileName);
+                response = client.PostAsync(url, requestcontent).Result;
 
                 return RedirectToAction("List");
             }
-
             else if (response.IsSuccessStatusCode)
             {
-                //No image uploaded, but the update was still succesful
+                //No file uploaded, but the update was still succesful
                 return RedirectToAction("List");
-            }
+            } 
             else
             {
                 return RedirectToAction("Errors");
@@ -211,6 +230,7 @@ namespace MHC_Hospital_Redesign.Controllers
         }
 
         // GET: Template/DeleteConfirm/5
+        [Authorize]
         public ActionResult DeleteConfirm(int id)
         {
             string url = "templatedata/findtemplate/" + id;
@@ -221,8 +241,10 @@ namespace MHC_Hospital_Redesign.Controllers
 
         // POST: Template/Delete/5
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
+            GetApplicationCookie();//get token credentials
             //objective: delete a template from the system
 
             string url = "templatedata/deletetemplate/" + id;
@@ -234,7 +256,7 @@ namespace MHC_Hospital_Redesign.Controllers
             if (response.IsSuccessStatusCode)
             {
                 // TODO: Add delete logic here
-
+                Debug.WriteLine("test");
                 return RedirectToAction("List");
             }
             else

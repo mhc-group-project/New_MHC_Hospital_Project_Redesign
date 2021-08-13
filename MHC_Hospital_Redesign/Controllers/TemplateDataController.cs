@@ -42,7 +42,9 @@ namespace MHC_Hospital_Redesign.Controllers
                 TemplateName = t.TemplateName,
                 TemplateHasPic = t.TemplateHasPic,
                 TemplatePicExtension = t.TemplatePicExtension,
-                TemplateStyle = t.TemplateStyle
+                TemplateStyle = t.TemplateStyle,
+                TemplateStyleExtension = t.TemplateStyleExtension,
+                TemplateHasStyle = t.TemplateHasStyle
 
 
             }));
@@ -103,6 +105,7 @@ namespace MHC_Hospital_Redesign.Controllers
         /// 
         [ResponseType(typeof(void))]
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult UpdateTemplate(int id, Template template)
         {
             Debug.WriteLine("reached update method");
@@ -124,6 +127,8 @@ namespace MHC_Hospital_Redesign.Controllers
 
             db.Entry(template).Property(t => t.TemplateHasPic).IsModified = false;
             db.Entry(template).Property(t => t.TemplatePicExtension).IsModified = false;
+            db.Entry(template).Property(t => t.TemplateHasStyle).IsModified = false;
+            db.Entry(template).Property(t => t.TemplateStyleExtension).IsModified = false;
 
 
             try
@@ -225,6 +230,84 @@ namespace MHC_Hospital_Redesign.Controllers
                 return BadRequest();
             }
         }
+
+        [HttpPost]
+        public IHttpActionResult UploadTemplateCss(int id)
+        {
+            bool templatehasstyle = false;
+            string templatestyleextension;
+
+            if (Request.Content.IsMimeMultipartContent())
+            {
+                Debug.WriteLine("recieved multipart form data.");
+
+                int numfiles = HttpContext.Current.Request.Files.Count;
+                Debug.WriteLine("Files Recieved: " + numfiles);
+
+                //Check if file is posted
+
+                if (numfiles == 1 && HttpContext.Current.Request.Files[0] != null)
+                {
+                    var templatecss = HttpContext.Current.Request.Files[0];
+                    //check if file is empty
+                    if (templatecss.ContentLength > 0)
+                    {
+                        //establish valid file stypes
+                        var valtypes = new[] { "css" };
+                        var extension = Path.GetExtension(templatecss.FileName).Substring(1);
+                        //Check the extension of the file
+
+                        if(valtypes.Contains(extension))
+                        {
+                            try
+                            {
+                                //file name is the id + extension;
+                                string fn = id + "." + extension;
+
+                                //get a direct file path to ~/Content/TemplateStyles/template{id}.{extension}
+                                string path = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/TemplateStyles/"), fn);
+
+                                //save file
+
+                                templatecss.SaveAs(path);
+
+                                //if successful then we can set fields
+
+                                templatehasstyle = true;
+                                Debug.WriteLine("CSS" + templatehasstyle);
+                                templatestyleextension = extension;
+
+                                Template SelectedTemplate = db.Templates.Find(id);
+                                SelectedTemplate.TemplateHasStyle = templatehasstyle;
+                                SelectedTemplate.TemplateStyleExtension = templatestyleextension;
+                                db.Entry(SelectedTemplate).State = EntityState.Modified;
+
+                                db.SaveChanges();
+                            }
+                            catch (Exception ex)
+                            {
+                                Debug.WriteLine("template styles was not saved successfully");
+                                Debug.WriteLine("Exception: " + ex);
+                                return BadRequest();
+                            }
+                        }
+
+                    }
+                }
+                return Ok();
+            }
+
+            else
+            {
+                return BadRequest();
+            }
+           
+        }
+      
+
+
+      
+    
        
         /// <summary>
         /// Add a template to the system
@@ -241,6 +324,7 @@ namespace MHC_Hospital_Redesign.Controllers
 
         
         [ResponseType(typeof(Template))]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IHttpActionResult AddTemplate(Template template)
         {
@@ -271,6 +355,7 @@ namespace MHC_Hospital_Redesign.Controllers
 
         [ResponseType(typeof(Template))]
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult DeleteTemplate(int id)
         {
             Template template = db.Templates.Find(id);

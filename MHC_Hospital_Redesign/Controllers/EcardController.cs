@@ -16,7 +16,6 @@ namespace MHC_Hospital_Redesign.Controllers
 
         private static readonly HttpClient client;
         private JavaScriptSerializer jss = new JavaScriptSerializer();
-
         static EcardController()
         {
             HttpClientHandler handler = new HttpClientHandler()
@@ -25,8 +24,7 @@ namespace MHC_Hospital_Redesign.Controllers
                 // cookies are manually set in RequestHeader
                 UseCookies = false
             };
-
-            client = new HttpClient();
+            client = new HttpClient(handler);
             client.BaseAddress = new Uri("https://localhost:44338/api/");
         }
 
@@ -105,8 +103,10 @@ namespace MHC_Hospital_Redesign.Controllers
 
 
         // GET: Ecard/New
+        [Authorize(Roles = "Admin")]
         public ActionResult New()
         {
+            GetApplicationCookie();
             //information about all templates in the system
             //GET: api/templatedata/listtemplates
 
@@ -119,6 +119,7 @@ namespace MHC_Hospital_Redesign.Controllers
 
         // POST: Ecard/Create
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create(Ecard ecard)
         {
             Debug.WriteLine(ecard.EcardId);
@@ -146,6 +147,7 @@ namespace MHC_Hospital_Redesign.Controllers
         }
 
         // GET: Ecard/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             UpdateEcard ViewModel = new UpdateEcard();
@@ -168,9 +170,10 @@ namespace MHC_Hospital_Redesign.Controllers
 
         // POST: Ecard/Update/5
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Update(int id, Ecard ecard)
         {
-
+            GetApplicationCookie();
             //objective: edit an existing ecard in our system using the api
    
 
@@ -196,6 +199,7 @@ namespace MHC_Hospital_Redesign.Controllers
         }
 
         // GET: Ecard/DeleteConfirm/5
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirm(int id)
         {
             string url = "ecarddata/findecard/" + id;
@@ -206,8 +210,10 @@ namespace MHC_Hospital_Redesign.Controllers
 
         // POST: Ecard/Delete/5
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
+            GetApplicationCookie();
             //objective: delete a ecard from the system
 
             string url = "ecarddata/deleteecard/" + id;

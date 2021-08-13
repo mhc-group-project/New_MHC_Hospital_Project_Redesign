@@ -23,9 +23,9 @@ namespace MHC_Hospital_Redesign.Models
         public int TemplateId { get; set; }
         public virtual Template Template { get; set; }
 
-        [ForeignKey("ApplicationUser")]
-        public string UserId { get; set; }
-        public virtual ApplicationUser ApplicationUser { get; set; }
+    //    [ForeignKey("ApplicationUser")]
+     //   public string UserId { get; set; }
+      //  public virtual ApplicationUser ApplicationUser { get; set; }
     }
 
     public class EcardDto
@@ -43,13 +43,11 @@ namespace MHC_Hospital_Redesign.Models
         public string TemplatePicExtension { get; set; }
 
         public string TemplateStyle { get; set; }
+
+        public bool TemplateHasStyle { get; set; }
+
+        public string TemplateStyleExtension { get; set; }
         
-        //Users
-        public string UserId { get; set; }
-
-        public string FirstName { get; set; }
-
-        public string LastName { get; set; }
 
     }
   
