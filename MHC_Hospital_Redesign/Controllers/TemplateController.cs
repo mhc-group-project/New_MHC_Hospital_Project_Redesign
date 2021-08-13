@@ -173,7 +173,7 @@ namespace MHC_Hospital_Redesign.Controllers
         // POST: Template/Update/5
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public ActionResult Update(int id, Template template, HttpPostedFileBase TemplatePic)
+        public ActionResult Update(int id, Template template, HttpPostedFileBase TemplatePic, HttpPostedFileBase TemplateCss)
         {
             GetApplicationCookie(); //get token credentials
             //objective: edit a existing template in our system using the api
@@ -201,15 +201,28 @@ namespace MHC_Hospital_Redesign.Controllers
                 HttpContent imagecontent = new StreamContent(TemplatePic.InputStream);
                 requestcontent.Add(imagecontent, "TemplatePic", TemplatePic.FileName);
                 response = client.PostAsync(url, requestcontent).Result;
+            }
+            //update request is sucessful, and file data is recieved
+            if (response.IsSuccessStatusCode && TemplateCss != null)
+            {
+                //Updating the template css as a seperate request
+                Debug.WriteLine("Calling Update css file method");
+                //Send over file data
+                url = "TemplateData/UploadTemplateCss/" + id;
+                Debug.WriteLine("Recieved template picture " + TemplateCss.FileName);
+
+                MultipartFormDataContent requestcontent = new MultipartFormDataContent();
+                HttpContent filecontent = new StreamContent(TemplateCss.InputStream);
+                requestcontent.Add(filecontent, "TemplateCss", TemplateCss.FileName);
+                response = client.PostAsync(url, requestcontent).Result;
 
                 return RedirectToAction("List");
             }
-
             else if (response.IsSuccessStatusCode)
             {
-                //No image uploaded, but the update was still succesful
+                //No file uploaded, but the update was still succesful
                 return RedirectToAction("List");
-            }
+            } 
             else
             {
                 return RedirectToAction("Errors");

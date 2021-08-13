@@ -43,6 +43,10 @@ namespace MHC_Hospital_Redesign.Models
         public string TemplatePicExtension { get; set; }
 
         public string TemplateStyle { get; set; }
+
+        public bool TemplateHasStyle { get; set; }
+
+        public string TemplateStyleExtension { get; set; }
         
 
     }
