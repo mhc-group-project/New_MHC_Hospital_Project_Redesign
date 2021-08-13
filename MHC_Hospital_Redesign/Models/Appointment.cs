@@ -18,9 +18,16 @@ namespace MHC_Hospital_Redesign.Models
         public string Message { get; set; }
         [Required]
         public string DateTime { get; set; }
-        [Required]
-        public string Status { get; set; }
+        public enum AppointmentStatus
+        {
 
+            Accepted,
+            Rejected,
+            Pending
+        }
+        [Required]
+        public AppointmentStatus Status { get; set; }
+     
 
         [ForeignKey("PatientUser")]
         public string PatientId { get; set; }

@@ -12,6 +12,7 @@ using System.Web.Script.Serialization;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using MHC_Hospital_Redesign.Models.ViewModels;
+using static MHC_Hospital_Redesign.Models.Appointment;
 
 namespace MHC_Hospital_Redesign.Controllers
 {
@@ -163,7 +164,7 @@ namespace MHC_Hospital_Redesign.Controllers
                 string url = "AppointmentData/AddAppointment";
                 newAppointment.Subject = viewAppointment.Subject;
                 newAppointment.Message = viewAppointment.Message;
-                newAppointment.Status = "Pending";
+                newAppointment.Status = AppointmentStatus.Pending;
                 newAppointment.DateTime = viewAppointment.DateTime;                
                 GetApplicationCookie();
                 HttpContent content = new StringContent(jss.Serialize(newAppointment));
@@ -204,7 +205,7 @@ namespace MHC_Hospital_Redesign.Controllers
         // GET: Appointment/Edit/2
         public ActionResult Edit(int id)
         {
-            Debug.WriteLine("HIiiii");
+           
             string url = "AppointmentData/GetAppointment/" + id;            
             HttpResponseMessage response = client.GetAsync(url).Result;
             if (response.IsSuccessStatusCode)

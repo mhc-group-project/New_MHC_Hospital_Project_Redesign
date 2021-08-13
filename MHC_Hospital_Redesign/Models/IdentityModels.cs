@@ -18,6 +18,7 @@ namespace MHC_Hospital_Redesign.Models
 
         // add a M-M relationship with Listings
         public ICollection<Listing> Listings { get; set; }
+        public ICollection<Department> Departments { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

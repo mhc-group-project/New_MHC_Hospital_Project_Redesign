@@ -10,5 +10,6 @@ namespace MHC_Hospital_Redesign.Models.ViewModels
         public bool isadmin { get; set; }
         public DepartmentDto Department { get; set; }
         public IEnumerable<ListingDto> Jobs { get; set; }
+        public virtual ApplicationUser userInfo { get; set; }
     }
 }
