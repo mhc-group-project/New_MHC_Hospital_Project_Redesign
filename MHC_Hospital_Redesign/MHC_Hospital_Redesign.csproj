@@ -245,10 +245,6 @@
     <Compile Include="Migrations\202108121906593_new-migration.Designer.cs">
       <DependentUpon>202108121906593_new-migration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202108121941089_ecard2.cs" />
-    <Compile Include="Migrations\202108121941089_ecard2.Designer.cs">
-      <DependentUpon>202108121941089_ecard2.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\202108122012161_template2.cs" />
     <Compile Include="Migrations\202108122012161_template2.Designer.cs">
       <DependentUpon>202108122012161_template2.cs</DependentUpon>
@@ -499,9 +495,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202108121906593_new-migration.resx">
       <DependentUpon>202108121906593_new-migration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202108121941089_ecard2.resx">
-      <DependentUpon>202108121941089_ecard2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202108122012161_template2.resx">
       <DependentUpon>202108122012161_template2.cs</DependentUpon>

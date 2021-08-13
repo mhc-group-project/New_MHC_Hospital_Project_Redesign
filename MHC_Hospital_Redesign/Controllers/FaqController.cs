@@ -67,7 +67,7 @@ namespace MHC_Hospital_Redesign.Controllers
             if (response.IsSuccessStatusCode)
             {
 
-
+                //comment
                 IEnumerable<FaqDto> SelectedFaq = response.Content.ReadAsAsync<IEnumerable<FaqDto>>().Result;
               //Return the list fo faq sorted in order by the faq sort column in asscending order
               //Search function to search through the list of Faqs
