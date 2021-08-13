@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery") 
 
     <script src="https://cdn.tiny.cloud/1/1fz23mcco9nh72hzgxskxdamg8l15ssk9sm4ll0ebt4zujrl/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
@@ -39,7 +40,7 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
+   
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
