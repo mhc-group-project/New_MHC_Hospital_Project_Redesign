@@ -149,6 +149,7 @@ namespace MHC_Hospital_Redesign.Controllers
        
         [ResponseType(typeof(void))]
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult UpdateEcard(int id, Ecard ecard)
         {
             Debug.WriteLine("I have reached the update ecard method!");
@@ -204,6 +205,7 @@ namespace MHC_Hospital_Redesign.Controllers
 
         [ResponseType(typeof(Ecard))]
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult AddEcard(Ecard ecard)
         {
             if (!ModelState.IsValid)
@@ -234,6 +236,7 @@ namespace MHC_Hospital_Redesign.Controllers
         // DELETE: api/EcardData/DeleteEcard/3
         [ResponseType(typeof(Ecard))]
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult DeleteEcard(int id)
         {
             Ecard ecard = db.Ecards.Find(id);

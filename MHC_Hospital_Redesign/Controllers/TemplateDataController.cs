@@ -103,6 +103,7 @@ namespace MHC_Hospital_Redesign.Controllers
         /// 
         [ResponseType(typeof(void))]
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult UpdateTemplate(int id, Template template)
         {
             Debug.WriteLine("reached update method");
@@ -226,7 +227,7 @@ namespace MHC_Hospital_Redesign.Controllers
             }
         }
 
-    
+      
     
        
         /// <summary>
@@ -244,6 +245,7 @@ namespace MHC_Hospital_Redesign.Controllers
 
         
         [ResponseType(typeof(Template))]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IHttpActionResult AddTemplate(Template template)
         {
@@ -274,6 +276,7 @@ namespace MHC_Hospital_Redesign.Controllers
 
         [ResponseType(typeof(Template))]
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult DeleteTemplate(int id)
         {
             Template template = db.Templates.Find(id);
