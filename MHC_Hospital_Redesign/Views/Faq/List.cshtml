@@ -4,18 +4,18 @@
     ViewBag.Title = "List";
 }
 
-<div class="list-heading">
+<div class="faq-list-heading">
     <h2>All Faqs</h2>
 
 </div>
 @if (Model.IsAdmin)
 {
     <div class="new-anchor-div">
-        <a class="new-anchor" href="/Faq/New">New Faq</a>
+        <a class="new-anchor btn btn-info" href="/Faq/New">New Faq</a>
     </div>
 }
 
-<div>
+<div class="faq-category-form-div">
     <form method="get" action="/Faq/List">
         <input id="Search" name="Search" type="text" value="" />
         <input class="btn btn-primary" type="submit" value="search" />
@@ -27,7 +27,7 @@
     {
 
 
-        <div class="faq-list-div">
+        <div class="faq-list-div faq-category-relation-list-questions">
             <h2 style="font-size:1.5em; font-weight:bold;"><a href="/Faq/Details/@faq.FaqID">@faq.FaqQuestions</a></h2>
         </div>
 

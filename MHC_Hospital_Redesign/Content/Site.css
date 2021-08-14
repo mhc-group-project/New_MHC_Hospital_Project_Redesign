@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family: 'Open Sans', sans-serif;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -36,12 +37,16 @@ textarea {
 
 
 /* FAQ Section START- Neil */
+.faq-category-form-div{
+    margin-bottom:3em;
+}
 .faq-category-list-div{
     padding:1em;
     margin:0.5em;
     color:#fff;
     border-radius:5px;
 }
+
 .faq-category-list-div a{
     color:#fff;
     text-decoration:none;
@@ -51,11 +56,15 @@ textarea {
     transform:scale(1.05);
 }
 
-.faq-category-heading {
-    text-align:center;
-    
+.faq-category-heading, .faq-list-heading {
+    text-align: center;
+    font-family: 'IBM Plex Serif', serif;
+    border-bottom: 2px solid #2277a5;
+    margin-bottom: 2em;
+    padding: 2em;
+    font-weight: bolder;
 }
-    .faq-category-heading h2 {
+    .faq-category-heading h2, .faq-list-heading  h2{
         font-weight: bolder;
     }
 .faq-category-add-btn-div a{
@@ -69,22 +78,30 @@ textarea {
     margin-top:1em;
 
 }
-
-.faq-category-relation-list-questions a{
-    text-decoration:none;
-    font-size:1.5em;
-    color:#000;
-    font-weight:bold;
+.faq-category-relation-list-questions{
+    background-color:cadetblue;
+    padding:1em;
 }
 
-.faq-category-detail-heading-div{
-    text-align:center;
-    
+.faq-category-relation-list-questions a {
+    text-decoration: none;
+    font-size: 1.5em;
+    color: #fff;
+    font-weight: bold;
+}
+
+.faq-category-detail-heading-div {
+    text-align: center;
+    font-family: 'IBM Plex Serif', serif;
 }
 .faq-category-detail-heading-div h2 {
     font-weight: bold;
 }
 
+.faq-list-div{
+    margin-bottom:1em;
+    font-size:0.7em;
+}
 
 
 /* FAQ Section END- Neil */

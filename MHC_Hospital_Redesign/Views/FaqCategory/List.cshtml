@@ -6,7 +6,8 @@
 
 
 <div class="list-heading faq-category-heading">
-    <h2>Faq Categories</h2>
+    <h2>Faq(Frequently Asked Questions) Categories</h2>
+    <p></p>
 </div>
 @if (Model.IsAdmin)
 {
@@ -15,17 +16,17 @@
 </div>
 }
 
-<div>
+<div class="faq-category-form-div">
     <form method="get" action="/FaqCategory/List">
         <input id="Search" name="Search" type="text" value="" />
         <input class="btn btn-primary" type="submit" value="search" />
     </form>
+</div >
+<div class="faq-category-list-div-container">
+    @foreach (var faqcategory in Model.FaqCategories)
+    {
+        <div class="faq-category-list-div" style="background:@faqcategory.CategoryColor">
+            <h3><a href="/FaqCategory/Details/@faqcategory.FaqCategoryID\">@faqcategory.CategoryName</a></h3>
+        </div>
+    }
 </div>
-
-@foreach (var faqcategory in Model.FaqCategories)
-{
-    <div class="faq-category-list-div" style="background:@faqcategory.CategoryColor">
-        <h3><a href="/FaqCategory/Details/@faqcategory.FaqCategoryID\">@faqcategory.CategoryName</a></h3>
-    </div>
-}
-

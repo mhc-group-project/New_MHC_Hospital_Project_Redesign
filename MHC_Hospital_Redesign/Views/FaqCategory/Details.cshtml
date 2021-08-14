@@ -24,7 +24,7 @@
 <div class="relation-div aircraft-relationship">
     <h3>Faqs Under @Model.SelectedFaqCategory.CategoryName:</h3>
     @foreach (var faq in Model.LinkedFaqs)
-    {
+    {       
         <div class="faq-category-relation-list-questions"><a class="relation-list" href="/Faq/Details/@faq.FaqID">@faq.FaqQuestions</a></div>
         <div> @Html.Raw(@faq.FaqAnswers)</div>
     }
