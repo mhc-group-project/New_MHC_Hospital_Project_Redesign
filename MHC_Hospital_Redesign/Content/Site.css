@@ -8,6 +8,17 @@
     padding-left: 15px;
     padding-right: 15px;
 }
+.navbar-inverse {
+    background-color: #2277a5;
+    color: #fff;
+}
+.navbar-inverse .navbar-brand{
+    color:#fff;
+}
+
+.navbar-inverse .navbar-nav > li > a{
+    color:#fff;
+}
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
