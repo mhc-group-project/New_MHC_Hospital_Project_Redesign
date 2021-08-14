@@ -5,9 +5,12 @@
 <nav class="back-up-del-nav">
     <ul>
         <li><a href="/Faq/List">Go back to list</a></li>
-        <li><a href="/Faq/Edit/@Model.SelectedFaq.FaqID">Update</a></li>
-        <li><a class="delete-tag" href="/Faq/DeleteConfirm/@Model.SelectedFaq.FaqID">Delete</a></li>
-    </ul>
+        @if (Model.IsAdmin)
+        {
+            <li><a href="/Faq/Edit/@Model.SelectedFaq.FaqID">Update</a></li>
+            <li><a class="delete-tag" href="/Faq/DeleteConfirm/@Model.SelectedFaq.FaqID">Delete</a></li>
+        }
+        </ul>
 </nav>
 
 
@@ -22,23 +25,35 @@
         <h2>FaqCategories Where this Faq is Listed</h2>
         @foreach (var faqcategory in Model.LinkedFaqCategories)
         {
+            if (Model.IsAdmin)
+            {
+                <div class="relation-list"><a href="/FaqCategory/Details/@faqcategory.FaqCategoryID">@faqcategory.CategoryName</a><a style="color:#ab2020;" href="/Faq/Unassociate/@Model.SelectedFaq.FaqID?FaqCategoryID=@faqcategory.FaqCategoryID">[x]</a></div>
 
-            <div class="relation-list"><a href="/FaqCategory/Details/@faqcategory.FaqCategoryID">@faqcategory.CategoryName</a><a style="color:#ab2020;" href="/Faq/Unassociate/@Model.SelectedFaq.FaqID?FaqCategoryID=@faqcategory.FaqCategoryID">[x]</a></div>
+            }
+            else
+            {
+                <div class="relation-list"><h3>@faqcategory.CategoryName</h3></div>
+
+            }
+
+        }
+        @if (Model.IsAdmin)
+        {
+            <div>
+                <h4>Add new Faq Category for this Faq to be listed into</h4>
+                <form method="POST" action="/Faq/Associate/@Model.SelectedFaq.FaqID">
+                    <select class="form-select" name="FaqCategoryID">
+                        @foreach (var faqcategory in Model.AvailableFaqCategories)
+                        {
+                            <option value="@faqcategory.FaqCategoryID">@faqcategory.CategoryName</option>
+                        }
+
+                    </select>
+                    <input class="btn btn-primary" type="submit" value="Associate FaqCategory" />
+                </form>
+            </div>
         }
 
-        <div>
-            <h4>Add new Faq Category for this Faq to be listed into</h4>
-            <form method="POST" action="/Faq/Associate/@Model.SelectedFaq.FaqID">
-                <select class="form-select" name="FaqCategoryID">
-                    @foreach (var faqcategory in Model.AvailableFaqCategories)
-                    {
-                        <option value="@faqcategory.FaqCategoryID">@faqcategory.CategoryName</option>
-                    }
-
-                </select>
-                <input class="btn btn-primary" type="submit" value="Associate FaqCategory" />
-            </form>
-        </div>
     </div>
 </div>
 

@@ -8,7 +8,7 @@ namespace MHC_Hospital_Redesign.Models.ViewModels
 {
     public class DetailsFaqCategory
     {
-
+        public bool IsAdmin { get; set; }
 
         [AllowHtml]
         public FaqCategoryDto SelectedFaqCategory { get; set; }

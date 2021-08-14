@@ -55,25 +55,40 @@ namespace MHC_Hospital_Redesign.Controllers
 
 
         // GET: Faq/List
-        public ActionResult List(string search)
+        public ActionResult List(string Search = null)
         {
             //Objective : communicate without our faq data api to retrive a list of faqs
             //curl https://localhost:44384/api/faqdata/listfaqs
-
+           
+            ListFaq ViewModel = new ListFaq();
+            if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                ViewModel.IsAdmin = true;
+            else ViewModel.IsAdmin = false;
 
             string url = "faqdata/listfaqs";
+            if (Search != null)
+            {
+                url += "?Search=" + Search;
+            }
             HttpResponseMessage response = client.GetAsync(url).Result;
+
 
             if (response.IsSuccessStatusCode)
             {
 
                 //comment
                 IEnumerable<FaqDto> SelectedFaq = response.Content.ReadAsAsync<IEnumerable<FaqDto>>().Result;
-              //Return the list fo faq sorted in order by the faq sort column in asscending order
-              //Search function to search through the list of Faqs
-                return View(search == null ? SelectedFaq.OrderBy(x => x.FaqSort).ToList() :
-                SelectedFaq.Where(x => x.FaqQuestions.IndexOf(search, StringComparison.OrdinalIgnoreCase) >= 0).ToList());
-               // return View(SelectedFaq.OrderBy(x => x.FaqSort).ToList());
+                //Return the list fo faq sorted in order by the faq sort column in asscending order
+                //Search function to search through the list of Faqs
+
+                ViewModel.Faqs = SelectedFaq;
+              
+                
+                return View(ViewModel); ;
+               // search == null ? SelectedFaq.OrderBy(x => x.FaqSort).ToList() :
+              //  SelectedFaq.Where(x => x.FaqQuestions.IndexOf(search, StringComparison.OrdinalIgnoreCase) >= 0).ToList());
+                // return View(SelectedFaq.OrderBy(x => x.FaqSort).ToList()
+                // return View(SelectedFaq.OrderBy(x => x.FaqSort).ToList());
             }
 
             else
@@ -87,7 +102,9 @@ namespace MHC_Hospital_Redesign.Controllers
         public ActionResult Details(int id)
         {
             DetailsFaq ViewModel = new DetailsFaq();
-
+            if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                ViewModel.IsAdmin = true;
+            else ViewModel.IsAdmin = false;
             //Objective : communicate without our aircraft data api to retrive  one aircraft
             //curl https://localhost:44384/api/faqdata/findfaq/{id}
 
@@ -122,7 +139,7 @@ namespace MHC_Hospital_Redesign.Controllers
 
         //POST: Faq/Associate/{faqid}
         [HttpPost]
-       // [Authorize]
+       [Authorize(Roles ="Admin")]
         public ActionResult Associate(int id, int FaqCategoryID)
         {
             GetApplicationCookie();//get token credentials
@@ -139,7 +156,7 @@ namespace MHC_Hospital_Redesign.Controllers
 
         //POST: Faq/UnAssociate/{id}?FaqCategoryID={FaqCategoryID}
         [HttpGet]
-       // [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult UnAssociate(int id, int FaqCategoryID)
         {
             GetApplicationCookie();//get token credentials
@@ -170,7 +187,7 @@ namespace MHC_Hospital_Redesign.Controllers
 
         // POST: Faq/Create
         [HttpPost]
-       // [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create(Faq faq)
 
         {
@@ -200,7 +217,7 @@ namespace MHC_Hospital_Redesign.Controllers
         }
 
         // GET: Faq/Edit/5
-       // [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
 
@@ -212,7 +229,7 @@ namespace MHC_Hospital_Redesign.Controllers
 
         // POST: Faq/Update/5
         [HttpPost]
-      //  [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Update(int id, Faq faq)
         {
             GetApplicationCookie();//get token credentials
@@ -237,7 +254,7 @@ namespace MHC_Hospital_Redesign.Controllers
         }
 
         // GET: Faq/Delete/5
-      //  [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirm(int id)
         {
             string url = "faqdata/findfaq/" + id;
@@ -248,7 +265,7 @@ namespace MHC_Hospital_Redesign.Controllers
 
         // POST: Aircraft/Delete/5
         [HttpPost]
-       // [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             GetApplicationCookie();//get token credentials

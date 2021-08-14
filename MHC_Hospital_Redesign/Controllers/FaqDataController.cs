@@ -33,9 +33,19 @@ namespace MHC_Hospital_Redesign.Controllers
         // GET: api/Faq
         [HttpGet]
         [ResponseType(typeof(FaqDto))]
-        public IHttpActionResult ListFaqs()
+        public IHttpActionResult ListFaqs(string Search = null)
         {
-            List<Faq> Faqs = db.Faqs.ToList();
+            List<Faq> Faqs;  
+            if (Search != null)
+            {
+                  
+                Faqs = db.Faqs.Where(x => x.FaqQuestions.Contains(Search)).ToList();
+            }
+            else
+            {
+                Faqs = db.Faqs.OrderBy(x => x.FaqSort).ToList();
+
+            }
             List<FaqDto> FaqDtos = new List<FaqDto>();
 
             Faqs.ForEach(a => FaqDtos.Add(new FaqDto()
@@ -105,7 +115,7 @@ namespace MHC_Hospital_Redesign.Controllers
 
         [HttpPost]
         [Route("api/FaqData/AssociateFaqWithFaqCategory/{faqid}/{faqcategoryid}")]
-        //[Authorize]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult AssociateFaqWithFaqCategory(int faqid, int faqcategoryid)
         {
 
@@ -144,7 +154,7 @@ namespace MHC_Hospital_Redesign.Controllers
         /// </example>
         [HttpPost]
         [Route("api/FaqData/UnAssociateFaqWithFaqCategory/{faqid}/{faqcategoryid}")]
-       // [Authorize]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult UnAssociateFaqWithFaqCategory(int faqid, int faqcategoryid)
         {
 
@@ -223,7 +233,7 @@ namespace MHC_Hospital_Redesign.Controllers
         /// </example>
         [ResponseType(typeof(void))]
         [HttpPost]
-       // [Authorize]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult UpdateFaq(int id, Faq faq)
         {
             if (!ModelState.IsValid)
@@ -274,7 +284,7 @@ namespace MHC_Hospital_Redesign.Controllers
         /// </example>
         [ResponseType(typeof(Faq))]
         [HttpPost]
-       // [Authorize]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult AddFaq(Faq faq)
         {
             if (!ModelState.IsValid)
@@ -304,7 +314,7 @@ namespace MHC_Hospital_Redesign.Controllers
         /// </example>
         [ResponseType(typeof(Faq))]
         [HttpPost]
-       // [Authorize]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult DeleteFaq(int id)
         {
             Faq faq = db.Faqs.Find(id);

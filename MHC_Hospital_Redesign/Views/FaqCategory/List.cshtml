@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MHC_Hospital_Redesign.Models.FaqCategoryDto>
+﻿ @model MHC_Hospital_Redesign.Models.ViewModels.ListFaqCategory
 
 @{
     ViewBag.Title = "List";
@@ -8,17 +8,21 @@
 <div class="list-heading faq-category-heading">
     <h2>Faq Categories</h2>
 </div>
+@if (Model.IsAdmin)
+{
 <div class="new-anchor-div faq-category-add-btn-div">
     <a class="new-anchor btn btn-primary" href="/FaqCategory/New">New Faq Category</a>
 </div>
-<div faq-category-search-form-div>
+}
+
+<div>
     <form method="get" action="/FaqCategory/List">
-        <input id="search" name="search" type="text" value="" />
+        <input id="Search" name="Search" type="text" value="" />
         <input class="btn btn-primary" type="submit" value="search" />
     </form>
 </div>
 
-@foreach (var faqcategory in Model)
+@foreach (var faqcategory in Model.FaqCategories)
 {
     <div class="faq-category-list-div" style="background:@faqcategory.CategoryColor">
         <h3><a href="/FaqCategory/Details/@faqcategory.FaqCategoryID\">@faqcategory.CategoryName</a></h3>

@@ -30,9 +30,20 @@ namespace MHC_Hospital_Redesign.Controllers
 
         [HttpGet]
         [ResponseType(typeof(FaqCategoryDto))]
-        public IHttpActionResult ListFaqCategories()
+        public IHttpActionResult ListFaqCategories(string Search = null)
         {
-            List<FaqCategory> FaqCategories = db.FaqCategories.ToList();
+            List<FaqCategory> FaqCategories;
+            if (Search != null)
+            {
+
+                FaqCategories = db.FaqCategories.Where(x => x.CategoryName.Contains(Search)).ToList();
+            }
+            else
+            {
+                FaqCategories = db.FaqCategories.OrderBy(x => x.CategoryName).ToList();
+
+            }
+
             List<FaqCategoryDto> FaqCategoryDtos = new List<FaqCategoryDto>();
 
             FaqCategories.ForEach(k => FaqCategoryDtos.Add(new FaqCategoryDto()
@@ -166,7 +177,7 @@ namespace MHC_Hospital_Redesign.Controllers
 
         [ResponseType(typeof(void))]
         [HttpPost]
-        //[Authorize]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult UpdateFaqCategory(int id, FaqCategory FaqCategory)
         {
             if (!ModelState.IsValid)
@@ -217,7 +228,7 @@ namespace MHC_Hospital_Redesign.Controllers
 
         [ResponseType(typeof(FaqCategory))]
         [HttpPost]
-        //[Authorize]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult AddFaqCategory(FaqCategory faqCategory)
         {
             if (!ModelState.IsValid)
@@ -247,7 +258,7 @@ namespace MHC_Hospital_Redesign.Controllers
 
         [ResponseType(typeof(FaqCategory))]
         [HttpPost]
-       // [Authorize]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult DeleteFaqCategory(int id)
         {
             FaqCategory FaqCategory = db.FaqCategories.Find(id);

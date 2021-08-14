@@ -56,12 +56,20 @@ namespace MHC_Hospital_Redesign.Controllers
 
         // GET: FaqCategory/List
         [HttpGet]
-        public ActionResult List(string search)
+        public ActionResult List(string Search = null)
         {
             //objective: communicate with our FaqCategory data api to retrieve a list fo FaqCategories
             //curl https://localhost:44384/api/faqcategorydata/ListFaqCategories
 
+            ListFaqCategory ViewModel = new ListFaqCategory();
+            if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                ViewModel.IsAdmin = true;
+            else ViewModel.IsAdmin = false;
             string url = "faqcategorydata/listfaqcategories";
+            if (Search != null)
+            {
+                url += "?Search=" + Search;
+            }
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             if (response.IsSuccessStatusCode)
@@ -69,8 +77,8 @@ namespace MHC_Hospital_Redesign.Controllers
 
 
                 IEnumerable<FaqCategoryDto> SelectedFaqCategory = response.Content.ReadAsAsync<IEnumerable<FaqCategoryDto>>().Result;
-                return View(search == null ? SelectedFaqCategory.OrderBy(x => x.CategoryName).ToList() :
-                    SelectedFaqCategory.Where(x => x.CategoryName.IndexOf(search, StringComparison.OrdinalIgnoreCase) >= 0).ToList());
+                ViewModel.FaqCategories = SelectedFaqCategory;
+              
                 Debug.WriteLine("The response code is ");
                 Debug.WriteLine(response.StatusCode);
 
@@ -78,7 +86,7 @@ namespace MHC_Hospital_Redesign.Controllers
                 Debug.WriteLine("Number of FaqCategories received : ");
                 Debug.WriteLine(SelectedFaqCategory.Count());
 
-                 return View(SelectedFaqCategory);
+                 return View(ViewModel);
             }
             else
             {
@@ -96,7 +104,9 @@ namespace MHC_Hospital_Redesign.Controllers
         public ActionResult Details(int id)
         {
             DetailsFaqCategory ViewModel = new DetailsFaqCategory();
-
+            if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                ViewModel.IsAdmin = true;
+            else ViewModel.IsAdmin = false;
             //objective: communicate with our FAQCategory data api to retrieve one Faq Category
             //curl https://localhost:44324/api/FaqCategorydata/findfaqcategory/{id}
 
@@ -130,7 +140,7 @@ namespace MHC_Hospital_Redesign.Controllers
 
         // GET: FaqCAtegory/New
         [HttpGet]
-      //  [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult New()
         {
             return View();
@@ -138,7 +148,7 @@ namespace MHC_Hospital_Redesign.Controllers
 
         // POST: FaqCategory/Create
         [HttpPost]
-      //  [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create(FaqCategory faqCategory)
         {
 
@@ -169,7 +179,7 @@ namespace MHC_Hospital_Redesign.Controllers
 
         // GET: FaqCategory/Edit/5
         [HttpGet]
-       // [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
 
@@ -181,7 +191,7 @@ namespace MHC_Hospital_Redesign.Controllers
 
         // POST: FaqCategory/Update/5
         [HttpPost]
-     //   [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Update(int id, FaqCategory faqCategory)
         {
             GetApplicationCookie();//get token credentials
@@ -204,7 +214,7 @@ namespace MHC_Hospital_Redesign.Controllers
         }
 
         // GET: FaqCategory/DeleteConfirm/5
-      //  [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirm(int id)
         {
             string url = "faqcategorydata/findfaqcategory/" + id;
@@ -215,7 +225,7 @@ namespace MHC_Hospital_Redesign.Controllers
 
         // POST: FaqCategory/Delete/5
         [HttpPost]
-      //  [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             GetApplicationCookie();//get token credentials

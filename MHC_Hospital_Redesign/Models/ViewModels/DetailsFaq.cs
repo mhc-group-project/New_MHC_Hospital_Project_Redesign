@@ -7,6 +7,7 @@ namespace MHC_Hospital_Redesign.Models.ViewModels
 {
     public class DetailsFaq
     {
+        public bool IsAdmin { get; set; }
         public FaqDto SelectedFaq { get; set; }
         public IEnumerable<FaqCategoryDto> LinkedFaqCategories{ get; set; }
 

@@ -5,8 +5,12 @@
 <nav class="back-up-del-nav">
     <ul>
         <li><a href="/FaqCategory/List">Go back to list</a></li>
-        <li> <a class="btn btn-info" href="/FaqCategory/Edit/@Model.SelectedFaqCategory.FaqCategoryID">Update</a></li>
-        <li> <a class="btn btn-danger"  href="/FaqCategory/DeleteConfirm/@Model.SelectedFaqCategory.FaqCategoryID">Delete</a></li>
+        @if (Model.IsAdmin)
+        {
+            <li> <a class="btn btn-info" href="/FaqCategory/Edit/@Model.SelectedFaqCategory.FaqCategoryID">Update</a></li>
+            <li> <a class="btn btn-danger" href="/FaqCategory/DeleteConfirm/@Model.SelectedFaqCategory.FaqCategoryID">Delete</a></li>
+        }
+
     </ul>
 
 </nav>
