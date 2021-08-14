@@ -27,7 +27,7 @@
             @foreach (var feedbackCategory in Model.FeedbackCategoryOptions)
             {
                 string selected = "";
-                if (feedbackCategory.FeedbackCategoryName == Model.SelectedFeedback.FeedbackCategoryName)
+                if (feedbackCategory.FeedbackCategoryID == Model.SelectedFeedback.FeedbackCategoryID)
                 {
                     selected = "selected";
                 }

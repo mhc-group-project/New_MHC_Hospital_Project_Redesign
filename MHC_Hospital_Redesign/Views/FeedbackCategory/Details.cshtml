@@ -24,6 +24,18 @@
 <h2>Name:  @Model.SelectedFeedbackCategory.FeedbackCategoryName</h2>
 <h2>ID: @Model.SelectedFeedbackCategory.FeedbackCategoryID</h2>
 
+<div style="margin-top:100px;">
+    <h3>Feedbacks related to this Category</h3>
+    @foreach (var feedback in Model.RelatedFeedbacks)
+    {
+        <a href="/Feedback/Details/@feedback.FeedbackId">@feedback.FeedbackContent</a>
+        <br />
+
+        
+
+    }
+</div>
+
 
 
 
