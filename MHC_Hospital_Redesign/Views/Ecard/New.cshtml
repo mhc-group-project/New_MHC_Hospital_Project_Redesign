@@ -3,70 +3,74 @@
 @{
     ViewBag.Title = "New";
 }
+<div class="ecard-container">
+
+    <h1>Send a Ecard to a patient any patient at the hospital!</h1>
+    <p>Just simply enter the patients name and who it is from with a nice message. Also don't forget to select a template that best matches the occasion of the ecard.</p>
+
+    <form action="/Ecard/Create" method="POST">
+        <div>
+            <label>Senders Name: </label> <input type="text" name="SenderName" data-val="true" data-val-required="Please enter your name" />
+            <span class="field-validation-valid text-danger" data-valmsg-for="SenderName" data-valmsg-replace="true"></span>
+        </div>
+        <div>
+            <label>Patients Name:</label> <input type="text" name="PatientName" data-val="true" data-val-required="Please enter the patients name" />
+            <span class="field-validation-valid text-danger" data-valmsg-for="PatientName" data-valmsg-replace="true"></span>
+        </div>
+        <div>
+            <label>Message:</label> <textarea type="text" name="Message"></textarea>
+        </div>
+        <div>
 
 
-<h2>Create Ecard</h2>
+            @{
 
-<form action="/Ecard/Create" method="POST">
-    <div>
-        <label>Senders Name: </label> <input type="text" name="SenderName" />
-    </div>
-    <div>
-        <label>Patients Name:</label> <input type="text" name="PatientName" />
-    </div>
-    <div>
-        <label>Message:</label> <textarea type="text" name="Message"></textarea>
-    </div>
-    <div>
-
-
-        @{
-
-            string imgurl = "/Content/TemplatePics/default.jpg";
-
-         }
-        
-
-            <label>Template:</label>
-         
-
-    
-
-            <select name="TemplateId">
-            @foreach (var template in Model)
-            {
-                <option value="@template.TemplateId">@template.TemplateName</option>
+                string imgurl = "/Content/TemplatePics/default.jpg";
 
             }
-        </select>
-      
 
 
-    </div>
-    @*
-              <div>
-            <label>Patient:</label>
-            <select name="UserId">
-                @foreach (var ApplicationUser in Model)
+            <label>Template:</label>
+
+
+
+
+            <select name="TemplateId">
+                @foreach (var template in Model)
                 {
-                    <option value="@ApplicationUser.UserId">@ApplicationUser.FirstName @ApplicationUser.LastName</option>
+                    <option value="@template.TemplateId">@template.TemplateName</option>
 
                 }
             </select>
 
+            <div>
+                <input type="submit" value="Add Ecard" />
+            </div>
+
+            <h2>Template Images</h2>
+            <div class="ecard-flex-container">
+                @foreach (var template in Model)
+                {
+
+                    <div class="ecard-img-container">
+
+                        <h3>@template.TemplateName</h3><img src="~/Content/TemplatePics/@template.TemplateId.@template.TemplatePicExtension" />
+
+                    </div>
+
+                }
+            </div>
         </div>
 
-    *@
 
 
 
 
 
-    <div>
-        <input type="submit" value="Add Ecard" />
-    </div>
 
 
-</form>
 
+    </form>
+
+</div>
 

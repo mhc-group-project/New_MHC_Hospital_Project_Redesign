@@ -106,4 +106,30 @@ textarea {
 
 /* FAQ Section END- Neil */
 
+/*Ecard styles - Justin*/
+
+.ecard-img-container{
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+   
+}
+
+.ecard-img-container h3{
+    text-align: center;
+}
+
+.ecard-img-container img{
+    max-width: 500px;
+}
+
+.ecard-flex-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.ecard-container h2{
+    text-align: center;
+}
+
 

@@ -5,8 +5,7 @@ using System.Web;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
-
+using System.Web.Mvc;
 
 namespace MHC_Hospital_Redesign.Models
 {
@@ -14,8 +13,12 @@ namespace MHC_Hospital_Redesign.Models
     {
         [Key]
         public int EcardId { get; set; }
+        [Required]
         public string SenderName { get; set; }
+        [Required]
         public string PatientName { get; set; }
+        [Required]
+        [AllowHtml]
         public string Message { get; set; }
         
         //An ecard belongs to one template
@@ -31,8 +34,12 @@ namespace MHC_Hospital_Redesign.Models
     public class EcardDto
     {
         public int EcardId { get; set; }
+        [Required(ErrorMessage ="Please enter your name.")]
         public string SenderName { get; set; }
+        [Required(ErrorMessage = "Please enter the patients name.")]
         public string PatientName { get; set; }
+        [Required(ErrorMessage = "Please enter a message. ")]
+        [AllowHtml]
         public string Message { get; set; }
 
         public int TemplateId { get; set; }
