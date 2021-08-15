@@ -103,7 +103,7 @@ namespace MHC_Hospital_Redesign.Controllers
 
 
         // GET: Ecard/New
-        [Authorize(Roles = "Admin")]
+     
         public ActionResult New()
         {
             GetApplicationCookie();
@@ -119,7 +119,6 @@ namespace MHC_Hospital_Redesign.Controllers
 
         // POST: Ecard/Create
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         public ActionResult Create(Ecard ecard)
         {
             Debug.WriteLine(ecard.EcardId);

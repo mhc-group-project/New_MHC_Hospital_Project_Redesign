@@ -33,7 +33,7 @@
                     <li>@Html.ActionLink("Appointment", "Create", "Appointment")</li>
                     <li>@Html.ActionLink("Department", "List", "Department")</li>
                     <li>@Html.ActionLink("Feedback", "List", "Feedback")</li>
-                    <li>@Html.ActionLink("Ecard", "List", "Ecard")</li>
+                    <li>@Html.ActionLink("Ecard", "New", "Ecard")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -50,7 +50,7 @@
         </footer>
     </div>
 
-   
+
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

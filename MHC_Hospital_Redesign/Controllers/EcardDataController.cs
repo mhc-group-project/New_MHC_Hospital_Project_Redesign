@@ -172,7 +172,6 @@ namespace MHC_Hospital_Redesign.Controllers
 
         [ResponseType(typeof(Ecard))]
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         public IHttpActionResult AddEcard(Ecard ecard)
         {
             if (!ModelState.IsValid)

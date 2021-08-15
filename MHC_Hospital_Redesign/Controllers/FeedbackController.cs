@@ -118,7 +118,7 @@ namespace MHC_Hospital_Redesign.Controllers
 
         // POST: Feedback/Create
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create(Feedback feedback)
         {
             GetApplicationCookie();
@@ -150,7 +150,7 @@ namespace MHC_Hospital_Redesign.Controllers
         }
 
         // GET: Feedback/Edit/5
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             UpdateFeedback ViewModel = new UpdateFeedback();
@@ -174,7 +174,7 @@ namespace MHC_Hospital_Redesign.Controllers
 
         // POST: Feedback/Update/5
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Update(int id, Feedback feedback)
         {
             GetApplicationCookie();
@@ -194,7 +194,7 @@ namespace MHC_Hospital_Redesign.Controllers
         }
 
         // GET: Feedback/Delete/5
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirm(int id)
         {
             string url = "feedbackdata/findfeedback/" + id;
@@ -205,7 +205,7 @@ namespace MHC_Hospital_Redesign.Controllers
 
         // POST: Feedback/Delete/5
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             GetApplicationCookie();
