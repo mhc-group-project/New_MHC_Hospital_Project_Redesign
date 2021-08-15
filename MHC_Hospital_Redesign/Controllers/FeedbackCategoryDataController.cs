@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -59,7 +59,7 @@ namespace MHC_Hospital_Redesign.Controllers
         
         [ResponseType(typeof(void))]
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult UpdateFeedbackCategory(int id, FeedbackCategory feedbackCategory)
         {
             if (!ModelState.IsValid)
@@ -98,7 +98,7 @@ namespace MHC_Hospital_Redesign.Controllers
 
         [ResponseType(typeof(FeedbackCategory))]
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult AddFeedbackCategory(FeedbackCategory feedbackCategory)
         {
             if (!ModelState.IsValid)
@@ -117,7 +117,7 @@ namespace MHC_Hospital_Redesign.Controllers
 
         [ResponseType(typeof(FeedbackCategory))]
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult DeleteFeedbackCategory(int id)
         {
             FeedbackCategory feedbackCategory = db.FeedbackCategories.Find(id);
