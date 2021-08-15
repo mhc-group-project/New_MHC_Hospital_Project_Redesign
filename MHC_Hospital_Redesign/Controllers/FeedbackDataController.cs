@@ -1,4 +1,6 @@
-﻿using System;
+using System;
+using System.IO;
+using System.Web;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -86,7 +88,7 @@ namespace MHC_Hospital_Redesign.Controllers
         
         [ResponseType(typeof(void))]
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult UpdateFeedback(int id, Feedback feedback)
         {
             if (!ModelState.IsValid)
@@ -144,7 +146,7 @@ namespace MHC_Hospital_Redesign.Controllers
         
         [ResponseType(typeof(Feedback))]
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult DeleteFeedback(int id)
         {
             Feedback feedback = db.Feedbacks.Find(id);
