@@ -98,7 +98,7 @@ namespace MHC_Hospital_Redesign.Controllers
         }
 
         // GET: FeedbackCategory/New
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult New()
         {
             //information about all feedbackCategories in the system]
@@ -107,7 +107,7 @@ namespace MHC_Hospital_Redesign.Controllers
         }
 
         // POST: FeedbackCategory/Create
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Create(FeedbackCategory feedbackCategory)
         {
@@ -139,7 +139,7 @@ namespace MHC_Hospital_Redesign.Controllers
         }
 
         // GET: FeedbackCategory/Edit/5
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
 
@@ -155,7 +155,7 @@ namespace MHC_Hospital_Redesign.Controllers
 
         // POST: FeedbackCategory/Update/5
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Update(int id, FeedbackCategory feedbackCategory)
         {
             GetApplicationCookie();
@@ -176,7 +176,7 @@ namespace MHC_Hospital_Redesign.Controllers
         }
 
         // GET: FeedbackCategory/Delete/5
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirm(int id)
         {
             GetApplicationCookie();
@@ -188,7 +188,7 @@ namespace MHC_Hospital_Redesign.Controllers
 
         // POST: FeedbackCategory/Delete/5
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             string url = "feedbackCategorydata/deletefeedbackCategory/" + id;
