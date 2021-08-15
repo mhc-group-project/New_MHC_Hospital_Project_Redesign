@@ -122,15 +122,21 @@ textarea {
     padding:0.4em;
 }
 
+.faq-list-containter-in-category{
+
+  padding-bottom: 4em;
+}
+
+.faq-all-faq-category-link-div, .faq-category-all-faq-link-div{
+    padding:0.7em;
+    text-align:center;
+}
 /* FAQ Section END- Neil */
-
 /*Ecard styles - Justin*/
-
-.ecard-img-container{
+.ecard-img-container {
     display: flex;
     flex-direction: column;
     max-width: 500px;
-   
 }
 
 .ecard-img-container h3{

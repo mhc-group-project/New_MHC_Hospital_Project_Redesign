@@ -14,19 +14,20 @@
     </ul>
 
 </nav>
-<div class="faq-category-detail-heading-div">
-    <h2>@Model.SelectedFaqCategory.CategoryName</h2>
-</div>
-<div>
-            <p>@Html.Raw(@Model.SelectedFaqCategory.CategoryDescription)</p>  
-</div>
+<div class="faq-list-containter-in-category">
+    <div class="faq-category-detail-heading-div">
+        <h2>@Model.SelectedFaqCategory.CategoryName</h2>
+    </div>
+    <div>
+        <p>@Html.Raw(@Model.SelectedFaqCategory.CategoryDescription)</p>
+    </div>
 
-<div class="relation-div aircraft-relationship">
-    <h3>Faqs Under @Model.SelectedFaqCategory.CategoryName:</h3>
-    @foreach (var faq in Model.LinkedFaqs)
-    {       
-        <div class="faq-category-relation-list-questions"><a class="relation-list" href="/Faq/Details/@faq.FaqID">@faq.FaqQuestions</a></div>
-        <div> @Html.Raw(@faq.FaqAnswers)</div>
-    }
+    <div class="relation-div aircraft-relationship">
+        <h3>Faqs Under @Model.SelectedFaqCategory.CategoryName:</h3>
+        @foreach (var faq in Model.LinkedFaqs)
+        {
+            <div class="faq-category-relation-list-questions"><a class="relation-list" href="/Faq/Details/@faq.FaqID">@faq.FaqQuestions</a></div>
+            <div> @Html.Raw(@faq.FaqAnswers)</div>
+        }
+    </div>
 </div>
-

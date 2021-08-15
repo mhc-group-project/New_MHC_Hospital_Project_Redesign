@@ -7,7 +7,7 @@
 
 <div class="list-heading faq-category-heading">
     <h2>Faq(Frequently Asked Questions) Categories</h2>
-    <p></p>
+    <p>Click on the categories to view all the Faqs listed under that particulare category. All The Categories are listed Alpabetically, Please use the search bar if your looking for sometihng specific.</p>
 </div>
 @if (Model.IsAdmin)
 {
@@ -15,7 +15,9 @@
     <a class="new-anchor btn btn-primary" href="/FaqCategory/New">New Faq Category</a>
 </div>
 }
-
+<div class="new-anchor-div faq-category-all-faq-link-div">
+    <a class="new-anchor btn btn-primary" href="/Faq/List">View Entire Faq List</a>
+</div>
 <div class="faq-category-form-div">
     <form method="get" action="/FaqCategory/List">
         <input id="Search" name="Search" type="text" value="" />
