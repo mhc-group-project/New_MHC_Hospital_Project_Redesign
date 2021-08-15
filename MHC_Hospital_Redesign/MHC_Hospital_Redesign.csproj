@@ -293,6 +293,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\mhc.jpg" />
     <Content Include="Content\TemplateStyles\BdayBoy.css" />
     <Content Include="Content\TemplateStyles\BdayGirl.css" />
     <Content Include="Content\TemplateStyles\GetWellSoon.css" />

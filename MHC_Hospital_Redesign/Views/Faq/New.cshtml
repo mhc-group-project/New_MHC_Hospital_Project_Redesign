@@ -7,22 +7,22 @@
 <div class="back-link"><a href="/Faq/List">Go back to list</a></div>
 <h2>Add New FAQ</h2>
 <form action="/Faq/Create" method="post">
-    <div>
+    <div class="faq-create-update-form-label">
         <label>Date Created:</label>
         <input type="text" name="DateAdded" placeholder="YYYY-MM-DD" data-val="true" data-val-required="Please Enter a Date." /><span>"YYYY-MM-DD"</span>
         @Html.ValidationMessageFor(model => model.DateAdded, "", new { @class = "text-danger", data_valmsg_for = "DateAdded" })
     </div>
-    <div>
+    <div class="faq-create-update-form-label">
         <label>Question:</label>
         <input type="text" name="FaqQuestions"  data-val="true" data-val-required="Please Enter a Question." />
         @Html.ValidationMessageFor(model => model.FaqQuestions, "", new { @class = "text-danger", data_valmsg_for = "FaqQuestions" })
     </div>
-    <div>
+    <div class="faq-create-update-form-label">
         <label>Answer:</label>
         <textarea name="FaqAnswers" data-val="true" data-val-required="Please Enter an Answer."></textarea>
         @Html.ValidationMessageFor(model => model.FaqAnswers, "", new { @class = "text-danger", data_valmsg_for = "FaqAnswers" })
     </div>
-    <div>
+    <div class="faq-create-update-form-label">
         <label>Sort Order:</label>
         <input type="number" name="FaqSort" data-val="true" data-val-required="Please Enter a Sorting Number." />
         @Html.ValidationMessageFor(model => model.FaqSort, "", new { @class = "text-danger", data_valmsg_for = "FaqSort" })

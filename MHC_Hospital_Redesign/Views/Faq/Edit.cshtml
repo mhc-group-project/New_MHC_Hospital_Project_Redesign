@@ -5,23 +5,24 @@
 
 <div class="back-link"><a href="/Faq/Details/@Model.FaqID">Go back</a></div>
 <h2>Update Faq</h2>
-<form action="/Faq/Update/@Model.FaqID" method="post">
-    <div style="display:none;">
+<form action="/Faq/Update/@Model.FaqID" method="post"class="faq-create-update-form-label">
+    <div style="display:none;" class="faq-create-update-form-label">
 
         <input type="text" name="FaqID" value="@Model.FaqID" />
     </div>
-    <div>
+    <div class="faq-create-update-form-label">
         <label>Date Added:</label>
         <input type="text" name="DateAdded" value="@Model.DateAdded" />
-    <div>
-        <label>Question</label>
+    </div>
+    <div class="faq-create-update-form-label">
+        <label>Question:</label>
         <input type="text" name="FaqQuestions" value="@Model.FaqQuestions" />
     </div>
-    <div>
-        <label>Answer</label>
+    <div class="faq-create-update-form-label">
+        <label>Answer:</label>
         <textarea  name="FaqAnswers" >@Model.FaqAnswers</textarea>
     </div>
-    <div>
+    <div class="faq-create-update-form-label">
         <label>Faq Position:</label>
         <input type="number" name="FaqSort" value="@Model.FaqSort" />
     </div>

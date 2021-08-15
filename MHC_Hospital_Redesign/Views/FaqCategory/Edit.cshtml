@@ -5,23 +5,23 @@
 <div class="back-link"><a href="/FaqCategory/Details/@Model.FaqCategoryID">Go back to list</a></div>
 <h2>Update Faq Category</h2>
 <form action="/FaqCategory/Update/@Model.FaqCategoryID" method="POST">
-    <div style="display:none;">
+    <div style="display:none;" class="faq-create-update-form-label">
         @* Pass through the FaqCategory ID *@
         <input type="text" name="FaqCategoryID" value="@Model.FaqCategoryID" />
     </div>
-    <div>
+    <div class="faq-create-update-form-label">
         <label>Date:</label>
         <input type="text" name="CategoryDateAdded" value="@Model.CategoryDateAdded" />
     </div>
-    <div>
+    <div class="faq-create-update-form-label">
         <label>Name:</label>
         <input type="text" name="CategoryName" value="@Model.CategoryName" />
     </div>
-    <div>
+    <div class="faq-create-update-form-label">
         <label>Description:</label>
         <textarea name="CategoryDescription">@Model.CategoryDescription</textarea>
     </div>
-    <div>
+    <div class="faq-create-update-form-label">
         <label>Category Color:</label>
         <input type="color" name="CategoryColor" value="@Model.CategoryColor" />
     </div>

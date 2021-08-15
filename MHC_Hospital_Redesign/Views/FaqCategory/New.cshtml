@@ -5,29 +5,28 @@
 <div class="back-link"><a href="/FaqCategory/List">Go back to list</a></div>
 <h2>Create New Faq Category</h2>
 <form action="/FaqCategory/Create" method="POST">
-    <div>
+    <div class="faq-create-update-form-label">
         <label>Date:</label>
         <input type="text" name="CategoryDateAdded"  data-val="true" data-val-required="Please Enter a Date."  />
         @Html.ValidationMessageFor(model => model.CategoryDateAdded, "", new { @class = "text-danger", data_valmsg_for = "CategoryDateAdded" })
     </div>
-    <div>
+    <div class="faq-create-update-form-label">
         <label>Name:</label>
         <input type="text" name="CategoryName" data-val="true" data-val-required="Please Enter Category Name." />
         @Html.ValidationMessageFor(model => model.CategoryName, "", new { @class = "text-danger", data_valmsg_for = "CategoryName" })
     </div>
-    <div>
+    <div class="faq-create-update-form-label">
         <label>Description:</label>
         <textarea name="CategoryDescription" data-val-required="Please Enter Category Description."></textarea>
         @Html.ValidationMessageFor(model => model.CategoryDescription, "", new { @class = "text-danger", data_valmsg_for = "CategoryDescription" })
     </div>
-    <div>
+    <div class="faq-create-update-form-label">
         <label>Category Color:</label>
         <input type="color" name="CategoryColor" data-val-required="Please Choose a  Category Color." />
         @Html.ValidationMessageFor(model => model.CategoryColor, "", new { @class = "text-danger", data_valmsg_for = "CategoryColor" })
     </div>
     <div class="btn">
         <input class="btn btn-primary" type="submit" value="Add Faq Category" />
-
     </div>
 </form>
 
