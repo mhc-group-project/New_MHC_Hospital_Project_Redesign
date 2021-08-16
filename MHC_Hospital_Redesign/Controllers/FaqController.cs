@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data.Entity.Migrations;
 using System.Web.Mvc;
 using System.Net.Http;
 using MHC_Hospital_Redesign.Models;
@@ -13,7 +14,9 @@ namespace MHC_Hospital_Redesign.Controllers
 {
     public class FaqController : Controller
 
-    { 
+    {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         private static readonly HttpClient client;
     private JavaScriptSerializer jss = new JavaScriptSerializer();
 
@@ -95,6 +98,34 @@ namespace MHC_Hospital_Redesign.Controllers
             {
                 return RedirectToAction("Error");
             }
+        }
+        /// <summary>
+        /// Update the Faq once they have been sorted .This fucntion is still in progress as its not working.
+        /// Further investigation and refinement is required
+        /// </summary>
+        /// <param name="itemIds"></param>
+        /// <returns>Uodated Faq Sort </returns>
+        public ActionResult UpdateFaqPosition(string itemIds)
+        {
+            int count = 1;
+            List<int> itemIdList = new List<int>();
+            itemIdList = itemIds.Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToList();
+            foreach (var itemId in itemIdList)
+            {
+                try
+                {
+                    Faq item = db.Faqs.Where(x => x.FaqID == itemId).FirstOrDefault();
+                    item.FaqSort = count;
+                    db.Faqs.AddOrUpdate(item);
+                    db.SaveChanges();
+                }
+                catch (Exception)
+                {
+                    continue;
+                }
+                count++;
+            }
+            return Json(true, JsonRequestBehavior.AllowGet);
         }
 
 
